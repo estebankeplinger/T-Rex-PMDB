@@ -8,10 +8,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Portfolio_Management.Models;
 
+
+
 namespace Portfolio_Management.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : ApplicationBaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

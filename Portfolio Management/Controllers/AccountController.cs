@@ -9,17 +9,21 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Portfolio_Management.Models;
+using System.Diagnostics;
+
 
 namespace Portfolio_Management.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : ApplicationBaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext context;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -53,11 +57,20 @@ namespace Portfolio_Management.Controllers
         }
 
         //
+        //GET: /Account/Help
+        [AllowAnonymous]
+        public ActionResult Help()
+        {
+            return View();
+        }
+
+        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            //Debug.WriteLine("Returning login view (Login Method)");
             return View();
         }
 
@@ -86,7 +99,7 @@ namespace Portfolio_Management.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Invalid login credentials.");
                     return View(model);
             }
         }
@@ -139,6 +152,7 @@ namespace Portfolio_Management.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
             return View();
         }
 
@@ -151,10 +165,21 @@ namespace Portfolio_Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //Assign Role to user Here 
+                    //await UserManager.AddToRoleAsync(user.Id, "User"); //unmodified
+                    await this.UserManager.AddToRoleAsync(user.Id, model.Name);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

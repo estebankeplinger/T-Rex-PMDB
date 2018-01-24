@@ -1,31 +1,264 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "T-Rex PM DB";
+    Layout = "~/Views/Shared/_LayoutGen.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-- page content -->
+@*<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Home Page</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Home Page</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        Content goes here
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- /page content -->
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!--FOR     SCAFFOLDED      VIEWS-->
+<!-- page content -->
+@*<div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Home Page</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Home Page</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li>
+                                    <a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            Content goes here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!-- /page content -->
+<!--FOR SCAFFOLDED VIEWS-->
+
+<div class="right_col" role="main">
+    <div class="row">
+
+        <!--Weather widget-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Weather @*<small>Sessions</small>*@</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="temperature">
+                                <b>Wednesday</b>, 09:00 AM
+                                @*<span>F</span>
+                                <span><b>C</b></span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="weather-icon">
+                                <canvas height="84" width="84" id="partly-cloudy-day"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="weather-text">
+                                <h2>Maryland <br><i>Sunny Day</i></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="weather-text pull-right">
+                            <h3 class="degrees">45</h3>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row weather-days">
+                        <div class="col-sm-2">
+                            <div class="daily-weather">
+                                <h2 class="day">Thurs</h2>
+                                <h3 class="degrees">48</h3>
+                                <canvas id="clear-day" width="55" height="32"></canvas>
+                                <h5>15 <i>km/h</i></h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="daily-weather">
+                                <h2 class="day">Fri</h2>
+                                <h3 class="degrees">61</h3>
+                                <canvas height="32" width="55" id="rain"></canvas>
+                                <h5>12 <i>km/h</i></h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="daily-weather">
+                                <h2 class="day">Sat</h2>
+                                <h3 class="degrees">48</h3>
+                                <canvas height="32" width="55" id="snow"></canvas>
+                                <h5>14 <i>km/h</i></h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="daily-weather">
+                                <h2 class="day">Sun</h2>
+                                <h3 class="degrees">44</h3>
+                                <canvas height="32" width="55" id="sleet"></canvas>
+                                <h5>15 <i>km/h</i></h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="daily-weather">
+                                <h2 class="day">Mon</h2>
+                                <h3 class="degrees">40</h3>
+                                <canvas height="32" width="55" id="wind"></canvas>
+                                <h5>11 <i>km/h</i></h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="daily-weather">
+                                <h2 class="day">Tue</h2>
+                                <h3 class="degrees">36</h3>
+                                <canvas height="32" width="55" id="cloudy"></canvas>
+                                <h5>10 <i>km/h</i></h5>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End weather widget-->
+    
+        <!--Tab widget-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Admin & Reference Data</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Admin Tables</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Reference Tables</a>
+                            </li>
+                            @*<li role="presentation" class="">
+                                <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Show All</a>
+                            </li>*@
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                <p>
+                                    <h4>Admin Table Home</h4>
+                                    <hr />
+                                    @Html.ActionLink("Admin Agency", "Index", "Adm_Agency")
+                                    <br />
+                                    @Html.ActionLink("Admin Asset Type", "Index", "Adm_Asset_Type")
+                                    <br />
+                                    @Html.ActionLink("Admin Clearance Status", "Index", "Adm_Clearance_Status")
+                                    <br />
+                                    @Html.ActionLink("Admin Contract Vehicle", "Index", "Adm_Contract_Vehicle")
+                                    <br />
+                                    @Html.ActionLink("Admin Degree", "Index", "Adm_Degree")
+                                    
+                                </p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                <p>
+                                    <h4>Reference Table Home</h4>
+                                    <hr />
+                                </p>
+                            </div>
+                            @*<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                <p>
+                                    xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                                    booth letterpress, commodo enim craft beer mlkshk
+                                </p>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End tab widget-->
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <br />
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>

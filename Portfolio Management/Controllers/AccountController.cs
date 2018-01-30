@@ -26,7 +26,7 @@ namespace Portfolio_Management.Controllers
             context = new ApplicationDbContext();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,9 +38,9 @@ namespace Portfolio_Management.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -133,7 +133,7 @@ namespace Portfolio_Management.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -170,7 +170,8 @@ namespace Portfolio_Management.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    userRole = model.userRole
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -178,10 +179,10 @@ namespace Portfolio_Management.Controllers
                 {
                     //Assign Role to user Here 
                     //await UserManager.AddToRoleAsync(user.Id, "User"); //unmodified
-                    await this.UserManager.AddToRoleAsync(user.Id, model.Name);
+                    await UserManager.AddToRoleAsync(user.Id, "User");
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -446,6 +447,65 @@ namespace Portfolio_Management.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        //
+        //Retreives user profile photo
+        public FileContentResult Photo(string userId)
+        {
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+            var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            if (user.ProfilePicture != null)
+            {
+                return new FileContentResult(user.ProfilePicture, "image/jpeg");
+            }
+            else
+            {
+                //return general user profile picture
+                string imgPath = Server.MapPath("/production/images/user.png");
+                byte[] byteData = System.IO.File.ReadAllBytes(imgPath);
+                return new FileContentResult(byteData,"image/jpeg");
+
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult UpdateProfile()
+        {
+            //var id = User.Identity.GetUserId();
+            //var currentProfilePhoto = Photo(id);
+
+            //ViewBag.currentProfilePicture = currentProfilePhoto;
+            ViewBag.message = "Update your profile";
+            
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProfile(HttpPostedFileBase Profile)
+        {
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+            
+
+            var userid = User.Identity.GetUserId();
+            if (userid != null)
+            {
+                var user = db.Users.Where(x => x.Id == userid).FirstOrDefault();
+
+                // convert image stream to byte array
+                byte[] image = new byte[Profile.ContentLength];
+                Profile.InputStream.Read(image, 0, Convert.ToInt32(Profile.ContentLength));
+
+                user.ProfilePicture = image;
+
+                // save changes to database
+                db.SaveChanges();
+            }
+
+
+            return RedirectToAction("Index", "Home");
         }
 
         #region Helpers

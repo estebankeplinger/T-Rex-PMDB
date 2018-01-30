@@ -64,7 +64,14 @@ namespace Portfolio_Management.Models
 
     public class RegisterViewModel
     {
-        public string Name { get; set; }
+        [Display(Name = "User Roles")]
+        [Required]
+        public string userRole { get; set; }
+
+        [Display(Name = "Username")]
+        [Required]
+        public string username { get; set; }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "First Name")]

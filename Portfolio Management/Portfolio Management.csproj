@@ -261,6 +261,22 @@
     <Compile Include="Migrations\201712081534076_RoleSignin.Designer.cs">
       <DependentUpon>201712081534076_RoleSignin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801251755260_Role dev 1.25.cs" />
+    <Compile Include="Migrations\201801251755260_Role dev 1.25.Designer.cs">
+      <DependentUpon>201801251755260_Role dev 1.25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801261750108_Role name change.cs" />
+    <Compile Include="Migrations\201801261750108_Role name change.Designer.cs">
+      <DependentUpon>201801261750108_Role name change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801261829582_REgViewModelChange.cs" />
+    <Compile Include="Migrations\201801261829582_REgViewModelChange.Designer.cs">
+      <DependentUpon>201801261829582_REgViewModelChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801301629306_profilepicture.cs" />
+    <Compile Include="Migrations\201801301629306_profilepicture.Designer.cs">
+      <DependentUpon>201801301629306_profilepicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Adm_Agency.cs">
@@ -387,6 +403,7 @@
     <Compile Include="Models\Ref_Training.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoleViewModels.cs" />
     <Compile Include="Models\Security_Workflow.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
@@ -5683,10 +5700,13 @@
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Role\usersInRole.cshtml" />
+    <Content Include="Views\Account\UpdateProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ApplicationBase\" />
+    <Folder Include="Views\RoleView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -5716,6 +5736,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712081534076_RoleSignin.resx">
       <DependentUpon>201712081534076_RoleSignin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801251755260_Role dev 1.25.resx">
+      <DependentUpon>201801251755260_Role dev 1.25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801261750108_Role name change.resx">
+      <DependentUpon>201801261750108_Role name change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801261829582_REgViewModelChange.resx">
+      <DependentUpon>201801261829582_REgViewModelChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801301629306_profilepicture.resx">
+      <DependentUpon>201801301629306_profilepicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

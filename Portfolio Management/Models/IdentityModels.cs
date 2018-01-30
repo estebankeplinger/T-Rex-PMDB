@@ -11,6 +11,8 @@ namespace Portfolio_Management.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string userRole {  get; set; }
+        public byte[] ProfilePicture { get; set; }
         //public string Email { get; set; }
        // public string ConfirmedEmail { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

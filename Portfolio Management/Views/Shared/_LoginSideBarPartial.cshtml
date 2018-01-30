@@ -8,7 +8,7 @@
     <!-- menu profile quick info -->
     <div class="profile clearfix">
         <div class="profile_pic">
-            <img src="/production/images/user.png" alt="..." class="img-circle profile_img">
+            <img src="@Url.Action("Photo", "Account" , new { UserId=User.Identity.GetUserId() })" class="img-circle profile_img"/>
         </div>
         <div class="profile_info">
             <span>Welcome,</span>
@@ -29,6 +29,6 @@ else
             <span>Not Logged in</span>
         </div>
     </div>*@
-    <!-- /menu profile quick info -->
+    <!-- /menu profile quick info <img src="/production/images/user.png" alt="..." class="img-circle profile_img">-->
 
 }

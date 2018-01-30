@@ -8,18 +8,20 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li class="">
+
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="/production/images/user.png" alt= "">
+                <img src="@Url.Action("Photo", "Account" , new { UserId=User.Identity.GetUserId() })" alt="">@ViewData["FullName"]  <i class="fa fa-caret-down"></i>
                 <span class="" fa fa-angle-down"></span>
             </a>
-            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li style="border-bottom: 1px solid #f0f0f0">
-                    <a href="javascript:;">@ViewData["FullName"]</a>
-                </li>
-                <li>@Html.ActionLink("Manage", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-                <li><a href="javascript:;">Help</a></li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            </ul>
+
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li style="border-bottom: 1px solid #f0f0f0">
+                        <a href="javascript:;">Your profile</a>
+                    </li>
+                    <li>@Html.ActionLink("Manage", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
         </li>
     </ul>
     }

@@ -171,7 +171,7 @@ namespace Portfolio_Management.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    userRole = model.userRole
+                    userRole = model.UserRole
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);

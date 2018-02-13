@@ -46,6 +46,22 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
+
+                    <!-- Search bar-->
+                    <div class="title_right">
+                        <div class="col-md-3 col-sm-3 col-xs-6 form-group pull-right top_search">
+                            @using (Html.BeginForm("Dashboard", "Role"))
+                            {
+                                <div class="input-group">
+                                    @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search Staff" })
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">Go</button>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- /Search bar-->
                     <div class="x_content">
                         <div style="overflow-x:auto">
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

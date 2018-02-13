@@ -233,7 +233,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\Adm_Exit_ReasonController.cs" />
+    <Compile Include="Controllers\Adm_PrefixController.cs" />
+    <Compile Include="Controllers\Ref_CompanyController.cs" />
+    <Compile Include="Controllers\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Adm_AgencyController.cs" />
     <Compile Include="Controllers\Adm_Asset_TypeController.cs" />
@@ -428,6 +431,7 @@
     <Compile Include="Models\Staff1.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StaffViewModels.cs" />
     <Compile Include="Models\Staff_Asset.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
@@ -5700,8 +5704,27 @@
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Role\usersInRole.cshtml" />
+    <Content Include="Views\Role\usersInRole.cshtml">
+      <BrowseToURL>~/Role/usersInRole</BrowseToURL>
+    </Content>
     <Content Include="Views\Account\UpdateProfile.cshtml" />
+    <Content Include="Views\Role\Dashboard.cshtml" />
+    <Content Include="Views\Role\_AssignRolePartial.cshtml" />
+    <Content Include="Views\Ref_Company\Create.cshtml" />
+    <Content Include="Views\Ref_Company\Delete.cshtml" />
+    <Content Include="Views\Ref_Company\Details.cshtml" />
+    <Content Include="Views\Ref_Company\Edit.cshtml" />
+    <Content Include="Views\Ref_Company\Index.cshtml" />
+    <Content Include="Views\Adm_Exit_Reason\Create.cshtml" />
+    <Content Include="Views\Adm_Exit_Reason\Delete.cshtml" />
+    <Content Include="Views\Adm_Exit_Reason\Details.cshtml" />
+    <Content Include="Views\Adm_Exit_Reason\Edit.cshtml" />
+    <Content Include="Views\Adm_Exit_Reason\Index.cshtml" />
+    <Content Include="Views\Adm_Prefix\Create.cshtml" />
+    <Content Include="Views\Adm_Prefix\Delete.cshtml" />
+    <Content Include="Views\Adm_Prefix\Details.cshtml" />
+    <Content Include="Views\Adm_Prefix\Edit.cshtml" />
+    <Content Include="Views\Adm_Prefix\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

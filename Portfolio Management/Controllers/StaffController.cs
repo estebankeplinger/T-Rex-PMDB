@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Portfolio_Management.Models;
+using System.Diagnostics;
 
 namespace Portfolio_Management.Controllers
 {
@@ -16,9 +17,26 @@ namespace Portfolio_Management.Controllers
         private PMDataEntities db = new PMDataEntities();
 
         // GET: Staff
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+
             var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason).Include(s => s.Adm_Prefix).Include(s => s.Adm_Suffix).Include(s => s.Ref_Company).Include(s => s.Staff_Clearance);
+            List<Staff> staffList = new List<Staff>();
+
+            staffList = staffs.ToList();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Debug.WriteLine("Search string found" + searchString);
+                foreach (var user in staffList)
+                {
+                    //if user doesn't match search string, remove them from user list to show
+                    if (!user.First_Name.Contains(searchString) || !user.Last_Name.Contains(searchString) ||
+                        !user.Staff_Name.Contains(searchString))
+                        staffList.Remove(user);
+                        
+                }
+            }
+            
             return View(staffs.ToList());
         }
 
@@ -145,5 +163,6 @@ namespace Portfolio_Management.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

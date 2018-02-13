@@ -2,29 +2,49 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace Portfolio_Management.Models
 {
-    public class RoleViewModels
+
+    public class UsersRolesViewModel
     {
-        public List<UsersInRoleViewModel> roles;
-        public List<AssignUserToRoleViewModel> userRoles;
-    }
-    public class UsersInRoleViewModel
-    {
-        [Display(Name ="User ID")]
-        public string userID { get; set; }
-        [Display(Name ="Username")]
-        public string username { get; set; }
-        [Display(Name ="Role")]
-        public string role { get; set; }
+        public UsersRolesViewModel()
+        {
+            users = new List<RegisterViewModel>();
+            roles = new List<IdentityRole>();
+        }
+
+        [Display(Name = "User List")]
+        public List<RegisterViewModel> users { get; set; }
+
+        [Display(Name = "Role List")]
+        public List<IdentityRole> roles { get; set; }
+
+        public string selectedUsername { get; set; }
     }
 
-    public class AssignUserToRoleViewModel
+    public class ChangeRoleViewModel
     {
-        public string userID { get; set; }
+        public ChangeRoleViewModel()
+        {
+            roles = new List<IdentityRole>();
+        }
+
+        public string currentUserRole { get; set; }
+
         public string username { get; set; }
-        public string role { get; set; }
+        public string id { get; set; }
+
+        public string firstName { get; set; }
+
+        public string lastName { get; set; }
+
+        public string newUserRole { get; set; }
+
+        public List<IdentityRole> roles { get; set; }
+ 
     }
 
 }

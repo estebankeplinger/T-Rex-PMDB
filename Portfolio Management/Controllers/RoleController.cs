@@ -54,87 +54,138 @@ namespace Portfolio_Management.Controllers
         }
 
         // <summary>
-        // Returns Users
+        // Returns Users, roles
         // </summary>
         // <param name="Role"></param>
-        // <returns></returns>
-        //public ActionResult usersInRole()
+        // <returns>
+        // Populated list of users, roles
+        // </returns>
+        public ActionResult Dashboard(string searchString)
+        {
+
+            var context = new ApplicationDbContext();
+            var userRoleViewModel = new UsersRolesViewModel();
+
+            var userList = getUsers();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Debug.WriteLine("Search string found" + searchString);
+                foreach (var user in getUsers())
+                {
+                    //if user doesn't match search string, remove them from user list to show
+                    if (!user.FirstName.Contains(searchString) || !user.LastName.Contains(searchString) || !user.UserName.Contains(searchString))
+                        userList.Remove(user);
+                }
+            }
+
+            userRoleViewModel.users = userList;
+            userRoleViewModel.roles = getRoles();
+
+            //return populated view model object
+            return View(userRoleViewModel);
+
+        }
+
+        public ActionResult ChangeUserRole(string username)
+        {
+            var users = context.Users.ToList();
+            Debug.WriteLine("---------------------------              Selected user name is:"+ username);
+            
+            var userRoles = users.Find(item => item.UserName == username);
+
+            //Debug.WriteLine("Got to chengeuserrole method, user name from selected value is {0}", userRoles.FirstName);
+
+            ChangeRoleViewModel crVM = new ChangeRoleViewModel();
+            crVM.id = userRoles.Id;
+            crVM.username = username;
+            crVM.firstName = userRoles.FirstName;
+            crVM.lastName = userRoles.LastName;
+            crVM.roles = getRoles();
+            crVM.currentUserRole = userRoles.userRole;
+
+            Debug.WriteLine("Selected user id, name, role is: "+crVM.id + username + crVM.firstName + crVM.lastName + crVM.currentUserRole);
+
+            return PartialView("_AssignRolePartial",crVM);
+        }
+
+        //Return role list as IdentityRole list
+        public List<IdentityRole> getRoles()
+        {
+            List<IdentityRole> roleList = new List<IdentityRole>();
+            var contextRoles = context.Roles.ToList();
+            //get all roles, assign to user list view model
+            foreach (var j in contextRoles)
+            {
+                IdentityRole role = new IdentityRole();
+
+                role.Name = j.Name;
+
+                roleList.Add(role);
+
+            }
+            return roleList;
+        }
+
+        //Return user list as RegisterViewModel list
+        public List<RegisterViewModel> getUsers()
+        {
+            List<RegisterViewModel> usersList = new List<RegisterViewModel>();
+            var contextUsers = context.Users.ToList();
+            //get all users, assign to user list view model
+            foreach (var i in contextUsers)
+            {
+
+                RegisterViewModel usersRVM = new RegisterViewModel();
+
+                usersRVM.FirstName = i.FirstName;
+                usersRVM.LastName = i.LastName;
+                usersRVM.UserRole = i.userRole;
+                usersRVM.UserName = i.UserName;
+
+                usersList.Add(usersRVM);
+
+            }
+            return usersList;
+        }
+
+        //[HttpPost]
+        //public ActionResult Dashboard(UsersRolesViewModel urVM)
         //{
-        //    //var userRoles = new List<UsersInRoleViewModel>();
-
-        //    //Debug.WriteLine("Writing user roles: \n");
-        //    //foreach (var i in userRoles)
-        //    //{
-        //    //    Debug.WriteLine(i);
-        //    //}
-
-        //    var context = new ApplicationDbContext();
-        //    //var userStore = new UserStore<ApplicationUser>(context);
-        //    //var userManager = new UserManager<ApplicationUser>(userStore);
-
-        //    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
         //    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            
-        //    //foreach (var user in userStore.Users)
-        //    //{
-        //    //    var r = new UsersInRoleViewModel()
-        //    //    {
-        //    //        userID = user.Id,
-        //    //        username = user.UserName,
-        //    //        role = string.Join(",", userManager.GetRoles(user.Id))
-        //    //    };
-        //    //}
 
-        //    //var r = roleManager.Roles.ToList();
+        //    //UserManager.AddToRoleAsync(urVM.userId, role);
+        //    //context.SaveChanges();
+        //    Debug.WriteLine("---------------------------              posted back");
+        //    Debug.WriteLine("urVM details: {0}", urVM.selectedRole);
+        //    //Debug.WriteLine("Selected user is: {0}, selected role is: {1}",urVM.u)
+        //    return RedirectToAction("Dashboard");
+        //} 
 
-        //    var roleList = context.Roles.AsEnumerable();
-            
-        //    //foreach (var i in roleList)
-        //    //{
 
-        //    //    Debug.WriteLine("Reading " + i.Name + i.Id + i.Users);
-        //    //    //foreach(var j in context.Users.ToList())
-        //    //    //{
-        //    //    //    Debug.WriteLine("Reading " + j.RoleName);
-        //    //    //    if(j.RoleName == i.Id)
-        //    //    //    {
-        //    //    //        Debug.WriteLine("Matches: {0}, {1}" +j.UserName,j.RoleName);
-        //    //    //    }
-        //    //    //}
-        //    //}
+        //public ActionResult AssignRole()
+        //{
+        //    var context = new ApplicationDbContext();
+        //    IEnumerable<AssignUserToRoleViewModel> userRoles;
 
-        //    //foreach (var j in context.Users.ToList())
-        //    //{
-        //    //    Debug.WriteLine("TEST: " + j.LastName + " " + j.UserName + " " + j.RoleName);
-        //    //}
-
-        //    return View(roleList);
         //}
 
+        //public ActionResult AssignRole(RoleViewModels model)
+        //{
+        //    var context = new ApplicationDbContext();
+        //    List<RoleViewModels> userList = new List<RoleViewModels>();
+        //    var roles = context.Roles.ToList();
+        //    var users = context.Users.ToList();
 
-        ////public ActionResult AssignRole()
-        ////{
-        ////    var context = new ApplicationDbContext();
-        ////    IEnumerable<AssignUserToRoleViewModel> userRoles;
-            
-        ////}
+        //    foreach(var i in roles)
+        //    {
+        //        foreach(var j in users)
+        //        {
 
-        ////public ActionResult AssignRole(RoleViewModels model)
-        ////{
-        ////    var context = new ApplicationDbContext();
-        ////    List<RoleViewModels> userList = new List<RoleViewModels>();
-        ////    var roles = context.Roles.ToList();
-        ////    var users = context.Users.ToList();
+        //        }
+        //    }
+        //}
 
-        ////    foreach(var i in roles)
-        ////    {
-        ////        foreach(var j in users)
-        ////        {
-                    
-        ////        }
-        ////    }
-        ////}
-        
         //[HttpPost]
         //public ActionResult AssignRole(AssignUserToRoleViewModel model)
         //{
@@ -143,9 +194,9 @@ namespace Portfolio_Management.Controllers
         //    UserManager.AddToRole(model.userID, model.role);
         //    model.username = User.Identity.Name;
         //    context.SaveChanges();
-
         //    return RedirectToAction("Index");
         //}
-    }
 
+
+    }
 }

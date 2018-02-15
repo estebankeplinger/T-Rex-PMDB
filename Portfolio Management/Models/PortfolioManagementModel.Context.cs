@@ -35,7 +35,6 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Adm_Degree> Adm_Degrees { get; set; }
         public virtual DbSet<Adm_Exit_Reason> Adm_Exit_Reasons { get; set; }
         public virtual DbSet<Adm_Info_Risk> Adm_Info_Risks { get; set; }
-        public virtual DbSet<Adm_Prefix> Adm_Prefixes { get; set; }
         public virtual DbSet<Adm_Proficiency> Adm_Proficiencies { get; set; }
         public virtual DbSet<Adm_Requisition_Status> Adm_Requisition_Status { get; set; }
         public virtual DbSet<Adm_Resume_Status> Adm_Resume_Status { get; set; }
@@ -77,6 +76,7 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Staff_Asset> Staff_Assets { get; set; }
         public virtual DbSet<Staff_Training> Staff_Trainings { get; set; }
         public virtual DbSet<spt_values> spt_values { get; set; }
+        public virtual DbSet<Adm_Prefix> Adm_Prefixes { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

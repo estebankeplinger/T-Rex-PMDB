@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="PMDataModel.Adm_Degree" Width="1.5" PointX="9" PointY="39.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Exit_Reason" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Info_Risk" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PMDataModel.Adm_Prefix" Width="1.5" PointX="0.75" PointY="28" IsExpanded="true" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Proficiency" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Requisition_Status" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Resume_Status" Width="1.5" PointX="15.5" PointY="32.625" IsExpanded="true" />
@@ -63,7 +62,6 @@
         <AssociationConnector Association="PMDataModel.FK_Ref_Contract_Vehicle_LCAT_Adm_Degree" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Exit_Reason" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Info_Risk" ManuallyRouted="false" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Prefix" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Skill_Adm_Proficiency" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Position_Adm_Resume_Status" ManuallyRouted="false" />
@@ -104,6 +102,7 @@
         <AssociationConnector Association="PMDataModel.FK_Staff_Training_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" ManuallyRouted="false" />
         <AssociationConnector Association="PMDataModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PMDataModel.Adm_Prefix" Width="1.5" PointX="10.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

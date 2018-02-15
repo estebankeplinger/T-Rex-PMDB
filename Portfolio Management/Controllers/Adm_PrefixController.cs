@@ -6,9 +6,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Portfolio_Management.Models;
-using System.Diagnostics;
-using System.Data.Entity.Validation;
-using System.Data.Entity.Infrastructure;
 
 namespace Portfolio_Management.Controllers
 {
@@ -19,12 +16,11 @@ namespace Portfolio_Management.Controllers
         // GET: Adm_Prefix
         public ActionResult Index()
         {
-            Debug.WriteLine("In index method of prefix controller");
             return View(db.Adm_Prefixes.ToList());
         }
 
         // GET: Adm_Prefix/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(short? id)
         {
             if (id == null)
             {
@@ -49,7 +45,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Prefix")] Adm_Prefix adm_Prefix)
+        public ActionResult Create([Bind(Include = "ID,Prefix")] Adm_Prefix adm_Prefix)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +58,7 @@ namespace Portfolio_Management.Controllers
         }
 
         // GET: Adm_Prefix/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(short? id)
         {
             if (id == null)
             {
@@ -81,24 +77,19 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Prefix")] Adm_Prefix adm_Prefix)
+        public ActionResult Edit([Bind(Include = "ID,Prefix")] Adm_Prefix adm_Prefix)
         {
-            Debug.WriteLine("____________________________IN POST EDIT METHOD");
-            Debug.WriteLine(adm_Prefix.Prefix);
-
             if (ModelState.IsValid)
             {
-                db.Entry(adm_Prefix).State = EntityState.Modified;      
+                db.Entry(adm_Prefix).State = EntityState.Modified;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
-
             return View(adm_Prefix);
         }
 
         // GET: Adm_Prefix/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(short? id)
         {
             if (id == null)
             {
@@ -115,7 +106,7 @@ namespace Portfolio_Management.Controllers
         // POST: Adm_Prefix/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(short id)
         {
             Adm_Prefix adm_Prefix = db.Adm_Prefixes.Find(id);
             db.Adm_Prefixes.Remove(adm_Prefix);

@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Portfolio_Management.Models.Adm_Prefix>
 
+
 @{
     ViewBag.Title = "Index";
 }
@@ -14,7 +15,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="col-md-5 col-sm-6 col-xs-7">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Prefixes</h2>
@@ -37,6 +38,9 @@
                                 <thead>
                                     <tr>
                                         <th>
+                                            @Html.DisplayNameFor(model => model.ID)
+                                        </th>
+                                        <th>
                                             @Html.DisplayNameFor(model => model.Prefix)
                                         </th>
                                         <th></th>
@@ -47,12 +51,15 @@
                                     {
                                         <tr>
                                             <td>
+                                                @Html.DisplayFor(modelItem => item.ID)
+                                            </td>
+                                            <td>
                                                 @Html.DisplayFor(modelItem => item.Prefix)
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.Prefix }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.Prefix }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.Prefix })
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                                             </td>
                                         </tr>
                                     }

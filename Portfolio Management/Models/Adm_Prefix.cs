@@ -14,15 +14,7 @@ namespace Portfolio_Management.Models
     
     public partial class Adm_Prefix
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Adm_Prefix()
-        {
-            this.Staffs = new HashSet<Staff>();
-        }
-    
+        public short ID { get; set; }
         public string Prefix { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staffs { get; set; }
     }
 }

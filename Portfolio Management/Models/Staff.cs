@@ -53,9 +53,8 @@ namespace Portfolio_Management.Models
         public string Created_By { get; set; }
         public Nullable<System.DateTime> Modified_On { get; set; }
         public string Modified_By { get; set; }
-    
-        public virtual Adm_Exit_Reason Adm_Exit_Reason { get; set; }
         public virtual Adm_Prefix Adm_Prefix { get; set; }
+        public virtual Adm_Exit_Reason Adm_Exit_Reason { get; set; }
         public virtual Adm_Suffix Adm_Suffix { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Certification> Certifications { get; set; }

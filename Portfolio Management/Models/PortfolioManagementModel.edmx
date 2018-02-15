@@ -67,8 +67,9 @@
         </EntityType>
         <EntityType Name="Adm Prefix">
           <Key>
-            <PropertyRef Name="Prefix" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="Prefix" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Proficiency">
@@ -1201,18 +1202,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Adm Prefix">
-          <End Role="Adm Prefix" Type="Self.Adm Prefix" Multiplicity="0..1" />
-          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm Prefix">
-              <PropertyRef Name="Prefix" />
-            </Principal>
-            <Dependent Role="Staff">
-              <PropertyRef Name="Prefix" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Adm Suffix">
           <End Role="Adm Suffix" Type="Self.Adm Suffix" Multiplicity="0..1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -1597,10 +1586,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
             <End Role="Adm Exit Reason" EntitySet="Adm Exit Reason" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Adm Prefix" Association="Self.FK_Staff_Adm Prefix">
-            <End Role="Adm Prefix" EntitySet="Adm Prefix" />
-            <End Role="Staff" EntitySet="Staff" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Adm Suffix" Association="Self.FK_Staff_Adm Suffix">
             <End Role="Adm Suffix" EntitySet="Adm Suffix" />
             <End Role="Staff" EntitySet="Staff" />
@@ -1693,13 +1678,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           <Property Name="ID" Type="Int16" Nullable="false" />
           <Property Name="Info_Risk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Contract_Position" Relationship="Self.FK_Contract_Position_Adm_Info_Risk" FromRole="Adm_Info_Risk" ToRole="Contract_Position" />
-        </EntityType>
-        <EntityType Name="Adm_Prefix">
-          <Key>
-            <PropertyRef Name="Prefix" />
-          </Key>
-          <Property Name="Prefix" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Adm_Prefix" FromRole="Adm_Prefix" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Adm_Proficiency">
           <Key>
@@ -2059,7 +2037,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           <Property Name="Modified_On" Type="DateTime" Precision="7" />
           <Property Name="Modified_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Adm_Exit_Reason" Relationship="Self.FK_Staff_Adm_Exit_Reason" FromRole="Staff" ToRole="Adm_Exit_Reason" />
-          <NavigationProperty Name="Adm_Prefix" Relationship="Self.FK_Staff_Adm_Prefix" FromRole="Staff" ToRole="Adm_Prefix" />
           <NavigationProperty Name="Adm_Suffix" Relationship="Self.FK_Staff_Adm_Suffix" FromRole="Staff" ToRole="Adm_Suffix" />
           <NavigationProperty Name="Certifications" Relationship="Self.FK_Cetifications_Staff" FromRole="Staff" ToRole="Certifications" />
           <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_Staff" FromRole="Staff" ToRole="Contract" />
@@ -2453,18 +2430,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
             </Principal>
             <Dependent Role="Contract_Position">
               <PropertyRef Name="Info_Risk_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Adm_Prefix">
-          <End Role="Adm_Prefix" Type="Self.Adm_Prefix" Multiplicity="0..1" />
-          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Prefix">
-              <PropertyRef Name="Prefix" />
-            </Principal>
-            <Dependent Role="Staff">
-              <PropertyRef Name="Prefix" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2953,7 +2918,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           <EntitySet Name="Adm_Degrees" EntityType="Self.Adm_Degree" />
           <EntitySet Name="Adm_Exit_Reasons" EntityType="Self.Adm_Exit_Reason" />
           <EntitySet Name="Adm_Info_Risks" EntityType="Self.Adm_Info_Risk" />
-          <EntitySet Name="Adm_Prefixes" EntityType="Self.Adm_Prefix" />
           <EntitySet Name="Adm_Proficiencies" EntityType="Self.Adm_Proficiency" />
           <EntitySet Name="Adm_Requisition_Status" EntityType="Self.Adm_Requisition_Status" />
           <EntitySet Name="Adm_Resume_Status" EntityType="Self.Adm_Resume_Status" />
@@ -3026,10 +2990,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           <AssociationSet Name="FK_Contract_Position_Adm_Info_Risk" Association="Self.FK_Contract_Position_Adm_Info_Risk">
             <End Role="Adm_Info_Risk" EntitySet="Adm_Info_Risks" />
             <End Role="Contract_Position" EntitySet="Contract_Positions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Adm_Prefix" Association="Self.FK_Staff_Adm_Prefix">
-            <End Role="Adm_Prefix" EntitySet="Adm_Prefixes" />
-            <End Role="Staff" EntitySet="Staffs" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Skill_Adm_Proficiency" Association="Self.FK_Staff_Skill_Adm_Proficiency">
             <End Role="Adm_Proficiency" EntitySet="Adm_Proficiencies" />
@@ -3193,7 +3153,15 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           </AssociationSet>
           <FunctionImport Name="sp_MScleanupmergepublisher" />
           <FunctionImport Name="sp_MSrepl_startup" />
+          <EntitySet Name="Adm_Prefixes" EntityType="PMDataModel.Adm_Prefix" />
         </EntityContainer>
+        <EntityType Name="Adm_Prefix">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3264,13 +3232,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
               <MappingFragment StoreEntitySet="Adm Info Risk">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Info_Risk" ColumnName="Info Risk" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Adm_Prefixes">
-            <EntityTypeMapping TypeName="PMDataModel.Adm_Prefix">
-              <MappingFragment StoreEntitySet="Adm Prefix">
-                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3843,6 +3804,14 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_MScleanupmergepublisher" FunctionName="PMDataModel.Store.sp_MScleanupmergepublisher" />
           <FunctionImportMapping FunctionImportName="sp_MSrepl_startup" FunctionName="PMDataModel.Store.sp_MSrepl_startup" />
+          <EntitySetMapping Name="Adm_Prefixes">
+            <EntityTypeMapping TypeName="PMDataModel.Adm_Prefix">
+              <MappingFragment StoreEntitySet="Adm Prefix">
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -235,6 +235,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Adm_Exit_ReasonController.cs" />
     <Compile Include="Controllers\Adm_PrefixController.cs" />
+    <Compile Include="Controllers\Adm_SuffixController.cs" />
     <Compile Include="Controllers\Ref_CompanyController.cs" />
     <Compile Include="Controllers\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -426,9 +427,6 @@
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Staff.cs">
-      <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Staff1.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StaffViewModels.cs" />
@@ -5722,12 +5720,14 @@
     <Content Include="Views\Adm_Exit_Reason\Index.cshtml" />
     <Content Include="Views\Adm_Prefix\Create.cshtml" />
     <Content Include="Views\Adm_Prefix\Delete.cshtml" />
-    <Content Include="Views\Adm_Prefix\Details.cshtml" />
-    <Content Include="Views\Adm_Prefix\Edit.cshtml" />
     <Content Include="Views\Adm_Prefix\Index.cshtml" />
+    <Content Include="Views\Adm_Suffix\Create.cshtml" />
+    <Content Include="Views\Adm_Suffix\Delete.cshtml" />
+    <Content Include="Views\Adm_Suffix\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\201802161707516_prefix\" />
     <Folder Include="Views\ApplicationBase\" />
     <Folder Include="Views\RoleView\" />
   </ItemGroup>

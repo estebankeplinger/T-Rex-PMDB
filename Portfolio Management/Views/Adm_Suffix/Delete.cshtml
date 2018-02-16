@@ -1,7 +1,7 @@
-﻿@model Portfolio_Management.Models.Adm_Prefix
+﻿@model Portfolio_Management.Models.Adm_Suffix
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
 <!-- page content -->
@@ -9,7 +9,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Admin Prefix</h3>
+                <h3>Admin Suffix</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,7 +17,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Details</h2>
+                        <h2>Delete</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -29,22 +29,28 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <h4>Are you sure you want to delete this Suffix?</h4>
                         <div>
                             <dl class="dl-horizontal">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Prefix)
+                                    @Html.DisplayNameFor(model => model.Suffix)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.Prefix)
+                                    @Html.DisplayFor(model => model.Suffix)
                                 </dd>
                             </dl>
-                        </div>
-                        <p>
-                            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-                            @Html.ActionLink("Back to List", "Index")
-                        </p>
 
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                                    @Html.ActionLink("Back to List", "Index")
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

@@ -15,9 +15,9 @@ namespace Portfolio_Management
 
             //routes.MapRoute(
             //    name: "Adm_Prefix",
-            //    url: "Adm_Prefix/{action}/{id}",
+            //    url: "Adm_Prefix/{action}/{*id}",
             //    defaults: new { Controller = "Adm_Prefix" },
-            //    constraints: new { id = @"\w+" }
+            //    constraints: new { id = @"\w.+" }
 
             //);
 

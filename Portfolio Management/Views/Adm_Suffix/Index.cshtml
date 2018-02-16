@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Portfolio_Management.Models.Adm_Prefix>
+﻿@model IEnumerable<Portfolio_Management.Models.Adm_Suffix>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Admin Prefix</h3>
+                <h3>Admin Suffix</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,10 +17,10 @@
             <div class="col-md-4 col-sm-5 col-xs-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Prefixes</h2>
+                        <h2>Suffixes</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
-                                <a href="/Adm_Prefix/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                                <a href="/Adm_Suffix/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
                             </li>
                             <li>
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -37,7 +37,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Prefix)
+                                            @Html.DisplayNameFor(model => model.Suffix)
                                         </th>
                                         <th></th>
                                     </tr>
@@ -47,10 +47,10 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Prefix)
+                                                @Html.DisplayFor(modelItem => item.Suffix)
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.Prefix})
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.Suffix })
                                             </td>
                                         </tr>
                                     }

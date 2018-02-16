@@ -58,11 +58,11 @@ namespace Portfolio_Management.Controllers
         // GET: Staff/Create
         public ActionResult Create()
         {
-            ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason");
-            ViewBag.Prefix = new SelectList(db.Adm_Prefixes, "Prefix", "Prefix");
-            ViewBag.Suffix = new SelectList(db.Adm_Suffixes, "Suffix", "Suffix");
-            ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company");
-            ViewBag.ID = new SelectList(db.Staff_Clearances, "ID", "Created_By");
+            ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason",null);
+            ViewBag.Prefix = new SelectList(db.Adm_Prefixes, "Prefix", "Prefix",null);
+            ViewBag.Suffix = new SelectList(db.Adm_Suffixes, "Suffix", "Suffix",null);
+            ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company",null);
+            ViewBag.ID = new SelectList(db.Staff_Clearances, "ID", "Created_By",null);
             return View();
         }
 

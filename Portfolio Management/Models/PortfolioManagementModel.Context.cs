@@ -35,11 +35,11 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Adm_Degree> Adm_Degrees { get; set; }
         public virtual DbSet<Adm_Exit_Reason> Adm_Exit_Reasons { get; set; }
         public virtual DbSet<Adm_Info_Risk> Adm_Info_Risks { get; set; }
+        public virtual DbSet<Adm_Prefix> Adm_Prefixes { get; set; }
         public virtual DbSet<Adm_Proficiency> Adm_Proficiencies { get; set; }
         public virtual DbSet<Adm_Requisition_Status> Adm_Requisition_Status { get; set; }
         public virtual DbSet<Adm_Resume_Status> Adm_Resume_Status { get; set; }
         public virtual DbSet<Adm_Security_Clearance> Adm_Security_Clearances { get; set; }
-        public virtual DbSet<Adm_Suffix> Adm_Suffixes { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -66,7 +66,6 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Staff_Clearance_Workflow> Staff_Clearance_Workflows { get; set; }
         public virtual DbSet<Staff_Position> Staff_Positions { get; set; }
         public virtual DbSet<Staff_Skill> Staff_Skills { get; set; }
-        public virtual DbSet<Staff1> Staffs1 { get; set; }
         public virtual DbSet<Workshare> Workshares { get; set; }
         public virtual DbSet<MSreplication_options> MSreplication_options { get; set; }
         public virtual DbSet<spt_fallback_db> spt_fallback_db { get; set; }
@@ -76,7 +75,7 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Staff_Asset> Staff_Assets { get; set; }
         public virtual DbSet<Staff_Training> Staff_Trainings { get; set; }
         public virtual DbSet<spt_values> spt_values { get; set; }
-        public virtual DbSet<Adm_Prefix> Adm_Prefixes { get; set; }
+        public virtual DbSet<Adm_Suffix> Adm_Suffixes { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {
@@ -86,6 +85,16 @@ namespace Portfolio_Management.Models
         public virtual int sp_MSrepl_startup()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MSrepl_startup");
+        }
+    
+        public virtual int sp_MScleanupmergepublisher1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MScleanupmergepublisher1");
+        }
+    
+        public virtual int sp_MSrepl_startup1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MSrepl_startup1");
         }
     }
 }

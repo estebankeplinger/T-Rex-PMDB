@@ -9,115 +9,111 @@ using Portfolio_Management.Models;
 
 namespace Portfolio_Management.Controllers
 {
-    public class Adm_PrefixController : ApplicationBaseController
+    public class Adm_SuffixController : ApplicationBaseController
     {
         private PMDataEntities db = new PMDataEntities();
 
-        // GET: Adm_Prefix
+        // GET: Adm_Suffix
         public ActionResult Index()
         {
-            return View(db.Adm_Prefixes.ToList());
+            return View(db.Adm_Suffixes.ToList());
         }
 
-        //// GET: Adm_Prefix/Details/5
+        //// GET: Adm_Suffix/Details/5
         //public ActionResult Details(string id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Adm_Prefix adm_Prefix = db.Adm_Prefixes.Find(id);
-        //    if (adm_Prefix == null)
+        //    Adm_Suffix adm_Suffix = db.Adm_Suffixes.Find(id);
+        //    if (adm_Suffix == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(adm_Prefix);
+        //    return View(adm_Suffix);
         //}
 
-        // GET: Adm_Prefix/Create
+        // GET: Adm_Suffix/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Adm_Prefix/Create
+        // POST: Adm_Suffix/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Prefix")] Adm_Prefix adm_Prefix)
+        public ActionResult Create([Bind(Include = "Suffix")] Adm_Suffix adm_Suffix)
         {
-            if (adm_Prefix.Prefix.Contains("."))
+            if (adm_Suffix.Suffix.Contains("."))
             {
-                ModelState.AddModelError("Prefix", "Prefix cannot contain the '.' character");
+                ModelState.AddModelError("Suffix", "Suffix cannot contain the '.' character");
             }
             if (ModelState.IsValid)
             {
-                db.Adm_Prefixes.Add(adm_Prefix);
+                db.Adm_Suffixes.Add(adm_Suffix);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(adm_Prefix);
+            return View(adm_Suffix);
         }
 
-        //// GET: Adm_Prefix/Edit/5
+        //// GET: Adm_Suffix/Edit/5
         //public ActionResult Edit(string id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Adm_Prefix adm_Prefix = db.Adm_Prefixes.Find(id);
-        //    if (adm_Prefix == null)
+        //    Adm_Suffix adm_Suffix = db.Adm_Suffixes.Find(id);
+        //    if (adm_Suffix == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(adm_Prefix);
+        //    return View(adm_Suffix);
         //}
 
-        //// POST: Adm_Prefix/Edit/5
+        //// POST: Adm_Suffix/Edit/5
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Prefix")] Adm_Prefix adm_Prefix)
+        //public ActionResult Edit([Bind(Include = "Suffix")] Adm_Suffix adm_Suffix)
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        db.Entry(adm_Prefix).State = EntityState.Modified;
+        //        db.Entry(adm_Suffix).State = EntityState.Modified;
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
-        //    return View(adm_Prefix);
+        //    return View(adm_Suffix);
         //}
 
-        // GET: Adm_Prefix/Delete/5
+        // GET: Adm_Suffix/Delete/5
         public ActionResult Delete(string id)
         {
-            System.Diagnostics.Debug.WriteLine("String id is: "+id);
-      
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Adm_Prefix adm_Prefix = db.Adm_Prefixes.Find(id);
-
-            if (adm_Prefix == null)
+            Adm_Suffix adm_Suffix = db.Adm_Suffixes.Find(id);
+            if (adm_Suffix == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_Prefix);
+            return View(adm_Suffix);
         }
 
-        // POST: Adm_Prefix/Delete/5
+        // POST: Adm_Suffix/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Adm_Prefix adm_Prefix = db.Adm_Prefixes.Find(id);
-            db.Adm_Prefixes.Remove(adm_Prefix);
+            Adm_Suffix adm_Suffix = db.Adm_Suffixes.Find(id);
+            db.Adm_Suffixes.Remove(adm_Suffix);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

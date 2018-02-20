@@ -27,7 +27,7 @@ namespace Portfolio_Management.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 Debug.WriteLine("Search string found" + searchString);
-                foreach (var user in staffList)
+                foreach (var user in staffs.ToList())
                 {
                     //if user doesn't match search string, remove them from user list to show
                     if (!user.First_Name.Contains(searchString) || !user.Last_Name.Contains(searchString) ||
@@ -35,9 +35,15 @@ namespace Portfolio_Management.Controllers
                         staffList.Remove(user);
                         
                 }
+
+                return View(staffList);
+            }
+            else
+            {
+                return View(staffs.ToList());
             }
             
-            return View(staffs.ToList());
+           
         }
 
         // GET: Staff/Details/5

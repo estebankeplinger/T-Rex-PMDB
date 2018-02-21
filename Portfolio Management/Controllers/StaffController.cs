@@ -26,24 +26,84 @@ namespace Portfolio_Management.Controllers
             staffList = staffs.ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
-                Debug.WriteLine("Search string found" + searchString);
                 foreach (var user in staffs.ToList())
                 {
                     //if user doesn't match search string, remove them from user list to show
                     if (!user.First_Name.Contains(searchString) || !user.Last_Name.Contains(searchString) ||
                         !user.Staff_Name.Contains(searchString))
-                        staffList.Remove(user);
-                        
+                        staffList.Remove(user);         
                 }
 
                 return View(staffList);
             }
             else
+                return View(staffs.ToList()); 
+        }
+
+        [HttpGet]
+        public ActionResult Action(int? id)
+        {
+            if (id == null)
             {
-                return View(staffs.ToList());
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            StaffActionsViewModel staffActionsVM = new StaffActionsViewModel();
+
+            staffActionsVM.StaffSelected = db.Staffs.Find(id);
+            StaffEducationAction(staffActionsVM);
+
+            return View(staffActionsVM);
+        }
+
+        public ActionResult StaffEducationAction(StaffActionsViewModel staffActionsVM)
+        {
+
+            StaffEducationActionViewModel staffEducationActionVM = new StaffEducationActionViewModel(); 
             
-           
+            foreach (var education in staffActionsVM.StaffSelected.Educations)
+            {
+                staffEducationActionVM.currentStaffEducation.Add(education);
+            }
+            staffEducationActionVM.ShouldRender = true; //Hard coded to true - logic comes later
+            staffActionsVM.StaffEducationAction = staffEducationActionVM;
+
+            return PartialView("_StaffEducationAction", staffActionsVM);
+        }
+
+        public ActionResult Dashboard()
+        {
+            
+            StaffDashboardViewModel staffDBVM = new StaffDashboardViewModel();
+            staffDBVM.NumStaff = db.Staffs.Count();
+            staffDBVM.CompanyChart = getCompanyChartData();
+
+            return View(staffDBVM);
+        }
+
+        [ChildActionOnly]
+        public List<StaffDashboardViewModel.CompanyData> getCompanyChartData()
+        {
+            
+            List<StaffDashboardViewModel.CompanyData> companyDataList = new List<StaffDashboardViewModel.CompanyData>();
+
+            foreach (var company in db.Ref_Companies.ToList())
+            {
+                StaffDashboardViewModel.CompanyData companyData = new StaffDashboardViewModel.CompanyData();
+                companyData.CompanyID = company.ID;
+                companyData.CompanyName = company.Company;
+                
+                foreach (var staff in db.Staffs.ToList())
+                {
+                    if (company.ID == staff.Company_ID)
+                    {
+                        companyData.ShareOfWorkforce++;
+                    }
+                }
+
+                companyDataList.Add(companyData);
+            }
+            return companyDataList;
         }
 
         // GET: Staff/Details/5

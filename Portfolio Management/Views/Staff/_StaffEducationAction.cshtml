@@ -1,0 +1,87 @@
+﻿@model Portfolio_Management.Models.StaffActionsViewModel
+
+<!-- page content -->
+<div class="col-md-5 col-sm-6 col-xs-7">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Education</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="/Educations/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                </li>
+
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @if (Model.StaffEducationAction.currentStaffEducation.Count == 0)
+            {
+                <p>No education data. Click above to add.</p>
+            }
+            else
+            {
+                <div style="overflow-x:auto">
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            @foreach (var item in Model.StaffEducationAction.currentStaffEducation)
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => item.Degree_ID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => item.School)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => item.Adm_Degree.Degree)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => item.Completed_Date)
+                                    </th>
+                                </tr>
+                            }
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.StaffEducationAction.currentStaffEducation)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Degree_ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.School)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Adm_Degree.Degree)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Completed_Date)
+                                    </td>
+                                    @if (Model.StaffEducationAction.currentStaffEducation.Count != 0)
+                                    {
+                                        <td>
+                                            <a href='@Url.Action("Edit", "Educations", new { id = item.ID })'>
+                                                <span class="glyphicon glyphicon-edit" aria-hidden="true" aria-label="Edit Education"></span>
+                                            </a>
+
+                                            <a href='@Url.Action("Delete", "Educations", new { id = item.ID })'>
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true" aria-label="Delete Education"></span>
+                                            </a>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- /page content -->

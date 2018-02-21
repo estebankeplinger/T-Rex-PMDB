@@ -62,12 +62,12 @@
                         </div>
                     </div>
                     <!-- /Search bar-->
+
                     <div class="x_content">
                         <div style="overflow-x:auto">
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-
                                         <th>
                                             @Html.DisplayNameFor(model => model.Staff_Name)
                                         </th>
@@ -91,8 +91,7 @@
                                         </th>              
                                         <th>
                                             @Html.DisplayNameFor(model => model.Hire_Date)
-                                        </th>
-                                        <th></th>
+                                        </th>                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,14 +119,18 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Company_Email)
                                             </td>         
-                                            <td>
+                                            <td style="border-right: none" >
                                                 @Html.DisplayFor(modelItem => item.Hire_Date)
                                             </td>
-
-                                            <td>
+                                            <td style="border-right: none;border-left: none">
                                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                            </td>
+                                            <td style="border-left: none">
+                                                <a href='@Url.Action("Action", "Staff", new { id = item.ID })'>
+                                                    <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                                                </a>
                                             </td>
                                         </tr>
                                     }

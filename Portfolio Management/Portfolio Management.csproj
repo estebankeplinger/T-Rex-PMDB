@@ -233,9 +233,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ActionsController.cs" />
     <Compile Include="Controllers\Adm_Exit_ReasonController.cs" />
     <Compile Include="Controllers\Adm_PrefixController.cs" />
     <Compile Include="Controllers\Adm_SuffixController.cs" />
+    <Compile Include="Controllers\EducationsController.cs" />
     <Compile Include="Controllers\Ref_CompanyController.cs" />
     <Compile Include="Controllers\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -5724,10 +5726,20 @@
     <Content Include="Views\Adm_Suffix\Create.cshtml" />
     <Content Include="Views\Adm_Suffix\Delete.cshtml" />
     <Content Include="Views\Adm_Suffix\Index.cshtml" />
+    <Content Include="Views\Staff\_SelectStaffAction.cshtml" />
+    <Content Include="Views\Staff\Action.cshtml" />
+    <Content Include="Views\Staff\Dashboard.cshtml" />
+    <Content Include="Views\Staff\_StaffEducationAction.cshtml" />
+    <Content Include="Views\Educations\Create.cshtml" />
+    <Content Include="Views\Educations\Delete.cshtml" />
+    <Content Include="Views\Educations\Details.cshtml" />
+    <Content Include="Views\Educations\Edit.cshtml" />
+    <Content Include="Views\Educations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Migrations\201802161707516_prefix\" />
+    <Folder Include="Views\Actions\" />
     <Folder Include="Views\ApplicationBase\" />
     <Folder Include="Views\RoleView\" />
   </ItemGroup>

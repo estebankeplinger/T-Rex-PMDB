@@ -45,15 +45,32 @@
                                     <dd>
                                         @Html.DisplayFor(model => model.StaffSelected.Ref_Company.Company)
                                     </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.StaffSelected.Company_Email)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.StaffSelected.Company_Email)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.StaffSelected.Hire_Date)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.StaffSelected.Hire_Date)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.StaffSelected.Location)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.StaffSelected.Location)
+                                    </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 @{Html.RenderAction("StaffEducationAction", new { staffActionsVM = Model }); }
+                @{Html.RenderAction("StaffExitAction", new { staffActionsVM = Model }); }
             </div>
         </div>
     </div>
-
 <!-- /page content -->

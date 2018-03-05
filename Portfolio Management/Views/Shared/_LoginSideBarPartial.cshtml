@@ -1,21 +1,18 @@
-﻿
-@using Microsoft.AspNet.Identity
-
+﻿@using Microsoft.AspNet.Identity
 
 @if (Request.IsAuthenticated)
 {
-
-    <!-- menu profile quick info -->
-    <div class="profile clearfix">
-        <div class="profile_pic">
-            <img src="@Url.Action("Photo", "Account" , new { UserId=User.Identity.GetUserId() })" class="img-circle profile_img"/>
-        </div>
-        <div class="profile_info">
-            <span>Welcome,</span>
-            <h2>@ViewData["FullName"]</h2>
-        </div>
-    </div>
-    <!-- /menu profile quick info -->
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="@Url.Action("Photo", "Account" , new { UserId=User.Identity.GetUserId() })" class="img-circle profile_img"/>
+                            </div>
+                            <div class="profile_info">
+                                <span>Welcome,</span>
+                                <h2>@ViewData["FullName"]</h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
 
 }
 else

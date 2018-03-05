@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Portfolio_Management.Models.Contract>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Contracts</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Contracts</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a href="/Contracts/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                            </li>
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div style="overflow-x:auto">
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.POP_Start)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.POP_End)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsPrime)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FillByDuration)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Created_On)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Created_By)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Modified_On)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Modified_By)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Ref_Customer.Customer)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Staff.Staff_Name)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.POP_Start)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.POP_End)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IsPrime)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FillByDuration)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Created_On)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Created_By)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Modified_On)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Modified_By)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ref_Customer.Customer)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Staff.Staff_Name)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->

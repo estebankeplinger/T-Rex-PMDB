@@ -7,14 +7,64 @@
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
-            <div class="title_left">
-                <h3>Staff</h3>
-            </div>
+            @*<div class="title_left">
+                    <h3>Staff</h3>
+                </div>*@
         </div>
         <div class="clearfix"></div>
-        <div class="row">
 
-            <!--Responsive table-->
+        @{ if (User.IsInRole("Manager"))
+            {
+                Html.RenderAction("ManagerMetrics", new { staffActionsVM = "Fun" });
+
+            }
+
+        }
+
+        <div class="row">
+            
+                <a href='@Url.Action("ContactList", "Staff")'>
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats">
+
+                            <div class="count">Contact List</div>
+
+                            <p>Click to open</p>
+                        </div>
+                    </div>
+                </a>
+
+
+            
+                    <a href='@Url.Action("Index", "Educations")'>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+
+                                <div class="count">Education</div>
+
+                                <p>Click to open</p>
+                            </div>
+                        </div>
+                    </a>
+        
+
+
+                    <a href='@Url.Action("Index", "Staff_Skill")'>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+
+                                <div class="count">Staff Skill</div>
+
+                                <p>Click to open</p>
+                            </div>
+                        </div>
+                    </a>
+
+            
+        </div>
+
+        <div class="row">
+            <!--Table Data -->
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -88,10 +138,10 @@
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Company_Email)
-                                        </th>              
+                                        </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Hire_Date)
-                                        </th>                                       
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,8 +168,8 @@
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Company_Email)
-                                            </td>         
-                                            <td style="border-right: none" >
+                                            </td>
+                                            <td style="border-right: none">
                                                 @Html.DisplayFor(modelItem => item.Hire_Date)
                                             </td>
                                             <td style="border-right: none;border-left: none">
@@ -140,23 +190,25 @@
                     </div>
                 </div>
             </div>
+            <!-- Table Data -->
         </div>
-    </div>
+        </div>
 
-    <!-- Datatables -->
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-</div>
+
+        <!-- Datatables -->
+        <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="../vendors/jszip/dist/jszip.min.js"></script>
+        <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+    </div>

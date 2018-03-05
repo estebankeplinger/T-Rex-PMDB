@@ -5,12 +5,7 @@ using System.Web;
 
 namespace Portfolio_Management.Models
 {
-    public class StaffViewModels
-    {
-
-    }
-
-
+    
     public class StaffDashboardViewModel
     {
         public int NumStaff { get; set; }
@@ -22,29 +17,20 @@ namespace Portfolio_Management.Models
         {
             public int CompanyID { get; set; }
             public string CompanyName { get; set; }
-            public string companyColor { get; set; }
+            public string CompanyColor { get; set; }
             public int ShareOfWorkforce { get; set; }
-
         }
     }
 
     public class StaffActionsViewModel
     {
         public StaffActionsViewModel()
-        {
-            AvailableActions = new List<Action>();
+        { 
             StaffEducationAction = new StaffEducationActionViewModel();
         }
+        public Boolean IsStaffSelected { get; set; }
         public Staff StaffSelected { get; set; }
-
-        public List<Action> AvailableActions { get; set; }
-
         public StaffEducationActionViewModel StaffEducationAction { get; set; }
-        public class Action
-        {
-            public string ActionName { get; set; }
-            public int ActionNumber { get; set; }
-        }
     }
 
     public class StaffEducationActionViewModel
@@ -55,17 +41,7 @@ namespace Portfolio_Management.Models
         }
         
         public List<Education> currentStaffEducation { get; set; }
-
         public Boolean ShouldRender { get ; set; }
-
-        public Boolean IsStaffSelected { get; set; }
         public int SelectedStaffID { get; set; }
     }
-
-    public class StaffCreateEducationViewModel
-    {
-        public int StaffID { get; set; } 
-    }
-
-    
 }

@@ -20,6 +20,11 @@ namespace Portfolio_Management
             //    constraints: new { id = @"\w.+" }
 
             //);
+            routes.MapRoute(
+                name: "Role",
+                url: "Role/Edit/{Username}",
+                defaults: new { controller = "Role", action = "Edit", Username = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",

@@ -29,23 +29,21 @@
                 <div style="overflow-x:auto">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
-                            @foreach (var item in Model.StaffEducationAction.currentStaffEducation)
-                            {
+
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => item.Degree_ID)
+                                        @Html.DisplayNameFor(model => model.StaffEducationAction.currentStaffEducation[0].Degree_ID)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => item.School)
+                                        @Html.DisplayNameFor(model => model.StaffEducationAction.currentStaffEducation[0].School)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => item.Adm_Degree.Degree)
+                                        @Html.DisplayNameFor(model => model.StaffEducationAction.currentStaffEducation[0].Adm_Degree.Degree)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => item.Completed_Date)
+                                        @Html.DisplayNameFor(model => model.StaffEducationAction.currentStaffEducation[0].Completed_Date)
                                     </th>
                                 </tr>
-                            }
                         </thead>
                         <tbody>
                             @foreach (var item in Model.StaffEducationAction.currentStaffEducation)

@@ -1,0 +1,61 @@
+﻿@model Portfolio_Management.Models.Ref_Asset
+
+@{
+    ViewBag.Title = "Details";
+}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Ref Asset</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Details</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div>
+
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Asset_Name)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Asset_Name)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Adm_Asset_Type.Asset_Type)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Adm_Asset_Type.Asset_Type)
+                                </dd>
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->

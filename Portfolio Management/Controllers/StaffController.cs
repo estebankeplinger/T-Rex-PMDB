@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Portfolio_Management.Models;
 using System.Diagnostics;
+using Portfolio_Management.CustomFilters;
 
 namespace Portfolio_Management.Controllers
 {
@@ -29,28 +30,28 @@ namespace Portfolio_Management.Controllers
                 foreach (var user in staffs.ToList())
                 {
                     //if user doesn't match search string, remove them from user list to show
-                    if (!user.First_Name.Contains(searchString) || !user.Last_Name.Contains(searchString) ||
+                    if (!user.First_Name.Contains(searchString) && !user.Last_Name.Contains(searchString) &&
                         !user.Staff_Name.Contains(searchString))
                         staffList.Remove(user);         
-                }
-
-                return View(staffList);
+                }         
             }
-            else
-                return View(staffs.ToList()); 
+            return View(staffList);
         }
 
         [HttpGet]
         public ActionResult Action(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             StaffActionsViewModel staffActionsVM = new StaffActionsViewModel();
 
+            if (id == null)
+            {
+                staffActionsVM.IsStaffSelected = false;
+                ViewBag.selectStaffError = "Choose a staff member to work with below"; 
+                return RedirectToAction("Index");
+            }
+
             staffActionsVM.StaffSelected = db.Staffs.Find(id);
+            staffActionsVM.IsStaffSelected = true;
             StaffEducationAction(staffActionsVM);
 
             return View(staffActionsVM);
@@ -71,6 +72,13 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffEducationAction", staffActionsVM);
         }
 
+        public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
+        {
+            ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);
+            
+            return PartialView("_StaffExitAction", staffActionsVM);
+        }
+
         public ActionResult Dashboard()
         {
             
@@ -84,7 +92,7 @@ namespace Portfolio_Management.Controllers
         [ChildActionOnly]
         public List<StaffDashboardViewModel.CompanyData> getCompanyChartData()
         {
-            
+            //ADD: total companies
             List<StaffDashboardViewModel.CompanyData> companyDataList = new List<StaffDashboardViewModel.CompanyData>();
 
             foreach (var company in db.Ref_Companies.ToList())
@@ -100,10 +108,18 @@ namespace Portfolio_Management.Controllers
                         companyData.ShareOfWorkforce++;
                     }
                 }
-
                 companyDataList.Add(companyData);
             }
             return companyDataList;
+        }
+
+        //[AuthLog(Roles = "User")]
+        public ActionResult ManagerMetrics(string test)
+        {
+            StaffManagerViewModel smVM = new StaffManagerViewModel();
+            smVM.StaffName = User.Identity.Name;
+            smVM.test = test;
+            return PartialView("_ManagerMetricsView", smVM);
         }
 
         // GET: Staff/Details/5
@@ -119,6 +135,28 @@ namespace Portfolio_Management.Controllers
                 return HttpNotFound();
             }
             return View(staff);
+        }
+
+        public ActionResult ContactList(string searchString)
+        {
+            ContactListViewModel clVM = new ContactListViewModel();
+
+            clVM.Staffs = db.Staffs.ToList();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                foreach (var user in db.Staffs.ToList())
+                {
+                    //if user doesn't match search string, remove them from user list to show
+                    if (!user.Staff_Name.Contains(searchString) && !user.Company_Email.Contains(searchString))
+                    //&& !user.Cell_Phone.Contains(searchString) && !user.Personal_Cell_Phone.Contains(searchString)
+                    //&&!user.Desk_Phone.Contains(searchString))
+                    {
+                        clVM.Staffs.Remove(user);
+                    }  
+                }
+            }
+            return View("_ContactListView", clVM);
         }
 
         // GET: Staff/Create

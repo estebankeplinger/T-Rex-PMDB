@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Portfolio_Management.Models.Contract_Position>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Contract Position</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Contract Positions</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a href="/Contract_Position/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                            </li>
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div style="overflow-x:auto">
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Contract_WBS_ID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Position__)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DateNeeded)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Created_On)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Created_By)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Modified_On)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Modified_By)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Adm_Info_Risk.Info_Risk)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Adm_Requisition_Status.Status)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Adm_Security_Clearance.Security_Clearance)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Contract.Created_By)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Contract_WBS.Area)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Ref_Contract_LCAT.ESF_LCAT)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Ref_Role.Role)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Contract_WBS_ID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Position__)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateNeeded)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Created_On)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Created_By)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Modified_On)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Modified_By)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Adm_Info_Risk.Info_Risk)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Adm_Requisition_Status.Status)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Adm_Security_Clearance.Security_Clearance)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Contract.Created_By)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Contract_WBS.Area)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ref_Contract_LCAT.ESF_LCAT)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ref_Role.Role)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->

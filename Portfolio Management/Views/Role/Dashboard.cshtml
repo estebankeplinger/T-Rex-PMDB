@@ -68,7 +68,6 @@
                                             
                                         </th>
                                     </tr>
-
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model.users)
@@ -108,9 +107,9 @@
                                                                   <button type="button" id="changeUser" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Manage Role</button>                                                                                                              *@
                                             
                                             <td>
-                                                @{Html.RenderAction("ChangeUserRole", new { username = Model.selectedUsername });}
-                                            </td>
-                                           
+                                                @*@{Html.RenderAction("ChangeUserRole", new { username = Model.selectedUsername });}*@
+
+                                            </td>                                           
                                         </tr>
                                     }
                                 </tbody>

@@ -34,7 +34,7 @@ namespace Portfolio_Management.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                foreach (var user in userList)
+                foreach (var user in userList.ToList())
                 {
                     //if user doesn't match search string, remove them from user list to show
                     if (!user.FirstName.Contains(searchString) && !user.LastName.Contains(searchString) && !user.UserName.Contains(searchString)
@@ -166,7 +166,7 @@ namespace Portfolio_Management.Controllers
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
             IdentityResult deletionResult = await UserManager.RemoveFromRoleAsync(id, roleName);
-
+            
         }
 
         public void updateUserRole(ChangeRoleViewModel crVm)
@@ -279,7 +279,7 @@ namespace Portfolio_Management.Controllers
         //    var context = new ApplicationDbContext();
         //    IEnumerable<AssignUserToRoleViewModel> userRoles;
 
-        //}
+        //} 
 
         //public ActionResult AssignRole(RoleViewModels model)
         //{

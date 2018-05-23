@@ -53,9 +53,17 @@ namespace Portfolio_Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Adm_Agencies.Add(adm_Agency);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Adm_Agencies.Add(adm_Agency);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch(Exception e)
+                {
+                    ModelState.AddModelError(string.Empty, e.Message);
+                    return View(adm_Agency);
+                }
             }
 
             return View(adm_Agency);
@@ -64,18 +72,18 @@ namespace Portfolio_Management.Controllers
         // GET: Adm_Agency/Edit/5
         public ActionResult Edit(short? id)
         {
-            Debug.WriteLine("id to edit is: "+id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Adm_Agency adm_Agency = db.Adm_Agencies.Find(id);
-            Debug.WriteLine("Agency is: "+adm_Agency.Agency);
+
             if (adm_Agency == null)
             {
                 return HttpNotFound();
             }
-            Debug.WriteLine("Returning adm_agency");
+
             return View(adm_Agency);
         }
 

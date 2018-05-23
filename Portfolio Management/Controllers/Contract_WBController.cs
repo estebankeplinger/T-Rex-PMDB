@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Portfolio_Management.Models;
+using System.Data.Entity.Validation;
 
 namespace Portfolio_Management.Controllers
 {
@@ -49,9 +50,31 @@ namespace Portfolio_Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Contract_WBS.Add(contract_WB);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Contract_WBS.Add(contract_WB);
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var entityValidationErrors in e.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                            }
+                        }
+                    }
+                        return RedirectToAction("Index");
+                }
+
+                catch(Exception e)
+                {
+                    ModelState.AddModelError(string.Empty, e.Message);
+                    return View(contract_WB);
+                }
             }
 
             return View(contract_WB);

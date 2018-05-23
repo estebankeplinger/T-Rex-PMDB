@@ -1,0 +1,11 @@
+﻿@using MvcSiteMapProvider.Web.Html
+<style>
+
+    #breadcrumb.right_col{
+        min-height:10px!important
+    }
+</style>
+
+<div class="right_col" id="breadcrumb" style="height:auto">
+    @Html.MvcSiteMap().SiteMapPath()
+</div>

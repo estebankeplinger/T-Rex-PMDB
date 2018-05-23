@@ -15,27 +15,32 @@ namespace Portfolio_Management.Controllers
     [Authorize]
     public class StaffController : ApplicationBaseController
     {
+
         private PMDataEntities db = new PMDataEntities();
+        private StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
 
         // GET: Staff
-        public ActionResult Index(string searchString)
+        public ActionResult Index(/*string searchString*/)
         {
 
             var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason).Include(s => s.Adm_Prefix).Include(s => s.Adm_Suffix).Include(s => s.Ref_Company).Include(s => s.Staff_Clearance);
-            List<Staff> staffList = new List<Staff>();
+            //Breaks datatable integration with index in url 
+            //List<Staff> staffList = new List<Staff>();
 
-            staffList = staffs.ToList();
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                foreach (var user in staffs.ToList())
-                {
-                    //if user doesn't match search string, remove them from user list to show
-                    if (!user.First_Name.Contains(searchString) && !user.Last_Name.Contains(searchString) &&
-                        !user.Staff_Name.Contains(searchString))
-                        staffList.Remove(user);         
-                }         
-            }
-            return View(staffList);
+            //staffList = staffs.ToList();
+            //if (!string.IsNullOrEmpty(searchString))
+            //{
+            //    foreach (var user in staffs.ToList())
+            //    {
+            //        //if user doesn't match search string, remove them from user list to show
+            //        if (!user.First_Name.Contains(searchString) && !user.Last_Name.Contains(searchString) &&
+            //            !user.Staff_Name.Contains(searchString))
+            //            staffList.Remove(user);
+            //    }
+            //}
+            StaffDashboardVM.AllStaffData.Staff = staffs.ToList();
+
+            return View(StaffDashboardVM);
         }
 
         [HttpGet]
@@ -52,24 +57,50 @@ namespace Portfolio_Management.Controllers
 
             staffActionsVM.StaffSelected = db.Staffs.Find(id);
             staffActionsVM.IsStaffSelected = true;
-            StaffEducationAction(staffActionsVM);
+            //StaffEducationAction(staffActionsVM);
 
             return View(staffActionsVM);
         }
 
-        public ActionResult StaffEducationAction(StaffActionsViewModel staffActionsVM)
+        public ActionResult StaffEducationAction(int? id)
         {
-
-            StaffEducationActionViewModel staffEducationActionVM = new StaffEducationActionViewModel(); 
-            
-            foreach (var education in staffActionsVM.StaffSelected.Educations)
+            if (id != null)
             {
-                staffEducationActionVM.currentStaffEducation.Add(education);
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var education in StaffDashboardVM.SelectedStaffData.Staff.Educations)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffEducations.Add(education);
+                }
             }
-            staffEducationActionVM.ShouldRender = true; //Hard coded to true - logic comes later
-            staffActionsVM.StaffEducationAction = staffEducationActionVM;
 
-            return PartialView("_StaffEducationAction", staffActionsVM);
+            return PartialView("_StaffEducationAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffSkillAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach(var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
+                }
+            }
+
+            return PartialView("_StaffSkillAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffPositionAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var position in StaffDashboardVM.SelectedStaffData.Staff.Staff_Position)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffPositions.Add(position);
+                }
+            }
+            return PartialView("_StaffPositionAction", StaffDashboardVM);
         }
 
         public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
@@ -78,6 +109,8 @@ namespace Portfolio_Management.Controllers
             
             return PartialView("_StaffExitAction", staffActionsVM);
         }
+
+        
 
         public ActionResult Dashboard()
         {
@@ -111,6 +144,12 @@ namespace Portfolio_Management.Controllers
                 companyDataList.Add(companyData);
             }
             return companyDataList;
+        }
+
+        public bool isActionAvailableForUser(int id)
+        {
+            var usersInDB = getCompanyChartData();
+            return false;
         }
 
         //[AuthLog(Roles = "User")]

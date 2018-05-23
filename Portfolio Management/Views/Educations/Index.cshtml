@@ -91,9 +91,13 @@
                                                 @Html.DisplayFor(modelItem => item.Staff.Staff_Name)
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                <a href="@Url.Action("Edit","Educations", new { id = item.ID})"><span title="Edit" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
+                                                <a href="@Url.Action("Details","Educations", new { id = item.ID})"><span title="Details" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a> |
+                                                <a href="@Url.Action("Delete","Educations", new { id = item.ID})"><span title="Delete" class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
                                             </td>
                                         </tr>
                                     }

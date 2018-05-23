@@ -8,11 +8,18 @@ namespace Portfolio_Management.Models
     
     public class StaffDashboardViewModel
     {
+        public StaffDashboardViewModel()
+        {
+            SelectedStaffData = new SelectedStaffDataViewModel();
+            AllStaffData = new AllStaffViewModel();
+        }
         public int NumStaff { get; set; }
         public int ActiveStaff { get; set; }
 
         public List<CompanyData> CompanyChart { get; set; }
 
+        public SelectedStaffDataViewModel SelectedStaffData { get; set; }
+        public AllStaffViewModel AllStaffData { get; set; }
         public class CompanyData
         {
             public int CompanyID { get; set; }
@@ -22,12 +29,33 @@ namespace Portfolio_Management.Models
         }
     }
 
+    public class AllStaffViewModel
+    {
+        public List<Staff> Staff { get; set; }
+    }
+
+    public class SelectedStaffDataViewModel
+    {
+        public SelectedStaffDataViewModel()
+        {
+            StaffEducations = new List<Education>();
+            StaffSkills = new List<Staff_Skill>();
+            StaffPositions = new List<Staff_Position>();
+        }
+        public Staff Staff { get; set; }
+        public List<Education> StaffEducations { get; set; }
+        public List<Staff_Skill> StaffSkills { get; set; }
+        public List<Staff_Position> StaffPositions { get; set; }
+
+    }
+
     public class StaffActionsViewModel
     {
         public StaffActionsViewModel()
-        { 
+        {
             StaffEducationAction = new StaffEducationActionViewModel();
         }
+
         public Boolean IsStaffSelected { get; set; }
         public Staff StaffSelected { get; set; }
         public StaffEducationActionViewModel StaffEducationAction { get; set; }

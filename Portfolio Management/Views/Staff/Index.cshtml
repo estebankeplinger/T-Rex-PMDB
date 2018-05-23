@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Portfolio_Management.Models.Staff>
+﻿@model Portfolio_Management.Models.StaffDashboardViewModel
 
 @{
     ViewBag.Title = "Staff";
@@ -6,63 +6,46 @@
 
 <div class="right_col" role="main">
     <div class="">
-        <div class="page-title">
-            @*<div class="title_left">
-                    <h3>Staff</h3>
-                </div>*@
-        </div>
-        <div class="clearfix"></div>
+
+        @*<div class="clearfix"></div>
 
         @{ if (User.IsInRole("Manager"))
             {
                 Html.RenderAction("ManagerMetrics", new { staffActionsVM = "Fun" });
-
             }
+        }*@
+        @*<div class="row">
+            <a href='@Url.Action("ContactList", "Staff")'>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
 
-        }
+                        <div class="count">Contact List</div>
 
-        <div class="row">
-            
-                <a href='@Url.Action("ContactList", "Staff")'>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-
-                            <div class="count">Contact List</div>
-
-                            <p>Click to open</p>
-                        </div>
+                        <p>Click to open</p>
                     </div>
-                </a>
+                </div>
+            </a>
+            <a href='@Url.Action("Index", "Educations")'>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
 
+                        <div class="count">Education</div>
 
-            
-                    <a href='@Url.Action("Index", "Educations")'>
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="tile-stats">
+                        <p>Click to open</p>
+                    </div>
+                </div>
+            </a>
+            <a href='@Url.Action("Index", "Staff_Skill")'>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
 
-                                <div class="count">Education</div>
+                        <div class="count">Staff Skill</div>
 
-                                <p>Click to open</p>
-                            </div>
-                        </div>
-                    </a>
-        
-
-
-                    <a href='@Url.Action("Index", "Staff_Skill")'>
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="tile-stats">
-
-                                <div class="count">Staff Skill</div>
-
-                                <p>Click to open</p>
-                            </div>
-                        </div>
-                    </a>
-
-            
-        </div>
-
+                        <p>Click to open</p>
+                    </div>
+                </div>
+            </a>
+        </div>*@
         <div class="row">
             <!--Table Data -->
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -73,12 +56,12 @@
                         <!--Navigation toolbar (top right)-->
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
-                                <a href="/Staff/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                                <a title="New Staff" href="/Staff/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
                             </li>
                             <li>
-                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                <a title="Collapse" class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
-                            @*<li class="dropdown">
+                            @*@<li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
@@ -90,9 +73,8 @@
                                     </ul>
                                 </li>*@
                             <li>
-                                <a class="close-link"><i class="fa fa-close"></i></a>
+                                <a title="Close" class="close-link"><i class="fa fa-close"></i></a>
                             </li>
-
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -100,89 +82,97 @@
                     <!-- Search bar-->
                     <div class="title_right">
                         <div class="col-md-3 col-sm-3 col-xs-6 form-group pull-right top_search">
-                            @using (Html.BeginForm("Index", "Staff"))
-                            {
-                                <div class="input-group">
-                                    @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search Staff" })
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Go</button>
-                                    </span>
-                                </div>
-                            }
+                            @*@using (Html.BeginForm("Index", "Staff"))
+                            {*@
+                            <div class="input-group">
+                                @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search Staff" , @id = "searchStaff" })
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Go</button>
+                                </span>
+                            </div>
+                            @*}*@
                         </div>
                     </div>
                     <!-- /Search bar-->
 
                     <div class="x_content">
                         <div style="overflow-x:auto">
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Staff_Name)
+                                            @Html.DisplayNameFor(model => Model.AllStaffData.Staff[0].Staff_Name)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Last_Name)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Last_Name)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.First_Name)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].First_Name)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Ref_Company.Company)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Ref_Company.Company)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Location)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Location)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Cell_Phone)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Cell_Phone)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Company_Email)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Company_Email)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Hire_Date)
+                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Hire_Date)
                                         </th>
+
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.AllStaffData.Staff)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Staff_Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Last_Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.First_Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Ref_Company.Company)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Location)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Cell_Phone)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Company_Email)
-                                            </td>
-                                            <td style="border-right: none">
-                                                @Html.DisplayFor(modelItem => item.Hire_Date)
-                                            </td>
-                                            <td style="border-right: none;border-left: none">
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                                            </td>
-                                            <td style="border-left: none">
-                                                <a href='@Url.Action("Action", "Staff", new { id = item.ID })'>
-                                                    <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <tr data-id="@item.ID" class="clickableRow">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Staff_Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Last_Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.First_Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ref_Company.Company)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Location)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Cell_Phone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Company_Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Hire_Date)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit","Staff", new { id = item.ID})"><span title="Edit" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
+                                            <a href="@Url.Action("Details","Staff", new { id = item.ID})"><span title="Details" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a> |
+                                            <a href="@Url.Action("Delete","Staff", new { id = item.ID})"><span title="Delete" class="glyphicon glyphicon-trash" aria-hidden="true"></span></a> |
+                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+                                            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                                            @*<a data-id="(modelItem => item.ID)" id="action" href='@Url.Action("StaffEducationAction", "Staff", new { id = item.ID })'>
+                                                    <span title="Actions" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                                                </a>*@
+                                            @*<button id="action" type="button" class="btn btn-default" aria-label="Left Align">
+                                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                                                </button>*@
+                                            @*<button id="action "class="btn"><i class="glyphicon glyphicon-menu-hamburger"></i> Actions</button>*@
+                                        </td>
+
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -192,23 +182,114 @@
             </div>
             <!-- Table Data -->
         </div>
+        <div class="row">
+            <div id="staffEducation">
+                @Html.Partial("_StaffEducationAction")
+            </div>
+            <div id="staffSkill">
+                @Html.Partial("_StaffSkillAction")
+            </div>
         </div>
-
-
-        <!-- Datatables -->
-        <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-        <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-        <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-        <script src="../vendors/jszip/dist/jszip.min.js"></script>
-        <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-        <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+        <div class="row">
+            <div id="staffPosition">
+                @Html.Partial("_StaffPositionAction")
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            var users = $('#datatable-responsive').DataTable({
+                "dom": "t",
+                stateSave: true,
+                colReorder: true,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal({
+                            header: function (row) {
+                                var data = row.data();
+                                return 'Details for ' + data[0];
+                            }
+                        }),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                            tableClass: 'table'
+                        })
+                    }
+                }
+            });
+
+            $('#searchStaff').keyup(function () {
+                users.search($(this).val()).draw();
+            })
+        });
+    </script>
+
+    <script>
+    $('.clickableRow').click(function () {
+        var targetRow = $(this).data('id');
+
+        $.ajax({
+            url: '@Url.Action("StaffEducationAction","Staff")',
+            data: { id: targetRow },
+            method: "GET",
+            success: function (data) {
+               
+                $("#staffEducation").empty();
+                $("#staffEducation").html(data);
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+        $.ajax({
+            url: '@Url.Action("StaffSkillAction","Staff")',
+            data: { id: targetRow },
+            method: "GET",
+            success: function (data) {
+             
+                $("#staffSkill").empty();
+                $("#staffSkill").html(data);
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+        $.ajax({
+            url: '@Url.Action("StaffPositionAction","Staff")',
+            data: { id: targetRow },
+            method: "GET",
+            success: function (data) {
+                $("#staffPosition").empty();
+                $("#staffPosition").html(data);
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+    })
+
+    </script>
+
+</div>
+
+
+@*<script>
+        $(document).ready(function() {
+            $('#datatable-responsive').DataTable( {
+                stateSave: true,
+                colReorder: true,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal({
+                            header: function (row) {
+                                var data = row.data();
+                                return 'Details for ' + data[0];
+                            }
+                        }),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                            tableClass: 'table'
+                        })
+                    }
+                }
+            } );
+        } );
+    </script>*@

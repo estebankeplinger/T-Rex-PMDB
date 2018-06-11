@@ -1,6 +1,5 @@
 ﻿@model Portfolio_Management.Models.Staff_Skill
 
-
 @{
     ViewBag.Title = "Create";
 }
@@ -34,29 +33,28 @@
                             @Html.AntiForgeryToken()
 
                             <div class="form-horizontal">
-                                <h4>Staff_Skill</h4>
-                                <hr />
+                               
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Staff_ID, "Staff_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Staff_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownList("Staff_ID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownList("Staff_ID", null,"-- Select Staff --", htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Staff_ID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Skill_ID, "Skill_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Skill_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownList("Skill_ID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownList("Skill_ID", null,"-- Select a Skill --", htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Skill_ID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Proficiency_ID, "Proficiency_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Proficiency_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownList("Proficiency_ID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownList("Proficiency_ID", null, "-- Select a Proficiency --",htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Proficiency_ID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -64,7 +62,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Created_On, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Created_On, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.Created_On, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.DateTime, @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.Created_On, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -72,7 +70,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Created_By, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Created_By, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.Created_By, new { htmlAttributes = new { @class = "form-control", @Value = ViewData["FullName"], @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.Created_By, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -80,7 +78,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Modified_On, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Modified_On, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.Modified_On, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.DateTime, @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.Modified_On, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -88,7 +86,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Modified_By, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Modified_By, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.Modified_By, new { htmlAttributes = new { @class = "form-control", @Value = ViewData["FullName"], @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.Modified_By, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -102,7 +100,7 @@
                         }
 
                         <div>
-                            @Html.ActionLink("Back to List", "Index")
+                            @Html.ActionLink("Back to Staff Skills", "Index")
                         </div>
                     </div>
                 </div>

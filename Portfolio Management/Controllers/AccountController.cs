@@ -487,7 +487,6 @@ namespace Portfolio_Management.Controllers
         public ActionResult UpdateProfile(HttpPostedFileBase Profile)
         {
             var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
-            
 
             var userid = User.Identity.GetUserId();
             if (userid != null)
@@ -507,6 +506,21 @@ namespace Portfolio_Management.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        internal string getUserID()
+        {
+            return User.Identity.GetUserId();
+        }
+
+        internal string getFirstLastName()
+        {
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+            var userid = getUserID();
+            var user = db.Users.Where(x => x.Id == userid).FirstOrDefault();
+            return user.FirstName +" " +user.LastName;
+        }
+
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

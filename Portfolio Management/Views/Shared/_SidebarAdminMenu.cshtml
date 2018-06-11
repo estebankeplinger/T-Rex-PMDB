@@ -1,19 +1,19 @@
 ﻿
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div class="menu_section">
-                            <h3>Admin</h3>
-                            <ul class="nav side-menu">
-                                <li><a href="/Role"><i class="fa fa-lock"></i> Roles</a>
-                                <li>
-                                    <a><i class="fa fa-compass"></i> Production <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/production/icons.html">Production Icons</a></li>
-                                        <li><a href="/production/glyphicons.html">Production Glyphicons</a></li>
-                                        <li><a href="/production/general_elements.html">Production General Elements</a></li>
-                                        <li><a href="/production/widgets.html">Production Widgets</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    }
+@if (User.IsInRole("Admin"))
+{
+    <div class="menu_section">
+        <h3>Admin</h3>
+        <ul class="nav side-menu">
+            <li><a href="/Role"><i class="fa fa-lock"></i> Roles</a>
+            <li>
+                <a><i class="fa fa-compass"></i> Production <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/production/icons.html">Production Icons</a></li>
+                    <li><a href="/production/glyphicons.html">Production Glyphicons</a></li>
+                    <li><a href="/production/general_elements.html">Production General Elements</a></li>
+                    <li><a href="/production/widgets.html">Production Widgets</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+}

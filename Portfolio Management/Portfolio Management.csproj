@@ -470,6 +470,7 @@
     <Compile Include="Models\Staff.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StaffSkillViewModels.cs" />
     <Compile Include="Models\StaffViewModels.cs" />
     <Compile Include="Models\Staff_Asset.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
@@ -6170,6 +6171,7 @@
     <Folder Include="Views\Actions\" />
     <Folder Include="Views\ApplicationBase\" />
     <Folder Include="Views\RoleView\" />
+    <Folder Include="Views\StaffSkillViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

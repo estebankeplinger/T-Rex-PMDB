@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Portfolio_Management.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Portfolio_Management.Controllers
 {
@@ -36,11 +37,16 @@ namespace Portfolio_Management.Controllers
         }
 
         // GET: Staff_Skill/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
-            ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
+            if (ModelState.IsValid && id != null)
+                ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name",id);        
+            else
+                ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
+
+            ViewBag.DateTime = DateTime.Now;
             return View();
         }
 
@@ -57,7 +63,8 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+           
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency", staff_Skill.Proficiency_ID);
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill", staff_Skill.Skill_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Skill.Staff_ID);
@@ -67,11 +74,16 @@ namespace Portfolio_Management.Controllers
         // GET: Staff_Skill/Edit/5
         public ActionResult Edit(int? id)
         {
+            //int staffID;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff_Skill staff_Skill = db.Staff_Skills.Find(id);
+
+            //staffID = (int) id;
+            Staff_Skill staff_Skill = db.Staff_Skills.Include(x => x.Staff.Staff_Skill).SingleOrDefault(x => x.Staff_ID == id);
+            //Staff_Skill staff_Skill = db.Staff_Skills.SingleOrDefault(x => x.Staff_ID == id);
             if (staff_Skill == null)
             {
                 return HttpNotFound();

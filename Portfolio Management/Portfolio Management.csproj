@@ -397,9 +397,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\MSreplication_options.cs">
-      <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\PortfolioManagementModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -452,19 +449,10 @@
     <Compile Include="Models\Security_Workflow.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\spt_fallback_db.cs">
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\spt_fallback_dev.cs">
-      <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\spt_fallback_usg.cs">
-      <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\spt_monitor.cs">
-      <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\spt_values.cs">
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Staff.cs">
@@ -488,6 +476,9 @@
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Staff_Training.cs">
+      <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Workshare.cs">

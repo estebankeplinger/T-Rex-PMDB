@@ -56,6 +56,7 @@ namespace Portfolio_Management.Models
     
         public virtual Adm_Exit_Reason Adm_Exit_Reason { get; set; }
         public virtual Adm_Prefix Adm_Prefix { get; set; }
+        public virtual Adm_Suffix Adm_Suffix { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Certification> Certifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -72,6 +73,5 @@ namespace Portfolio_Management.Models
         public virtual ICollection<Staff_Skill> Staff_Skill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Training> Staff_Training { get; set; }
-        public virtual Adm_Suffix Adm_Suffix { get; set; }
     }
 }

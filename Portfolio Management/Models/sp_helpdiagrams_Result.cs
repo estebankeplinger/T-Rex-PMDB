@@ -10,15 +10,13 @@
 namespace Portfolio_Management.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class spt_values
+    public partial class sp_helpdiagrams_Result
     {
-        public string name { get; set; }
-        public int number { get; set; }
-        public string type { get; set; }
-        public Nullable<int> low { get; set; }
-        public Nullable<int> high { get; set; }
-        public Nullable<int> status { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

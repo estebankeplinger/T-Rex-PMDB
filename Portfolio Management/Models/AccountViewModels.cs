@@ -65,11 +65,13 @@ namespace Portfolio_Management.Models
     public class RegisterViewModel
     {
         [Display(Name = "User Role")]
-        [Required]
+        //setting to user by default
+        //[Required]
         public string UserRole { get; set; }
 
         [Display(Name = "Username")]
-        [Required]
+        //setting username to email
+        //[Required]
         public string UserName { get; set; }
 
         [Required]

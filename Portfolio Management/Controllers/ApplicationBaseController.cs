@@ -23,7 +23,7 @@ namespace Portfolio_Management.Controllers
                     var user = context.Users.SingleOrDefault(u => u.UserName == username);
                     string fullName = string.Concat(new string[] { user.FirstName, " ", user.LastName });
                     ViewData.Add("FullName", fullName); 
-                    System.Diagnostics.Debug.WriteLine("full name is: "+fullName);
+                    //System.Diagnostics.Debug.WriteLine("full name is: "+fullName);
                 }
             }
             base.OnActionExecuted(filterContext);

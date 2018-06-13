@@ -62,7 +62,7 @@ namespace Portfolio_Management.Controllers
             }
 
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID_);
+            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
         }
@@ -80,7 +80,7 @@ namespace Portfolio_Management.Controllers
                 return HttpNotFound();
             }
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID_);
+            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
         }
@@ -99,7 +99,7 @@ namespace Portfolio_Management.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID_);
+            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
         }

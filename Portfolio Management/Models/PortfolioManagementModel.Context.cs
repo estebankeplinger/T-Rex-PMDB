@@ -63,14 +63,14 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Ref_Training> Ref_Trainings { get; set; }
         public virtual DbSet<Security_Workflow> Security_Workflows { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
+        public virtual DbSet<Staff_Asset> Staff_Assets { get; set; }
         public virtual DbSet<Staff_Clearance> Staff_Clearances { get; set; }
         public virtual DbSet<Staff_Clearance_Workflow> Staff_Clearance_Workflows { get; set; }
         public virtual DbSet<Staff_Position> Staff_Positions { get; set; }
         public virtual DbSet<Staff_Skill> Staff_Skills { get; set; }
+        public virtual DbSet<Staff_Training> Staff_Trainings { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Workshare> Workshares { get; set; }
-        public virtual DbSet<Staff_Asset> Staff_Assets { get; set; }
-        public virtual DbSet<Staff_Training> Staff_Trainings { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

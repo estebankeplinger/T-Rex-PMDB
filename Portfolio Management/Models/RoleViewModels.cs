@@ -13,7 +13,7 @@ namespace Portfolio_Management.Models
         public UsersRolesViewModel()
         {
             Users = new List<UserAccountsViewModel>();
-            Roles = new List<IdentityRole>();
+            Roles = new List<AspNetRole>();
 
         }
 
@@ -21,7 +21,7 @@ namespace Portfolio_Management.Models
         public List<UserAccountsViewModel> Users { get; set; }
 
         [Display(Name = "Role List")]
-        public List<IdentityRole> Roles { get; set; }
+        public List<AspNetRole> Roles { get; set; }
 
     }
     public class StaffManagerViewModel

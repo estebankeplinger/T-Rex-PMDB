@@ -16,17 +16,15 @@ namespace Portfolio_Management.Controllers
     public class RoleController : ApplicationBaseController
     {
 
-        ApplicationDbContext context;
+        private PMDataEntities context;
 
         public RoleController()
         {
-            context = new ApplicationDbContext();
+            context = new PMDataEntities();
         }
 
         public ActionResult Index(string searchString)
         {
-
-            var context = new ApplicationDbContext();
             var userRoleViewModel = new UsersRolesViewModel();
 
             var userList = getUsers();
@@ -80,9 +78,9 @@ namespace Portfolio_Management.Controllers
         // <param name="Role"></param>
         // <returns></returns>
         [HttpPost]
-        public ActionResult Create(IdentityRole Role)
+        public ActionResult Create(AspNetRole Role)
         {
-            context.Roles.Add(Role);
+            context.AspNetRoles.Add(Role);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -90,7 +88,7 @@ namespace Portfolio_Management.Controllers
 
         public ActionResult Edit(string Username)
         {
-            var users = context.Users.ToList();
+            var users = context.AspNetUsers.ToList();
             
             var userRoles = users.Find(item => item.UserName == Username);
 
@@ -148,7 +146,7 @@ namespace Portfolio_Management.Controllers
         [ChildActionOnly]
         protected string FindUserIDByUsername(string username)
         {
-            var userList = context.Users.ToList();
+            var userList = context.AspNetUsers.ToList();
             var user = userList.Find(item => item.UserName == username);
 
             if(user == null)
@@ -171,7 +169,7 @@ namespace Portfolio_Management.Controllers
 
         public void updateUserRole(ChangeRoleViewModel crVm)
         {
-            var userList = context.Users.ToList();
+            var userList = context.AspNetUsers.ToList();
             foreach (var i in userList)
             {
                 if (i.Id == crVm.ID)
@@ -187,9 +185,9 @@ namespace Portfolio_Management.Controllers
         [ChildActionOnly]
         public List<string> getRolesForUser(string username)
         {
-            Debug.WriteLine("--- Recieved " + username + " to find roles for");
+            //Debug.WriteLine("--- Recieved " + username + " to find roles for");
             var userRoles = new List<RolesViewModel>();
-            var context = new ApplicationDbContext();
+
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
@@ -199,16 +197,17 @@ namespace Portfolio_Management.Controllers
         }
 
         //Return role list as IdentityRole list
-        public List<IdentityRole> getRoles()
+        public List<AspNetRole> getRoles()
         {
-            List<IdentityRole> roleList = new List<IdentityRole>();
-            var contextRoles = context.Roles.ToList();
-            //get all roles, assign to user list view model
-            foreach (var j in contextRoles)
-            {
-                IdentityRole role = new IdentityRole();
+            List<AspNetRole> roleList = new List<AspNetRole>();
+            var contextRoles = context.AspNetRoles.ToList();
 
-                role.Name = j.Name;
+            //get all roles, assign to user list view model
+            foreach (var r in contextRoles)
+            {
+                AspNetRole role = new AspNetRole();
+
+                role.Name = r.Name;
 
                 roleList.Add(role);
 
@@ -220,7 +219,7 @@ namespace Portfolio_Management.Controllers
         public List<SelectListItem> getRoleSelectList()
         {
             List<SelectListItem> roleList = new List<SelectListItem>();
-            foreach (var role in context.Roles.ToList())
+            foreach (var role in context.AspNetRoles.ToList())
             {
                 roleList.Add(new SelectListItem
                 {
@@ -235,18 +234,18 @@ namespace Portfolio_Management.Controllers
         public List<UserAccountsViewModel> getUsers()
         {
             List<UserAccountsViewModel> usersList = new List<UserAccountsViewModel>();
-            var contextUsers = context.Users.ToList();
+            var contextUsers = context.AspNetUsers.ToList();
             //get all users, assign to user list view model
-            foreach (var i in contextUsers)
+            foreach (var user in contextUsers)
             {
 
                 UserAccountsViewModel userAccountVM = new UserAccountsViewModel();
 
-                userAccountVM.FirstName = i.FirstName;
-                userAccountVM.LastName = i.LastName;
-                userAccountVM.Roles = getRolesForUser(i.UserName);
-                userAccountVM.UserName = i.UserName;
-                userAccountVM.ID = i.Id;
+                userAccountVM.FirstName = user.FirstName;
+                userAccountVM.LastName = user.LastName;
+                userAccountVM.Roles = getRolesForUser(user.UserName);
+                userAccountVM.UserName = user.UserName;
+                userAccountVM.ID = user.Id;
                 
 
                 foreach(var j in userAccountVM.Roles)

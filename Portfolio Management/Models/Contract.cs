@@ -21,8 +21,8 @@ namespace Portfolio_Management.Models
             this.Security_Workflow = new HashSet<Security_Workflow>();
             this.Ref_Contract_LCAT = new HashSet<Ref_Contract_LCAT>();
             this.Ref_Training = new HashSet<Ref_Training>();
-            this.Staff_Asset = new HashSet<Staff_Asset>();
             this.Staff_Clearance = new HashSet<Staff_Clearance>();
+            this.Staff_Asset = new HashSet<Staff_Asset>();
         }
     
         public int ID { get; set; }
@@ -48,8 +48,8 @@ namespace Portfolio_Management.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ref_Training> Ref_Training { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff_Asset> Staff_Asset { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Clearance> Staff_Clearance { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Staff_Asset> Staff_Asset { get; set; }
     }
 }

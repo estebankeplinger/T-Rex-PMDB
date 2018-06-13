@@ -27,7 +27,7 @@ namespace Portfolio_Management.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("PMDataEntities", throwIfV1Schema: false)
         {
         }
 

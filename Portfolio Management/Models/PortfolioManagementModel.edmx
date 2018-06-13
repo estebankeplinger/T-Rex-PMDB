@@ -19,14 +19,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Agency" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Asset Type">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Asset Type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Clearance Status">
@@ -40,7 +40,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Vehicle Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Degree">
@@ -62,7 +62,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Info Risk" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Prefix">
@@ -75,28 +75,28 @@
           <Key>
             <PropertyRef Name="Proficiency ID" />
           </Key>
-          <Property Name="Proficiency ID" Type="smallint" Nullable="false" />
+          <Property Name="Proficiency ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Proficiency" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Adm Requisition Status">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Resume Status">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Security Clearance">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Security Clearance" Type="nvarchar" MaxLength="50" />
           <Property Name="Security Clearance Abbreviation" Type="nvarchar" MaxLength="10" />
         </EntityType>
@@ -154,7 +154,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Staff ID" Type="int" Nullable="false" />
           <Property Name="Certification" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Issuing Agency" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -170,7 +170,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Customer ID" Type="int" Nullable="false" />
           <Property Name="POP Start" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="POP End" Type="datetime2" Precision="0" Nullable="false" />
@@ -250,7 +250,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Asset Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Asset Type ID" Type="smallint" Nullable="false" />
         </EntityType>
@@ -276,7 +276,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Contract Vehicle ID" Type="smallint" Nullable="false" />
           <Property Name="LCAT" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LCAT Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
@@ -287,7 +287,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Customer" Type="nvarchar" MaxLength="50" />
           <Property Name="Agency ID" Type="smallint" />
         </EntityType>
@@ -380,22 +380,14 @@
           <Property Name="Modified On" Type="datetime2" Precision="7" />
           <Property Name="Modified By" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CBA_PMINT.dbo.Staff Asset' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Staff Asset">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="Staff ID" />
-            <PropertyRef Name="Asset ID]" />
-            <PropertyRef Name="Created On" />
-            <PropertyRef Name="Created By" />
-            <PropertyRef Name="Modified On" />
-            <PropertyRef Name="Modified By" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Staff ID" Type="int" Nullable="false" />
           <Property Name="Contract ID" Type="int" />
-          <Property Name="Asset ID]" Type="int" Nullable="false" />
+          <Property Name="Asset ID" Type="int" Nullable="false" />
           <Property Name="Item Number" Type="nvarchar" MaxLength="25" />
           <Property Name="Date Issued" Type="datetime2" Precision="0" />
           <Property Name="Date Returrned" Type="datetime2" Precision="0" />
@@ -439,7 +431,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Asset' does not have a primary
             <PropertyRef Name="Staff ID" />
             <PropertyRef Name="Contract Position ID" />
           </Key>
-          <Property Name="Staff ID" Type="int" Nullable="false" />
+          <Property Name="Staff ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Contract Position ID" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Planned Start Date" Type="datetime2" Precision="0" />
@@ -471,19 +463,11 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Asset' does not have a primary
           <Property Name="Modified On" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Modified By" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Staff Training">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="Staff ID" />
-            <PropertyRef Name="Training ID" />
-            <PropertyRef Name="Created On" />
-            <PropertyRef Name="Created By" />
-            <PropertyRef Name="Modified On" />
-            <PropertyRef Name="Modified By" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Staff ID" Type="int" Nullable="false" />
           <Property Name="Training ID" Type="int" Nullable="false" />
           <Property Name="Date Completed" Type="datetime2" Precision="0" />
@@ -868,7 +852,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Staff Asset">
-              <PropertyRef Name="Asset ID]" />
+              <PropertyRef Name="Asset ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1193,40 +1177,14 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <EntitySet Name="Ref Training" EntityType="Self.Ref Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security Workflow" EntityType="Self.Security Workflow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff Asset" EntityType="Self.Staff Asset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff Clearance" EntityType="Self.Staff Clearance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff Clearance Workflow" EntityType="Self.Staff Clearance Workflow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff Position" EntityType="Self.Staff Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff Skill" EntityType="Self.Staff Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff Training" EntityType="Self.Staff Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workshare" EntityType="Self.Workshare" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Staff Asset" EntityType="Self.Staff Asset" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Staff Asset].[ID] AS [ID], 
-    [Staff Asset].[Staff ID] AS [Staff ID], 
-    [Staff Asset].[Contract ID] AS [Contract ID], 
-    [Staff Asset].[Asset ID]]] AS [Asset ID]]], 
-    [Staff Asset].[Item Number] AS [Item Number], 
-    [Staff Asset].[Date Issued] AS [Date Issued], 
-    [Staff Asset].[Date Returrned] AS [Date Returrned], 
-    [Staff Asset].[Notes] AS [Notes], 
-    [Staff Asset].[Created On] AS [Created On], 
-    [Staff Asset].[Created By] AS [Created By], 
-    [Staff Asset].[Modified On] AS [Modified On], 
-    [Staff Asset].[Modified By] AS [Modified By]
-    FROM [dbo].[Staff Asset] AS [Staff Asset]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Staff Training" EntityType="Self.Staff Training" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Staff Training].[ID] AS [ID], 
-    [Staff Training].[Staff ID] AS [Staff ID], 
-    [Staff Training].[Training ID] AS [Training ID], 
-    [Staff Training].[Date Completed] AS [Date Completed], 
-    [Staff Training].[Created On] AS [Created On], 
-    [Staff Training].[Created By] AS [Created By], 
-    [Staff Training].[Modified On] AS [Modified On], 
-    [Staff Training].[Modified By] AS [Modified By]
-    FROM [dbo].[Staff Training] AS [Staff Training]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Cetifications_Staff" Association="Self.FK_Cetifications_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Certifications" EntitySet="Certifications" />
@@ -1503,14 +1461,14 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <EntitySet Name="Ref_Trainings" EntityType="PMDataModel.Ref_Training" />
           <EntitySet Name="Security_Workflows" EntityType="PMDataModel.Security_Workflow" />
           <EntitySet Name="Staffs" EntityType="PMDataModel.Staff" />
+          <EntitySet Name="Staff_Assets" EntityType="PMDataModel.Staff_Asset" />
           <EntitySet Name="Staff_Clearances" EntityType="PMDataModel.Staff_Clearance" />
           <EntitySet Name="Staff_Clearance_Workflows" EntityType="PMDataModel.Staff_Clearance_Workflow" />
           <EntitySet Name="Staff_Positions" EntityType="PMDataModel.Staff_Position" />
           <EntitySet Name="Staff_Skills" EntityType="PMDataModel.Staff_Skill" />
+          <EntitySet Name="Staff_Trainings" EntityType="PMDataModel.Staff_Training" />
           <EntitySet Name="sysdiagrams" EntityType="PMDataModel.sysdiagram" />
           <EntitySet Name="Workshares" EntityType="PMDataModel.Workshare" />
-          <EntitySet Name="Staff_Assets" EntityType="PMDataModel.Staff_Asset" />
-          <EntitySet Name="Staff_Trainings" EntityType="PMDataModel.Staff_Training" />
           <AssociationSet Name="FK_Ref_Customer_Adm_Agency" Association="PMDataModel.FK_Ref_Customer_Adm_Agency">
             <End Role="Adm_Agency" EntitySet="Adm_Agencies" />
             <End Role="Ref_Customer" EntitySet="Ref_Customers" />
@@ -1607,10 +1565,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Ref_Training" EntitySet="Ref_Trainings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Contract" Association="PMDataModel.FK_Staff_Asset_Contract">
-            <End Role="Contract" EntitySet="Contracts" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Clearance_Contract" Association="PMDataModel.FK_Staff_Clearance_Contract">
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
@@ -1647,10 +1601,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             <End Role="Ref_Pay_Period" EntitySet="Ref_Pay_Periods" />
             <End Role="Position_Forecast" EntitySet="Position_Forecasts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Ref_Asset" Association="PMDataModel.FK_Staff_Asset_Ref_Asset">
-            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
           <AssociationSet Name="FK_Workshare_Ref_Company" Association="PMDataModel.FK_Workshare_Ref_Company">
             <End Role="Ref_Company" EntitySet="Ref_Companies" />
             <End Role="Workshare" EntitySet="Workshares" />
@@ -1671,17 +1621,9 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             <End Role="Ref_Telework_Agreement" EntitySet="Ref_Telework_Agreements" />
             <End Role="Staff_Position" EntitySet="Staff_Positions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Training_Ref_Training" Association="PMDataModel.FK_Staff_Training_Ref_Training">
-            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
-            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
-          </AssociationSet>
           <AssociationSet Name="FK_Security_Clearance_Contract_Security_Workflow" Association="PMDataModel.FK_Security_Clearance_Contract_Security_Workflow">
             <End Role="Security_Workflow" EntitySet="Security_Workflows" />
             <End Role="Staff_Clearance_Workflow" EntitySet="Staff_Clearance_Workflows" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Staff" Association="PMDataModel.FK_Staff_Asset_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Clearance_Staff" Association="PMDataModel.FK_Staff_Clearance_Staff">
             <End Role="Staff" EntitySet="Staffs" />
@@ -1695,10 +1637,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Staff_Skill" EntitySet="Staff_Skills" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Training_Staff" Association="PMDataModel.FK_Staff_Training_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance" Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance">
             <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
             <End Role="Staff_Clearance_Workflow" EntitySet="Staff_Clearance_Workflows" />
@@ -1706,6 +1644,26 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <AssociationSet Name="AspNetUserRoles" Association="PMDataModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Contract" Association="PMDataModel.FK_Staff_Asset_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Ref_Asset" Association="PMDataModel.FK_Staff_Asset_Ref_Asset">
+            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Training_Ref_Training" Association="PMDataModel.FK_Staff_Training_Ref_Training">
+            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
+            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Staff" Association="PMDataModel.FK_Staff_Asset_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Training_Staff" Association="PMDataModel.FK_Staff_Training_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1733,7 +1691,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Agency" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ref_Customer" Relationship="PMDataModel.FK_Ref_Customer_Adm_Agency" FromRole="Adm_Agency" ToRole="Ref_Customer" />
         </EntityType>
@@ -1741,7 +1699,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Asset_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ref_Asset" Relationship="PMDataModel.FK_Ref_Asset_Adm_Asset_Type" FromRole="Adm_Asset_Type" ToRole="Ref_Asset" />
         </EntityType>
@@ -1757,7 +1715,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Vehicle_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ref_Contract_Vehicle_LCAT" Relationship="PMDataModel.FK_Ref_Vehicle_LCAT_Adm_Contract_Vehicle" FromRole="Adm_Contract_Vehicle" ToRole="Ref_Contract_Vehicle_LCAT" />
         </EntityType>
@@ -1783,7 +1741,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Info_Risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Info_Risk" FromRole="Adm_Info_Risk" ToRole="Contract_Position" />
         </EntityType>
@@ -1798,7 +1756,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="Proficiency_ID" />
           </Key>
-          <Property Name="Proficiency_ID" Type="Int16" Nullable="false" />
+          <Property Name="Proficiency_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Proficiency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Adm_Proficiency" FromRole="Adm_Proficiency" ToRole="Staff_Skill" />
         </EntityType>
@@ -1806,7 +1764,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" FromRole="Adm_Requisition_Status" ToRole="Contract_Position" />
         </EntityType>
@@ -1814,7 +1772,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Adm_Resume_Status" FromRole="Adm_Resume_Status" ToRole="Staff_Position" />
         </EntityType>
@@ -1822,7 +1780,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Security_Clearance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Security_Clearance_Abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" FromRole="Adm_Security_Clearance" ToRole="Contract_Position" />
@@ -1881,7 +1839,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Staff_ID" Type="Int32" Nullable="false" />
           <Property Name="Certification1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Issuing_Agency" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1898,7 +1856,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Customer_ID" Type="Int32" Nullable="false" />
           <Property Name="POP_Start" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="POP_End" Type="DateTime" Nullable="false" Precision="0" />
@@ -1915,8 +1873,8 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Contract_Staff" FromRole="Contract" ToRole="Staff" />
           <NavigationProperty Name="Ref_Contract_LCAT" Relationship="PMDataModel.FK_Ref_LCAT_Contract1" FromRole="Contract" ToRole="Ref_Contract_LCAT" />
           <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Contract" ToRole="Ref_Training" />
-          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Contract" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Contract" ToRole="Staff_Clearance" />
+          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Contract" ToRole="Staff_Asset" />
         </EntityType>
         <EntityType Name="Contract_Position">
           <Key>
@@ -2001,7 +1959,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Asset_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Asset_Type_ID" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Adm_Asset_Type" Relationship="PMDataModel.FK_Ref_Asset_Adm_Asset_Type" FromRole="Ref_Asset" ToRole="Adm_Asset_Type" />
@@ -2034,7 +1992,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Contract_Vehicle_ID" Type="Int16" Nullable="false" />
           <Property Name="LCAT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LCAT_Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
@@ -2048,7 +2006,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Agency_ID" Type="Int16" />
           <NavigationProperty Name="Adm_Agency" Relationship="PMDataModel.FK_Ref_Customer_Adm_Agency" FromRole="Ref_Customer" ToRole="Adm_Agency" />
@@ -2158,11 +2116,31 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <NavigationProperty Name="Contracts" Relationship="PMDataModel.FK_Contract_Staff" FromRole="Staff" ToRole="Contract" />
           <NavigationProperty Name="Educations" Relationship="PMDataModel.FK_Education_Staff" FromRole="Staff" ToRole="Education" />
           <NavigationProperty Name="Ref_Company" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Staff" ToRole="Ref_Company" />
-          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff" ToRole="Staff_Clearance" />
           <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff" ToRole="Staff_Position" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Staff" FromRole="Staff" ToRole="Staff_Skill" />
+          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Training" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff" ToRole="Staff_Training" />
+        </EntityType>
+        <EntityType Name="Staff_Asset">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <Property Name="Contract_ID" Type="Int32" />
+          <Property Name="Asset_ID" Type="Int32" Nullable="false" />
+          <Property Name="Item_Number" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Issued" Type="DateTime" Precision="0" />
+          <Property Name="Date_Returrned" Type="DateTime" Precision="0" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Staff_Asset" ToRole="Contract" />
+          <NavigationProperty Name="Ref_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Staff_Asset" ToRole="Ref_Asset" />
+          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff_Asset" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Staff_Clearance">
           <Key>
@@ -2204,7 +2182,7 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             <PropertyRef Name="Staff_ID" />
             <PropertyRef Name="Contract_Position_ID" />
           </Key>
-          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Contract_Position_ID" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Planned_Start_Date" Type="DateTime" Precision="0" />
@@ -2243,6 +2221,21 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <NavigationProperty Name="Ref_Skill" Relationship="PMDataModel.FK_Staff_Skill_Ref_Skill" FromRole="Staff_Skill" ToRole="Ref_Skill" />
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Skill_Staff" FromRole="Staff_Skill" ToRole="Staff" />
         </EntityType>
+        <EntityType Name="Staff_Training">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <Property Name="Training_ID" Type="Int32" Nullable="false" />
+          <Property Name="Date_Completed" Type="DateTime" Precision="0" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Staff_Training_Ref_Training" FromRole="Staff_Training" ToRole="Ref_Training" />
+          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff_Training" ToRole="Staff" />
+        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -2268,53 +2261,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Workshare_Contract_Position" FromRole="Workshare" ToRole="Contract_Position" />
           <NavigationProperty Name="Ref_Company" Relationship="PMDataModel.FK_Workshare_Ref_Company" FromRole="Workshare" ToRole="Ref_Company" />
-        </EntityType>
-        <EntityType Name="Staff_Asset">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Staff_ID" />
-            <PropertyRef Name="Asset_ID_" />
-            <PropertyRef Name="Created_On" />
-            <PropertyRef Name="Created_By" />
-            <PropertyRef Name="Modified_On" />
-            <PropertyRef Name="Modified_By" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
-          <Property Name="Contract_ID" Type="Int32" />
-          <Property Name="Asset_ID_" Type="Int32" Nullable="false" />
-          <Property Name="Item_Number" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="Date_Issued" Type="DateTime" Precision="0" />
-          <Property Name="Date_Returrned" Type="DateTime" Precision="0" />
-          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Staff_Asset" ToRole="Contract" />
-          <NavigationProperty Name="Ref_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Staff_Asset" ToRole="Ref_Asset" />
-          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff_Asset" ToRole="Staff" />
-        </EntityType>
-        <EntityType Name="Staff_Training">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Staff_ID" />
-            <PropertyRef Name="Training_ID" />
-            <PropertyRef Name="Created_On" />
-            <PropertyRef Name="Created_By" />
-            <PropertyRef Name="Modified_On" />
-            <PropertyRef Name="Modified_By" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
-          <Property Name="Training_ID" Type="Int32" Nullable="false" />
-          <Property Name="Date_Completed" Type="DateTime" Precision="0" />
-          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Staff_Training_Ref_Training" FromRole="Staff_Training" ToRole="Ref_Training" />
-          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff_Training" ToRole="Staff" />
         </EntityType>
         <Association Name="FK_Ref_Customer_Adm_Agency">
           <End Type="PMDataModel.Adm_Agency" Role="Adm_Agency" Multiplicity="0..1" />
@@ -2608,18 +2554,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Asset_Contract">
-          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contract">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Contract_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Clearance_Contract">
           <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
           <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
@@ -2728,18 +2662,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Asset_Ref_Asset">
-          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Asset">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Asset_ID_" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Workshare_Ref_Company">
           <End Type="PMDataModel.Ref_Company" Role="Ref_Company" Multiplicity="0..1" />
           <End Type="PMDataModel.Workshare" Role="Workshare" Multiplicity="*" />
@@ -2800,18 +2722,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Training_Ref_Training">
-          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Training">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Training">
-              <PropertyRef Name="Training_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Security_Clearance_Contract_Security_Workflow">
           <End Type="PMDataModel.Security_Workflow" Role="Security_Workflow" Multiplicity="1" />
           <End Type="PMDataModel.Staff_Clearance_Workflow" Role="Staff_Clearance_Workflow" Multiplicity="*" />
@@ -2821,18 +2731,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             </Principal>
             <Dependent Role="Staff_Clearance_Workflow">
               <PropertyRef Name="Security_Workflow_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Asset_Staff">
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Staff_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2872,18 +2770,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Training_Staff">
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Training">
-              <PropertyRef Name="Staff_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance">
           <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="1" />
           <End Type="PMDataModel.Staff_Clearance_Workflow" Role="Staff_Clearance_Workflow" Multiplicity="*" />
@@ -2899,6 +2785,66 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
         <Association Name="AspNetUserRoles">
           <End Type="PMDataModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Staff_Asset_Contract">
+          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
+              <PropertyRef Name="Contract_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Asset_Ref_Asset">
+          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Asset">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
+              <PropertyRef Name="Asset_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Training_Ref_Training">
+          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Training">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Training">
+              <PropertyRef Name="Training_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Asset_Staff">
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Training_Staff">
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Training">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -3330,6 +3276,24 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Assets">
+            <EntityTypeMapping TypeName="PMDataModel.Staff_Asset">
+              <MappingFragment StoreEntitySet="Staff Asset">
+                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
+                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
+                <ScalarProperty Name="Created_By" ColumnName="Created By" />
+                <ScalarProperty Name="Created_On" ColumnName="Created On" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Date_Returrned" ColumnName="Date Returrned" />
+                <ScalarProperty Name="Date_Issued" ColumnName="Date Issued" />
+                <ScalarProperty Name="Item_Number" ColumnName="Item Number" />
+                <ScalarProperty Name="Asset_ID" ColumnName="Asset ID" />
+                <ScalarProperty Name="Contract_ID" ColumnName="Contract ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Staff_Clearances">
             <EntityTypeMapping TypeName="PMDataModel.Staff_Clearance">
               <MappingFragment StoreEntitySet="Staff Clearance">
@@ -3398,6 +3362,20 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Trainings">
+            <EntityTypeMapping TypeName="PMDataModel.Staff_Training">
+              <MappingFragment StoreEntitySet="Staff Training">
+                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
+                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
+                <ScalarProperty Name="Created_By" ColumnName="Created By" />
+                <ScalarProperty Name="Created_On" ColumnName="Created On" />
+                <ScalarProperty Name="Date_Completed" ColumnName="Date Completed" />
+                <ScalarProperty Name="Training_ID" ColumnName="Training ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PMDataModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -3420,38 +3398,6 @@ warning 6002: The table/view 'CBA_PMINT.dbo.Staff Training' does not have a prim
                 <ScalarProperty Name="Date_Released" ColumnName="Date Released" />
                 <ScalarProperty Name="Company_ID" ColumnName="Company ID" />
                 <ScalarProperty Name="Contract_Position_ID" ColumnName="Contract Position ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Staff_Assets">
-            <EntityTypeMapping TypeName="PMDataModel.Staff_Asset">
-              <MappingFragment StoreEntitySet="Staff Asset">
-                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
-                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
-                <ScalarProperty Name="Created_By" ColumnName="Created By" />
-                <ScalarProperty Name="Created_On" ColumnName="Created On" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Date_Returrned" ColumnName="Date Returrned" />
-                <ScalarProperty Name="Date_Issued" ColumnName="Date Issued" />
-                <ScalarProperty Name="Item_Number" ColumnName="Item Number" />
-                <ScalarProperty Name="Asset_ID_" ColumnName="Asset ID]" />
-                <ScalarProperty Name="Contract_ID" ColumnName="Contract ID" />
-                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Staff_Trainings">
-            <EntityTypeMapping TypeName="PMDataModel.Staff_Training">
-              <MappingFragment StoreEntitySet="Staff Training">
-                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
-                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
-                <ScalarProperty Name="Created_By" ColumnName="Created By" />
-                <ScalarProperty Name="Created_On" ColumnName="Created On" />
-                <ScalarProperty Name="Date_Completed" ColumnName="Date Completed" />
-                <ScalarProperty Name="Training_ID" ColumnName="Training ID" />
-                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

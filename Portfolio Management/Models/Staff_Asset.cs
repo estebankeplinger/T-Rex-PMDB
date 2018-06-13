@@ -17,7 +17,7 @@ namespace Portfolio_Management.Models
         public int ID { get; set; }
         public int Staff_ID { get; set; }
         public Nullable<int> Contract_ID { get; set; }
-        public int Asset_ID_ { get; set; }
+        public int Asset_ID { get; set; }
         public string Item_Number { get; set; }
         public Nullable<System.DateTime> Date_Issued { get; set; }
         public Nullable<System.DateTime> Date_Returrned { get; set; }

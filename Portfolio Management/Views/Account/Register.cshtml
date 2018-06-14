@@ -80,6 +80,8 @@
                             @Html.HiddenFor(m => Model.UserName)
 
                             <p>You'll be assigned the role: User</p>
+                            @Html.HiddenFor(m => m.UserRole)
+                            @Html.Hidden("UserRole", "User")
                         </div>
                         <br />
                         

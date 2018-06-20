@@ -41,10 +41,6 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Adm_Resume_Status> Adm_Resume_Status { get; set; }
         public virtual DbSet<Adm_Security_Clearance> Adm_Security_Clearances { get; set; }
         public virtual DbSet<Adm_Suffix> Adm_Suffixes { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Certification> Certifications { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<Contract_Position> Contract_Positions { get; set; }
@@ -71,6 +67,10 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Staff_Training> Staff_Trainings { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Workshare> Workshares { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

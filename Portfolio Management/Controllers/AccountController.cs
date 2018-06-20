@@ -19,11 +19,11 @@ namespace Portfolio_Management.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private PMDataEntities context;
+        private ApplicationDbContext context;
 
         public AccountController()
         {
-            context = new PMDataEntities();
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -152,7 +152,7 @@ namespace Portfolio_Management.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.AspNetRoles.ToList(), "Name", "Name");
+           //ViewBag.Name = new SelectList(context.Database..ToList(), "Name", "Name");
 
             return View();
         }

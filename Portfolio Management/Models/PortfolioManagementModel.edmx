@@ -145,10 +145,21 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="userRole" Type="nvarchar(max)" />
+          <Property Name="ProfilePicture" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Certifications">
           <Key>
@@ -1439,10 +1450,6 @@
           <EntitySet Name="Adm_Resume_Status" EntityType="PMDataModel.Adm_Resume_Status" />
           <EntitySet Name="Adm_Security_Clearances" EntityType="PMDataModel.Adm_Security_Clearance" />
           <EntitySet Name="Adm_Suffixes" EntityType="PMDataModel.Adm_Suffix" />
-          <EntitySet Name="AspNetRoles" EntityType="PMDataModel.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="PMDataModel.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="PMDataModel.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="PMDataModel.AspNetUser" />
           <EntitySet Name="Certifications" EntityType="PMDataModel.Certification" />
           <EntitySet Name="Contracts" EntityType="PMDataModel.Contract" />
           <EntitySet Name="Contract_Positions" EntityType="PMDataModel.Contract_Position" />
@@ -1529,14 +1536,6 @@
             <End Role="Adm_Suffix" EntitySet="Adm_Suffixes" />
             <End Role="Staff" EntitySet="Staffs" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
           <AssociationSet Name="FK_Cetifications_Staff" Association="PMDataModel.FK_Cetifications_Staff">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Certification" EntitySet="Certifications" />
@@ -1564,6 +1563,10 @@
           <AssociationSet Name="FK_Ref_Training_Contract" Association="PMDataModel.FK_Ref_Training_Contract">
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Ref_Training" EntitySet="Ref_Trainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Contract" Association="PMDataModel.FK_Staff_Asset_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Clearance_Contract" Association="PMDataModel.FK_Staff_Clearance_Contract">
             <End Role="Contract" EntitySet="Contracts" />
@@ -1601,6 +1604,10 @@
             <End Role="Ref_Pay_Period" EntitySet="Ref_Pay_Periods" />
             <End Role="Position_Forecast" EntitySet="Position_Forecasts" />
           </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Ref_Asset" Association="PMDataModel.FK_Staff_Asset_Ref_Asset">
+            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
+          </AssociationSet>
           <AssociationSet Name="FK_Workshare_Ref_Company" Association="PMDataModel.FK_Workshare_Ref_Company">
             <End Role="Ref_Company" EntitySet="Ref_Companies" />
             <End Role="Workshare" EntitySet="Workshares" />
@@ -1621,9 +1628,17 @@
             <End Role="Ref_Telework_Agreement" EntitySet="Ref_Telework_Agreements" />
             <End Role="Staff_Position" EntitySet="Staff_Positions" />
           </AssociationSet>
+          <AssociationSet Name="FK_Staff_Training_Ref_Training" Association="PMDataModel.FK_Staff_Training_Ref_Training">
+            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
+            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
+          </AssociationSet>
           <AssociationSet Name="FK_Security_Clearance_Contract_Security_Workflow" Association="PMDataModel.FK_Security_Clearance_Contract_Security_Workflow">
             <End Role="Security_Workflow" EntitySet="Security_Workflows" />
             <End Role="Staff_Clearance_Workflow" EntitySet="Staff_Clearance_Workflows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Staff" Association="PMDataModel.FK_Staff_Asset_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Clearance_Staff" Association="PMDataModel.FK_Staff_Clearance_Staff">
             <End Role="Staff" EntitySet="Staffs" />
@@ -1637,33 +1652,29 @@
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Staff_Skill" EntitySet="Staff_Skills" />
           </AssociationSet>
+          <AssociationSet Name="FK_Staff_Training_Staff" Association="PMDataModel.FK_Staff_Training_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
+          </AssociationSet>
           <AssociationSet Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance" Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance">
             <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
             <End Role="Staff_Clearance_Workflow" EntitySet="Staff_Clearance_Workflows" />
           </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="PMDataModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="PMDataModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="PMDataModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="PMDataModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="PMDataModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Contract" Association="PMDataModel.FK_Staff_Asset_Contract">
-            <End Role="Contract" EntitySet="Contracts" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Ref_Asset" Association="PMDataModel.FK_Staff_Asset_Ref_Asset">
-            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Training_Ref_Training" Association="PMDataModel.FK_Staff_Training_Ref_Training">
-            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
-            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Staff" Association="PMDataModel.FK_Staff_Asset_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Training_Staff" Association="PMDataModel.FK_Staff_Training_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1793,48 +1804,6 @@
           <Property Name="Suffix" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staffs" Relationship="PMDataModel.FK_Staff_Adm_Suffix" FromRole="Adm_Suffix" ToRole="Staff" />
         </EntityType>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="PMDataModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaim">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogin">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="AspNetRoles" Relationship="PMDataModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-        </EntityType>
         <EntityType Name="Certification">
           <Key>
             <PropertyRef Name="ID" />
@@ -1873,8 +1842,8 @@
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Contract_Staff" FromRole="Contract" ToRole="Staff" />
           <NavigationProperty Name="Ref_Contract_LCAT" Relationship="PMDataModel.FK_Ref_LCAT_Contract1" FromRole="Contract" ToRole="Ref_Contract_LCAT" />
           <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Contract" ToRole="Ref_Training" />
-          <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Contract" ToRole="Staff_Clearance" />
           <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Contract" ToRole="Staff_Asset" />
+          <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Contract" ToRole="Staff_Clearance" />
         </EntityType>
         <EntityType Name="Contract_Position">
           <Key>
@@ -2116,10 +2085,10 @@
           <NavigationProperty Name="Contracts" Relationship="PMDataModel.FK_Contract_Staff" FromRole="Staff" ToRole="Contract" />
           <NavigationProperty Name="Educations" Relationship="PMDataModel.FK_Education_Staff" FromRole="Staff" ToRole="Education" />
           <NavigationProperty Name="Ref_Company" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Staff" ToRole="Ref_Company" />
+          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff" ToRole="Staff_Clearance" />
           <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff" ToRole="Staff_Position" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Staff" FromRole="Staff" ToRole="Staff_Skill" />
-          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Training" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff" ToRole="Staff_Training" />
         </EntityType>
         <EntityType Name="Staff_Asset">
@@ -2442,34 +2411,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-          <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="PMDataModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaim">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="PMDataModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogin">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cetifications_Staff">
           <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
           <End Type="PMDataModel.Certification" Role="Certification" Multiplicity="*" />
@@ -2550,6 +2491,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ref_Training">
+              <PropertyRef Name="Contract_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Asset_Contract">
+          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
               <PropertyRef Name="Contract_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2662,6 +2615,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Staff_Asset_Ref_Asset">
+          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Asset">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
+              <PropertyRef Name="Asset_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Workshare_Ref_Company">
           <End Type="PMDataModel.Ref_Company" Role="Ref_Company" Multiplicity="0..1" />
           <End Type="PMDataModel.Workshare" Role="Workshare" Multiplicity="*" />
@@ -2722,6 +2687,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Staff_Training_Ref_Training">
+          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Training">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Training">
+              <PropertyRef Name="Training_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Security_Clearance_Contract_Security_Workflow">
           <End Type="PMDataModel.Security_Workflow" Role="Security_Workflow" Multiplicity="1" />
           <End Type="PMDataModel.Staff_Clearance_Workflow" Role="Staff_Clearance_Workflow" Multiplicity="*" />
@@ -2731,6 +2708,18 @@
             </Principal>
             <Dependent Role="Staff_Clearance_Workflow">
               <PropertyRef Name="Security_Workflow_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Asset_Staff">
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
+              <PropertyRef Name="Staff_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2770,6 +2759,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Staff_Training_Staff">
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Training">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance">
           <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="1" />
           <End Type="PMDataModel.Staff_Clearance_Workflow" Role="Staff_Clearance_Workflow" Multiplicity="*" />
@@ -2782,69 +2783,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="PMDataModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="PMDataModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PMDataModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PMDataModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="PMDataModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_Staff_Asset_Contract">
-          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contract">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Contract_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Asset_Ref_Asset">
-          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Asset">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Asset_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Training_Ref_Training">
-          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Training">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Training">
-              <PropertyRef Name="Training_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Asset_Staff">
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Staff_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Training_Staff">
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Training">
-              <PropertyRef Name="Staff_ID" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2987,44 +3009,6 @@
             <EntityTypeMapping TypeName="PMDataModel.Adm_Suffix">
               <MappingFragment StoreEntitySet="Adm Suffix">
                 <ScalarProperty Name="Suffix" ColumnName="Suffix" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="PMDataModel.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="PMDataModel.AspNetUserClaim">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="PMDataModel.AspNetUserLogin">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="PMDataModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3399,6 +3383,55 @@
                 <ScalarProperty Name="Company_ID" ColumnName="Company ID" />
                 <ScalarProperty Name="Contract_Position_ID" ColumnName="Contract Position ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="PMDataModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="PMDataModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="PMDataModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="PMDataModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

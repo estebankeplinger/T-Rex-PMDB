@@ -9,7 +9,7 @@ namespace Portfolio_Management.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Portfolio_Management.Models.ApplicationDbContext";
         }
 

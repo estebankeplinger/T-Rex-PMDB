@@ -104,9 +104,9 @@
                                                 @Html.DisplayFor(modelItem => item.Staff.Staff_Name)
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id=item.Staff_ID  }) |
-                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                                @Html.ActionLink("Edit", "Edit", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID }) |
+                                                @Html.ActionLink("Details", "Details", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID })
                                             </td>
                                         </tr>
                                     }

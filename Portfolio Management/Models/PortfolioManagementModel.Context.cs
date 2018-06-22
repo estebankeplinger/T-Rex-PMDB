@@ -68,9 +68,9 @@ namespace Portfolio_Management.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Workshare> Workshares { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

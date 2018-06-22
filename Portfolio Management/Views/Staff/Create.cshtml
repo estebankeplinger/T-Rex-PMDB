@@ -242,6 +242,12 @@
                                             @Html.ValidationMessageFor(model => model.Modified_By, "", new { @class = "text-danger" })
                                         </div>
                                     </div> */}
+
+                                    @Html.HiddenFor(model => model.Created_On, new { @Value = ViewBag.DateTime })
+                                    @Html.HiddenFor(model => model.Created_By, new { @Value = ViewData["FullName"] })
+                                    @Html.HiddenFor(model => model.Modified_On, new { @Value = ViewBag.DateTime })
+                                    @Html.HiddenFor(model => model.Modified_By, new { @Value = ViewData["FullName"] })
+
                                     <hr />
                                     <div class="col-md-5 col-sm-6 col-xs-7 form-group">
                                         <div class="col-md-offset-2 col-md-10">

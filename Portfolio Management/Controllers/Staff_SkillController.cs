@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Portfolio_Management.Models;
 using Microsoft.AspNet.Identity;
 
+using System.Diagnostics;
+
 namespace Portfolio_Management.Controllers
 {
     public class Staff_SkillController : ApplicationBaseController
@@ -22,13 +24,13 @@ namespace Portfolio_Management.Controllers
         }
 
         // GET: Staff_Skill/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? staff_id, int? skill_id)
         {
-            if (id == null)
+            if (staff_id == null || skill_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff_Skill staff_Skill = db.Staff_Skills.Find(id);
+            Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_id);
             if (staff_Skill == null)
             {
                 return HttpNotFound();
@@ -72,17 +74,17 @@ namespace Portfolio_Management.Controllers
         }
 
         // GET: Staff_Skill/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? staff_id, int? skill_id)
         {
             //int staffID;
 
-            if (id == null)
+            if (staff_id == null || skill_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             //staffID = (int) id;
-            Staff_Skill staff_Skill = db.Staff_Skills.Include(x => x.Staff.Staff_Skill).SingleOrDefault(x => x.Staff_ID == id);
+            Staff_Skill staff_Skill = db.Staff_Skills.Include(x => x.Staff.Staff_Skill).SingleOrDefault(x => x.Staff_ID == staff_id && x.Skill_ID == skill_id);
             //Staff_Skill staff_Skill = db.Staff_Skills.SingleOrDefault(x => x.Staff_ID == id);
             if (staff_Skill == null)
             {
@@ -114,13 +116,13 @@ namespace Portfolio_Management.Controllers
         }
 
         // GET: Staff_Skill/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? staff_id, int? skill_id)
         {
-            if (id == null)
+            if (staff_id == null || skill_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff_Skill staff_Skill = db.Staff_Skills.Find(id);
+            Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_id);
             if (staff_Skill == null)
             {
                 return HttpNotFound();
@@ -131,9 +133,9 @@ namespace Portfolio_Management.Controllers
         // POST: Staff_Skill/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int staff_id, int skill_id)
         {
-            Staff_Skill staff_Skill = db.Staff_Skills.Find(id);
+            Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_id);
             db.Staff_Skills.Remove(staff_Skill);
             db.SaveChanges();
             return RedirectToAction("Index");

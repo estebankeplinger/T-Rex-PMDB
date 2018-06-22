@@ -81,11 +81,11 @@
                                     </td>
 
                                     <td>
-                                        <a href='@Url.Action("Edit", "Edit", new { @*id = item.ID*@ })'>
+                                        <a href='@Url.Action("Edit", "Staff_Skill", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID })'>
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true" aria-label="Edit Education"></span>
                                         </a>
 
-                                        <a href='@Url.Action("Delete", "Delete", new { @*id = item.ID*@ })'>
+                                        <a href='@Url.Action("Delete", "Staff_Skill", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID })'>
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true" aria-label="Delete Education"></span>
                                         </a>
                                     </td>

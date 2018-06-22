@@ -42,7 +42,7 @@ namespace Portfolio_Management.Controllers
         public ActionResult Create()
         {
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name");
+            ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name");
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
             return View();
         }
@@ -52,7 +52,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Staff_ID,Contract_ID,Asset_ID_,Item_Number,Date_Issued,Date_Returrned,Notes,Created_On,Created_By,Modified_On,Modified_By")] Staff_Asset staff_Asset)
+        public ActionResult Create([Bind(Include = "ID,Staff_ID,Contract_ID,Asset_ID,Item_Number,Date_Issued,Date_Returrned,Notes,Created_On,Created_By,Modified_On,Modified_By")] Staff_Asset staff_Asset)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Portfolio_Management.Controllers
             }
 
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
+            ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
         }
@@ -80,7 +80,7 @@ namespace Portfolio_Management.Controllers
                 return HttpNotFound();
             }
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
+            ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
         }
@@ -90,7 +90,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Staff_ID,Contract_ID,Asset_ID_,Item_Number,Date_Issued,Date_Returrned,Notes,Created_On,Created_By,Modified_On,Modified_By")] Staff_Asset staff_Asset)
+        public ActionResult Edit([Bind(Include = "ID,Staff_ID,Contract_ID,Asset_ID,Item_Number,Date_Issued,Date_Returrned,Notes,Created_On,Created_By,Modified_On,Modified_By")] Staff_Asset staff_Asset)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Portfolio_Management.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
-            ViewBag.Asset_ID_ = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
+            ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
         }

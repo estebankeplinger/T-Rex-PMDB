@@ -93,6 +93,8 @@ namespace Portfolio_Management.Controllers
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency", staff_Skill.Proficiency_ID);
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill", staff_Skill.Skill_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Skill.Staff_ID);
+
+            ViewBag.DateTime = DateTime.Now;
             return View(staff_Skill);
         }
 

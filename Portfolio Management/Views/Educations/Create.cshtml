@@ -99,6 +99,11 @@
                                     </div>
                                 </div>*@
 
+                                @Html.HiddenFor(model => model.Created_On, new { @Value = ViewBag.DateTime })
+                                @Html.HiddenFor(model => model.Created_By, new { @Value = ViewData["FullName"] })
+                                @Html.HiddenFor(model => model.Modified_On, new { @Value = ViewBag.DateTime })
+                                @Html.HiddenFor(model => model.Modified_By, new { @Value = ViewData["FullName"] })
+
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Create" class="btn btn-default" />

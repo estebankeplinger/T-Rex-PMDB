@@ -5,13 +5,14 @@ using System.Web;
 
 namespace Portfolio_Management.Models
 {
-    
+
     public class StaffDashboardViewModel
     {
         public StaffDashboardViewModel()
         {
             SelectedStaffData = new SelectedStaffDataViewModel();
             AllStaffData = new AllStaffViewModel();
+            AllSkillsData = new AllSkillsViewModel();
         }
         public int NumStaff { get; set; }
         public int ActiveStaff { get; set; }
@@ -20,6 +21,7 @@ namespace Portfolio_Management.Models
 
         public SelectedStaffDataViewModel SelectedStaffData { get; set; }
         public AllStaffViewModel AllStaffData { get; set; }
+        public AllSkillsViewModel AllSkillsData { get; set; }
         public class CompanyData
         {
             public int CompanyID { get; set; }
@@ -32,6 +34,11 @@ namespace Portfolio_Management.Models
     public class AllStaffViewModel
     {
         public List<Staff> Staff { get; set; }
+    }
+
+    public class AllSkillsViewModel
+    {
+        public List<Ref_Skill> Skills { get; set; }
     }
 
     public class SelectedStaffDataViewModel
@@ -67,9 +74,9 @@ namespace Portfolio_Management.Models
         {
             currentStaffEducation = new List<Education>();
         }
-        
+
         public List<Education> currentStaffEducation { get; set; }
-        public Boolean ShouldRender { get ; set; }
+        public Boolean ShouldRender { get; set; }
         public int SelectedStaffID { get; set; }
     }
 }

@@ -5,6 +5,9 @@
 @if (Model.SelectedStaffData.Staff != null)
 {
     <div class="col-md-6 col-sm-10 col-xs-12">
+
+        @{ Html.RenderPartial("_SkillModal"); }
+
         <div class="x_panel">
             <div class="x_title">
                 <h2>
@@ -12,7 +15,7 @@
                 </h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                        <a title="Add New Skill For @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)" href="@Url.Action("Create","Staff_Skill", new { id = Model.SelectedStaffData.Staff.ID})" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                        <a title="Add New Skill For @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)" data-toggle="modal" data-target="#myModal" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
                     </li>
                     <li>
                        
@@ -28,7 +31,7 @@
             </div>
             <div class="x_content">
                 <div style="overflow-x:auto">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
@@ -81,11 +84,11 @@
                                     </td>
 
                                     <td>
-                                        <a href='@Url.Action("Edit", "Edit", new { @*id = item.ID*@ })'>
+                                        <a href='@Url.Action("Edit", "Staff_Skill", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID })'>
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true" aria-label="Edit Education"></span>
                                         </a>
 
-                                        <a href='@Url.Action("Delete", "Delete", new { @*id = item.ID*@ })'>
+                                        <a href='@Url.Action("Delete", "Staff_Skill", new { Staff_ID = item.Staff_ID, Skill_ID = item.Skill_ID })'>
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true" aria-label="Delete Education"></span>
                                         </a>
                                     </td>

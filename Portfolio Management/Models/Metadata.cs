@@ -485,7 +485,7 @@ namespace Portfolio_Management.Models
         [Display(Name = "Contract ID")]
         public Nullable<int> Contract_ID { get; set; }
         [Display(Name = "Asset ID")]
-        public int Asset_ID_ { get; set; }
+        public int Asset_ID { get; set; }
         [Display(Name = "Item Number")]
         public string Item_Number { get; set; }
         [Display(Name = "Date Issued")]

@@ -92,12 +92,12 @@
         <AssociationConnector Association="PMDataModel.FK_Staff_Training_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" />
         <EntityTypeShape EntityType="PMDataModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.625" />
-        <EntityTypeShape EntityType="PMDataModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="PMDataModel.AspNetUserLogin" Width="1.375" PointX="5.5" PointY="3.875" />
         <EntityTypeShape EntityType="PMDataModel.AspNetUser" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
         <AssociationConnector Association="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="PMDataModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="PMDataModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

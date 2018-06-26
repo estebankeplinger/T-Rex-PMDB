@@ -87,6 +87,20 @@ namespace Portfolio_Management.Controllers
                 {
                     StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
                 }
+
+                List<int> skillList = new List<int>();
+                foreach (var item in db.Ref_Skills)
+                {
+                    skillList.Add(item.ID);
+                }
+                List<int> staffSkillList = new List<int>();
+                foreach (var item in StaffDashboardVM.SelectedStaffData.StaffSkills)
+                {
+                    staffSkillList.Add(item.Skill_ID);
+                }
+
+                ViewBag.Skill_ID = new SelectList(skillList, "ID", "Skill");
+                ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
             }
 
             return PartialView("_StaffSkillAction", StaffDashboardVM);

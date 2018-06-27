@@ -378,7 +378,6 @@
     <Compile Include="Models\Certification.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StaffSkillModalViewModels.cs" />
     <Compile Include="Models\Contract.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>

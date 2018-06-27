@@ -39,7 +39,7 @@ namespace Portfolio_Management.Controllers
             //    }
             //}
 
-            
+
             StaffDashboardVM.AllStaffData.Staff = staffs.ToList();
 
             return View(StaffDashboardVM);
@@ -53,7 +53,7 @@ namespace Portfolio_Management.Controllers
             if (id == null)
             {
                 staffActionsVM.IsStaffSelected = false;
-                ViewBag.selectStaffError = "Choose a staff member to work with below"; 
+                ViewBag.selectStaffError = "Choose a staff member to work with below";
                 return RedirectToAction("Index");
             }
 
@@ -83,10 +83,20 @@ namespace Portfolio_Management.Controllers
             if (id != null)
             {
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
-                foreach(var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
+                foreach (var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
                 {
                     StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
                 }
+
+                foreach (var ref_skill in db.Ref_Skills)
+                {
+                    StaffDashboardVM.AllSkillsData.Skills.Add(ref_skill);
+                }
+                foreach (var adm_prof in db.Adm_Proficiencies)
+                {
+                    StaffDashboardVM.AllSkillsData.Proficiencies.Add(adm_prof);
+                }
+
 
                 List<int> skillList = new List<int>();
                 foreach (var item in db.Ref_Skills)
@@ -98,8 +108,12 @@ namespace Portfolio_Management.Controllers
                 {
                     staffSkillList.Add(item.Skill_ID);
                 }
+                IEnumerable<int> diffSkillList = new List<int>();
+                diffSkillList = skillList.Except(staffSkillList);
 
-                ViewBag.Skill_ID = new SelectList(skillList, "ID", "Skill");
+
+                //public SelectList(IEnumerable items, string dataValueField, string dataTextField, object selectedValue, IEnumerable disabledValues);
+                ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
                 ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
             }
 
@@ -122,15 +136,15 @@ namespace Portfolio_Management.Controllers
         public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
         {
             ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);
-            
+
             return PartialView("_StaffExitAction", staffActionsVM);
         }
 
-        
+
 
         public ActionResult Dashboard()
         {
-            
+
             StaffDashboardViewModel staffDBVM = new StaffDashboardViewModel();
             staffDBVM.NumStaff = db.Staffs.Count();
             staffDBVM.CompanyChart = getCompanyChartData();
@@ -149,7 +163,7 @@ namespace Portfolio_Management.Controllers
                 StaffDashboardViewModel.CompanyData companyData = new StaffDashboardViewModel.CompanyData();
                 companyData.CompanyID = company.ID;
                 companyData.CompanyName = company.Company;
-                
+
                 foreach (var staff in db.Staffs.ToList())
                 {
                     if (company.ID == staff.Company_ID)
@@ -208,7 +222,7 @@ namespace Portfolio_Management.Controllers
                     //&&!user.Desk_Phone.Contains(searchString))
                     {
                         clVM.Staffs.Remove(user);
-                    }  
+                    }
                 }
             }
             return View("_ContactListView", clVM);
@@ -217,15 +231,15 @@ namespace Portfolio_Management.Controllers
         // GET: Staff/Create
         public ActionResult Create()
         {
-            ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason",null);
-            ViewBag.Prefix = new SelectList(db.Adm_Prefixes, "Prefix", "Prefix",null);
-            ViewBag.Suffix = new SelectList(db.Adm_Suffixes, "Suffix", "Suffix",null);
-            ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company",null);
-            ViewBag.ID = new SelectList(db.Staff_Clearances, "ID", "Created_By",null);
+            ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);
+            ViewBag.Prefix = new SelectList(db.Adm_Prefixes, "Prefix", "Prefix", null);
+            ViewBag.Suffix = new SelectList(db.Adm_Suffixes, "Suffix", "Suffix", null);
+            ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company", null);
+            ViewBag.ID = new SelectList(db.Staff_Clearances, "ID", "Created_By", null);
             return View();
         }
 
-        
+
 
         // POST: Staff/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

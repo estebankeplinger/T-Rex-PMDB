@@ -7,7 +7,7 @@
     <div class="container">
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style="width:800px;">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <div class="col-md-10">
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
+                                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;">
                                         <thead>
                                             <tr>
                                                 <th>
@@ -33,26 +33,28 @@
                                             </tr>
                                         </thead>
                                         <tbody id="modal-skill-table-body">
-                                            @foreach (var item in Model.SelectedStaffData.StaffSkills)
+                                            @foreach (var item in Model.AllSkillsData.Skills)
                                             {
                                                 <tr>
                                                     <td>
-                                                        @*@Html.DropDownList("Skill_ID", null, "-- Select a Skill --", htmlAttributes: new { @class = "form-control" })*@
-                                                        @Html.DisplayFor(modelItem => item.Ref_Skill.Skill)
+                                                        @Html.DisplayFor(modelItem => item.Skill)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Adm_Proficiency.Proficiency)
+                                                        <table style="width:100%;">
+                                                            <tr>
+                                                                @*@Html.DisplayFor(modelItem => item.Proficiency)*@
+                                                                @foreach (var prof_item in Model.AllSkillsData.Proficiencies)
+                                                                {
+                                                                    <td style="padding:0px 4px 0px 0px;">
+                                                                        @Html.RadioButton("skill" + item.ID, prof_item.Proficiency)
+                                                                        @Html.DisplayFor(m => prof_item.Proficiency)
+                                                                    </td>
+                                                                }
+                                                            </tr>
+                                                        </table>
                                                     </td>
                                                 </tr>
                                             }
-                                                <tr id="modal-skill-add-row">
-                                                    <td>
-                                                        <a id="modal-skill-add" title="Add New Skill For @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
-                                                    </td>
-                                                    <td>
-
-                                                    </td>
-                                                </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -71,23 +73,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            $("#modal-skill-add").click(function() {
-                handleAddSkillClick()
-            })
-
-            function handleAddSkillClick() {
-                $("#modal-skill-add").unbind();
-                $("#modal-skill-add-row").html(`<td> @Html.DropDownList("Skill_ID", null, "-- Select a Skill --", htmlAttributes: new { @class = "form-control" }) </td><td> @Html.DropDownList("Proficiency_ID", null, "-- Select a Proficiency --", htmlAttributes: new { @class = "form-control" }) </td>`);
-                //$("#modal-skill-add-row").html("<td>skill</td><td>proficiency</td>");
-
-                $("#modal-skill-add-row").removeAttr('id');
-                $("#modal-skill-table-body").append("<tr id='modal-skill-add-row'><td><a id='modal-skill-add' title='Add New Skill For @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)' role='button' aria-expanded='false'><i class='fa fa-plus-square'></i></a></td><td></td></tr>");
-                $("#modal-skill-add").bind("click", function () {
-                    handleAddSkillClick();
-                });
-            }
-        </script>
     </div>
 }

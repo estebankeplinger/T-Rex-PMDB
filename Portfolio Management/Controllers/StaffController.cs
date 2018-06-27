@@ -88,6 +88,16 @@ namespace Portfolio_Management.Controllers
                     StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
                 }
 
+                foreach (var ref_skill in db.Ref_Skills)
+                {
+                    StaffDashboardVM.AllSkillsData.Skills.Add(ref_skill);
+                }
+                foreach (var adm_prof in db.Adm_Proficiencies)
+                {
+                    StaffDashboardVM.AllSkillsData.Proficiencies.Add(adm_prof);
+                }
+
+
                 List<int> skillList = new List<int>();
                 foreach (var item in db.Ref_Skills)
                 {
@@ -98,8 +108,12 @@ namespace Portfolio_Management.Controllers
                 {
                     staffSkillList.Add(item.Skill_ID);
                 }
+                IEnumerable<int> diffSkillList = new List<int>();
+                diffSkillList = skillList.Except(staffSkillList);
 
-                ViewBag.Skill_ID = new SelectList(skillList, "ID", "Skill");
+
+                //public SelectList(IEnumerable items, string dataValueField, string dataTextField, object selectedValue, IEnumerable disabledValues);
+                ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
                 ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
             }
 

@@ -38,7 +38,13 @@ namespace Portfolio_Management.Models
 
     public class AllSkillsViewModel
     {
+        public AllSkillsViewModel()
+        {
+            Skills = new List<Ref_Skill>();
+            Proficiencies = new List<Adm_Proficiency>();
+        }
         public List<Ref_Skill> Skills { get; set; }
+        public List<Adm_Proficiency> Proficiencies { get; set; }
     }
 
     public class SelectedStaffDataViewModel

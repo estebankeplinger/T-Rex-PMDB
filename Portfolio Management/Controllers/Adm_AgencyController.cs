@@ -55,6 +55,7 @@ namespace Portfolio_Management.Controllers
             {
                 try
                 {
+                    Debug.WriteLine("This is the id: " + adm_Agency.ID);
                     db.Adm_Agencies.Add(adm_Agency);
                     db.SaveChanges();
                     return RedirectToAction("Index");

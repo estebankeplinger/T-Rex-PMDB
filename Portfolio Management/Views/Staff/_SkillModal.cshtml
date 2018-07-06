@@ -27,50 +27,67 @@
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.SelectedStaffData.StaffSkills[0].Ref_Skill.Skill)
                                                 </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.SelectedStaffData.StaffSkills[0].Adm_Proficiency.Proficiency)
-                                                </th>
-                                                <th>
-
-                                                </th>
+                                                @foreach (var prof_item in Model.AllSkillsData.Proficiencies)
+                                                {
+                                                    <th style="padding:0px 4px 0px 0px; text-align:center;">
+                                                        @Html.DisplayFor(m => prof_item.Proficiency)
+                                                    </th>
+                                                }
                                             </tr>
                                         </thead>
                                         <tbody id="modal-skill-table-body">
-                                            @{ var current = 0; }
-                                            @foreach (var item in Model.AllSkillsData.Skills)
+                                            @* Store IDs of each skill the staff member already has so that they are not repeated *@
+                                            @{ List<int> staffSkillIDs = new List<int>(); }
+                                            @foreach (var staffskill in Model.SelectedStaffData.StaffSkills)
                                             {
-                                                current++;
+                                                staffSkillIDs.Add(staffskill.Skill_ID);
                                                 <tr>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Skill)
+                                                        @Html.DisplayFor(modelItem => staffskill.Ref_Skill.Skill)
                                                     </td>
-                                                    <td>
-                                                        <table style="width:100%;">
-                                                            <tr>
-                                                                @foreach (var prof_item in Model.AllSkillsData.Proficiencies)
+                                                    @foreach (var prof_item in Model.AllSkillsData.Proficiencies)
+                                                    {
+                                                        <td style="padding:0px 4px 0px 0px; text-align:center;">
+                                                            @{ if (staffskill.Proficiency_ID == prof_item.Proficiency_ID)
                                                                 {
-                                                                    <td style="padding:0px 4px 0px 0px;">
-                                                                        @Html.RadioButton("skill" + item.ID, prof_item.Proficiency, htmlAttributes: new { @skillnum = current })
-                                                                        @Html.DisplayFor(m => prof_item.Proficiency)
-                                                                    </td>
+                                                                    @Html.RadioButton("skill" + staffskill.Skill_ID, prof_item.Proficiency, new { @checked = true })
                                                                 }
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                    <td class="skill-remove" skillnum="@Html.Raw(current)">
-
-                                                    </td>
+                                                                else
+                                                                {
+                                                                    @Html.RadioButton("skill" + staffskill.Skill_ID, prof_item.Proficiency)
+                                                                }
+                                                            }
+                                                        </td>
+                                                                }
                                                 </tr>
+                                                                }
+                                            @foreach (var skill in Model.AllSkillsData.Skills)
+                                            {
+                                                if (!staffSkillIDs.Contains(skill.ID))
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => skill.Skill)
+                                                        </td>
+                                                        @*@Html.DisplayFor(modelItem => item.Proficiency)*@
+                                                        @foreach (var prof_item in Model.AllSkillsData.Proficiencies)
+                                                        {
+                                                            <td style="padding:0px 4px 0px 0px; text-align:center;">
+                                                                @Html.RadioButton("skill" + skill.ID, prof_item.Proficiency)
+                                                            </td>
+                                                        }
+                                                    </tr>
+                                                }
                                             }
                                         </tbody>
                                     </table>
-                                    
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input id="submit" value="Submit" class="btn btn-default" />
+                                    @*<input type="submit" value="Submit" class="btn btn-default" />*@
+                                    <input type="submit" value="Submit" class="btn btn-default" formaction=@Url.Action("SkillModalSubmit", "Staff_Skill") formmethod="post" />
                                 </div>
                             </div>
                         </div>
@@ -82,25 +99,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $("#submit").click(function() {
-            var ids = [];       //skill ids for each choice
-            var profs = [];     //profs for each choice
-
-            $("input[type=radio]:checked").each(function() {
-                var name = $(this).attr("name");
-                var skillid = $(this).attr("skillnum");
-                console.log(skillid + " " + $("input:radio[name="+name+"]:checked").val());
-                ids.push(skillid);
-                profs.push($("input:radio[name="+name+"]:checked").val());
-            });
-        })
-
-        $('input:radio').change(
-            function(){
-                //alert($(this).val() + " " + $(this).attr("skillnum"));
-
-        })
-    </script>
 }

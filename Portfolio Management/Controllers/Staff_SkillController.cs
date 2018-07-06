@@ -44,7 +44,7 @@ namespace Portfolio_Management.Controllers
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
             if (ModelState.IsValid && id != null)
-                ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name",id);        
+                ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", id);
             else
                 ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
 
@@ -65,7 +65,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
+
             ViewBag.DateTime = DateTime.Now;
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency", staff_Skill.Proficiency_ID);
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill", staff_Skill.Skill_ID);
@@ -140,6 +140,21 @@ namespace Portfolio_Management.Controllers
             Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_id);
             db.Staff_Skills.Remove(staff_Skill);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Staff_Skill/SkillModalSubmit
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SkillModalSubmit(int staff_id, List<int> skill_ids, List<int> prof_ids)
+        {
+            for (int i = 0; i < skill_ids.Count; i++)
+            {
+                Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_ids[i]);
+                //if ()
+            }
             return RedirectToAction("Index");
         }
 

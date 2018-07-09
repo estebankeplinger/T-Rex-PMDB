@@ -378,7 +378,6 @@
     <Compile Include="Models\Certification.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StaffSkillModalViewModels.cs" />
     <Compile Include="Models\Contract.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
@@ -491,6 +490,8 @@
   <ItemGroup>
     <Content Include="build\css\custom.css" />
     <Content Include="build\css\custom.min.css" />
+    <Content Include="build\js\custom.js" />
+    <Content Include="build\js\custom.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Datatables\AutoFill-2.2.2\css\autoFill.bootstrap.css" />
@@ -1483,6 +1484,7 @@
     <Content Include="vendors\DateJS\build\i18n\zh-SG.js" />
     <Content Include="vendors\DateJS\build\i18n\zh-TW.js" />
     <Content Include="vendors\DateJS\build\i18n\zu-ZA.js" />
+    <Content Include="vendors\DateJS\build\production\date-af-ZA.min - Copy.js" />
     <Content Include="vendors\DateJS\build\production\date-af-ZA.min.js" />
     <Content Include="vendors\DateJS\build\production\date-ar-AE.min.js" />
     <Content Include="vendors\DateJS\build\production\date-ar-BH.min.js" />
@@ -2550,8 +2552,8 @@
     <Content Include="vendors\Flot\examples\annotating\index.html" />
     <Content Include="vendors\Flot\examples\axes-interacting\index.html" />
     <Content Include="vendors\Flot\examples\axes-multiple\index.html" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\date.js" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\index.html" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\date.js" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\index.html" />
     <Content Include="vendors\Flot\examples\axes-time\index.html" />
     <Content Include="vendors\Flot\examples\background.png" />
     <Content Include="vendors\Flot\examples\basic-options\index.html" />
@@ -5260,25 +5262,25 @@
     <Content Include="vendors\Flot\examples\ajax\data-eu-gdp-growth.json" />
     <Content Include="vendors\Flot\examples\ajax\data-japan-gdp-growth.json" />
     <Content Include="vendors\Flot\examples\ajax\data-usa-gdp-growth.json" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\africa" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\antarctica" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\asia" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\australasia" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\backward" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\etcetera" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\europe" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\factory" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\iso3166.tab" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\leapseconds" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\northamerica" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\pacificnew" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\solar87" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\solar88" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\solar89" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\southamerica" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\systemv" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\yearistype.sh" />
-    <Content Include="vendors\Flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\africa" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\antarctica" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\asia" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\australasia" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\backward" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\etcetera" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\europe" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\factory" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\iso3166.tab" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\leapseconds" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\northamerica" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\pacificnew" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\solar87" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\solar88" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\solar89" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\southamerica" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\systemv" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\yearistype.sh" />
+    <Content Include="vendors\jszip\Flot\examples\axes-time-zones\axes-time-zones\tz\zone.tab" />
     <Content Include="vendors\Flot\FAQ.md" />
     <Content Include="vendors\Flot\flot.jquery.json" />
     <Content Include="vendors\Flot\Makefile" />

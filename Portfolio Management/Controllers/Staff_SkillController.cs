@@ -143,12 +143,19 @@ namespace Portfolio_Management.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult SkillModal()
+        {
+
+            return RedirectToAction("Index");
+        }
+
         // POST: Staff_Skill/SkillModalSubmit
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SkillModalSubmit(StaffDashboardViewModel staffVM) //(int staff_id, List<int> skill_ids, List<int> prof_ids)
+        public ActionResult SkillModal([Bind(Include = "SelectedStaffData")] StaffDashboardViewModel staffVM) //(int staff_id, List<int> skill_ids, List<int> prof_ids)
         {
             if (ModelState.IsValid)
             {

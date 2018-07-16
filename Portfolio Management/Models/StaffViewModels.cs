@@ -54,11 +54,15 @@ namespace Portfolio_Management.Models
             StaffEducations = new List<Education>();
             StaffSkills = new List<Staff_Skill>();
             StaffPositions = new List<Staff_Position>();
+
+            StaffSkillsIDs = new List<int>();
         }
         public Staff Staff { get; set; }
         public List<Education> StaffEducations { get; set; }
         public List<Staff_Skill> StaffSkills { get; set; }
         public List<Staff_Position> StaffPositions { get; set; }
+
+        public List<int> StaffSkillsIDs = new List<int>();
 
     }
 

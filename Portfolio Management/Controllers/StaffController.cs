@@ -140,7 +140,15 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffExitAction", staffActionsVM);
         }
 
-        
+        public ActionResult StaffViewAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+            }
+            return PartialView("_StaffView", StaffDashboardVM);
+        }
+
 
         public ActionResult Dashboard()
         {

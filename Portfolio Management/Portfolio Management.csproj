@@ -6156,6 +6156,9 @@
     <Content Include="Views\Staff\_StaffSkillAction.cshtml" />
     <Content Include="Views\Staff\_StaffPositionAction.cshtml" />
     <Content Include="Views\Staff\_SkillModal.cshtml" />
+    <Content Include="Views\Shared\_StaffLayout.cshtml" />
+    <Content Include="Views\Staff\_StaffList.cshtml" />
+    <Content Include="Views\Staff\_StaffView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

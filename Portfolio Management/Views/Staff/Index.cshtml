@@ -5,6 +5,7 @@
 }
 
 <div class="right_col" role="main">
+
     <div class="">
 
         @*<div class="clearfix"></div>
@@ -185,15 +186,17 @@
         </div>
         <div class="row">
             <div id="staffEducation">
-                @Html.Partial("_StaffEducationAction")
+                @*@Html.Partial("_StaffEducationAction")*@
             </div>
             <div id="staffSkill">
-                @Html.Partial("_StaffSkillAction")
+                @*@Html.Partial("_StaffSkillAction")*@
+
+                @*@Html.Partial("_SkillModal")*@
             </div>
         </div>
         <div class="row">
             <div id="staffPosition">
-                @Html.Partial("_StaffPositionAction")
+                @*@Html.Partial("_StaffPositionAction")*@
             </div>
         </div>
         <div class="row">
@@ -248,7 +251,7 @@
             }
         });
         $.ajax({
-            url: '@Url.Action("StaffSkillAction","Staff")',
+            url: '@Url.Action("StaffSkillAction", "Staff")',
             data: { id: targetRow },
             method: "GET",
             success: function (data) {

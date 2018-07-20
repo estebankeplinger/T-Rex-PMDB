@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,7 @@ namespace Portfolio_Management.Models
             SelectedStaffData = new SelectedStaffDataViewModel();
             AllStaffData = new AllStaffViewModel();
             AllSkillsData = new AllSkillsViewModel();
+            ManageSkillDataList = new List<ManageSkillViewModel>();
         }
         public int NumStaff { get; set; }
         public int ActiveStaff { get; set; }
@@ -22,6 +24,9 @@ namespace Portfolio_Management.Models
         public SelectedStaffDataViewModel SelectedStaffData { get; set; }
         public AllStaffViewModel AllStaffData { get; set; }
         public AllSkillsViewModel AllSkillsData { get; set; }
+
+        //List of all skills, along with whether or not the user has the skill
+        public List<ManageSkillViewModel> ManageSkillDataList { get; set; }
         public class CompanyData
         {
             public int CompanyID { get; set; }
@@ -29,6 +34,23 @@ namespace Portfolio_Management.Models
             public string CompanyColor { get; set; }
             public int ShareOfWorkforce { get; set; }
         }
+    }
+    public class ManageSkillViewModel
+    {
+
+        public int StaffID { get; set; }
+        public int SkillID { get; set; }
+        public short ProficiencyID { get; set; }
+        public string SkillName { get; set; }
+        public string ProficiencyName { get; set; }
+        
+        [Display(Name="Has Skill?")]
+        public bool HasSkill { get; set; }
+
+        [Display(Name ="Remove Skill?")]
+        public bool RemoveSKill { get; set; }
+
+       public string StaffSkillRadioButtonID { get; set; }
     }
 
     public class AllStaffViewModel
@@ -54,7 +76,6 @@ namespace Portfolio_Management.Models
             StaffEducations = new List<Education>();
             StaffSkills = new List<Staff_Skill>();
             StaffPositions = new List<Staff_Position>();
-
             StaffSkillsIDs = new List<int>();
         }
         public Staff Staff { get; set; }

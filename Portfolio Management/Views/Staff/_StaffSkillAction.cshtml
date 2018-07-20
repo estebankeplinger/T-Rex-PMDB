@@ -6,7 +6,7 @@
 {
     <div class="col-md-6 col-sm-10 col-xs-12">
 
-        @{ Html.RenderPartial("_SkillModal"); }
+        @{Html.RenderAction("ManageStaffSkillModal", new { id = Model.SelectedStaffData.Staff.ID});}
 
         <div class="x_panel">
             <div class="x_title">
@@ -15,7 +15,10 @@
                 </h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                        <a title="Add New Skill For @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)" data-toggle="modal" data-target="#myModal" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                        
+                        <a title="Manage @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)' Skills" @*href="javascript:getStaffID(@Model.SelectedStaffData.Staff.ID)"*@  data-toggle="modal" data-target="#myModal" @*href="#staffSkillModal" onclick="getStaffID(@Model.SelectedStaffData.Staff.ID)" id="showModalBtn"*@ role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                        @*<div id='staffSkillModal' class='modal fade in' data-url='@Url.Action("ManageStaffSkillModal",new { id = Model.SelectedStaffData.Staff.ID })'></div>*@
+                        @*<a title="Manage @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)' Skills" href="javascript:void(0);" data-id="@Model.SelectedStaffData.Staff.ID" class="staffSkillModalAnchor" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>*@ 
                     </li>
                     <li>
                        
@@ -29,6 +32,7 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
+            
             <div class="x_content">
                 <div style="overflow-x:auto">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
@@ -100,6 +104,75 @@
                 </div>
             </div>
         </div>
+
+        @*<script>
+            $(function() {
+                $('.staffSkillModal').modal();
+                //$('#staffSkillModal').modal('show'); 
+            });
+
+            function getStaffID(@Model.SelectedStaffData.Staff.ID) {
+                $.ajax({
+                    url: '/Staff/ManageStaffSkillModal/' + @Model.SelectedStaffData.Staff.ID, // The method name + paramater
+                    method: "POST",
+                    success: function(data) {
+                        $('#staffSkillModalWrapper').html(data); // This should be an empty div where you can inject your new html (the partial view)
+                       
+                    }
+                });
+            }
+
+        </script>*@
+        <script>
+
+            var TeamDetailPostBackURL = '/Staff/ManageStaffSkillModal';
+    $(function () {
+        $(".staffSkillModalAnchor").click(function () {
+            debugger;
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("ManageStaffSkillModal", "Staff")',
+                contentType: "application/json; charset=utf-8",
+                data: { "id": id },
+                datatype: "json",
+                success: function (data) {
+                    debugger;
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+
+            @*$.ajax({
+                url: '@Url.Action("ManageStaffSkillModal", "Staff")',
+                data: { id: id },
+                method: "GET",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal('show');
+
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });*@
+        });
+        //$("#closebtn").on('click',function(){
+        //    $('#myModal').modal('hide');
+
+        $("#closbtn").click(function () {
+            $('#myModal').modal('hide');
+        });
+    });
+
+        </script>  
     </div>
 }
 <!-- /page content -->

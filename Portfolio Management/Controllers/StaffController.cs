@@ -17,7 +17,7 @@ namespace Portfolio_Management.Controllers
     {
 
         private PMDataEntities db = new PMDataEntities();
-        private StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
+        //private StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
 
         // GET: Staff
         public ActionResult Index(/*string searchString*/)
@@ -38,7 +38,7 @@ namespace Portfolio_Management.Controllers
             //            staffList.Remove(user);
             //    }
             //}
-
+            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
 
             StaffDashboardVM.AllStaffData.Staff = staffs.ToList();
 
@@ -66,8 +66,10 @@ namespace Portfolio_Management.Controllers
 
         public ActionResult StaffEducationAction(int? id)
         {
+            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
             if (id != null)
             {
+
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
                 foreach (var education in StaffDashboardVM.SelectedStaffData.Staff.Educations)
                 {
@@ -78,50 +80,65 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffEducationAction", StaffDashboardVM);
         }
 
-        public ActionResult StaffSkillAction(int? id)
-        {
-            if (id != null)
-            {
-                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
-                foreach (var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
-                {
-                    StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
-                }
 
-                foreach (var ref_skill in db.Ref_Skills)
-                {
-                    StaffDashboardVM.AllSkillsData.Skills.Add(ref_skill);
-                }
-                foreach (var adm_prof in db.Adm_Proficiencies)
-                {
-                    StaffDashboardVM.AllSkillsData.Proficiencies.Add(adm_prof);
-                }
+        //public ActionResult StaffSkillAction(int? id)
+        //{
+        //    if (id != null) //could this action be called without an id sent as a parameter? If so, we need to account for this possibility
+        //    {
+        //        StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id); //find staff using selected id from table row click
 
+        //        //Load user's CURRENT skills
+        //        foreach (var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
+        //        {
+        //            StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
+        //        }
 
-                List<int> skillList = new List<int>();
-                foreach (var item in db.Ref_Skills)
-                {
-                    skillList.Add(item.ID);
-                }
-                List<int> staffSkillList = new List<int>();
-                foreach (var item in StaffDashboardVM.SelectedStaffData.StaffSkills)
-                {
-                    staffSkillList.Add(item.Skill_ID);
-                }
-                IEnumerable<int> diffSkillList = new List<int>();
-                diffSkillList = skillList.Except(staffSkillList);
+        //        //Load all skills available
+        //        foreach (var ref_skill in db.Ref_Skills)
+        //        {
+
+        //            StaffDashboardVM.AllSkillsData.Skills.Add(ref_skill);
+
+        //        }
+
+        //        //The models Staff_Skill and Ref_Skills already contain the Proficiency Navigation property - This is not needed as a result
+        //        //foreach (var adm_prof in db.Adm_Proficiencies)
+        //        //{
+        //        //    StaffDashboardVM.AllSkillsData.Proficiencies.Add(adm_prof);
+        //        //}
 
 
-                //public SelectList(IEnumerable items, string dataValueField, string dataTextField, object selectedValue, IEnumerable disabledValues);
-                ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
-                ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
-            }
+        //        //This is a duplicate of above code
+        //        //List<int> skillList = new List<int>();
+        //        //foreach (var item in db.Ref_Skills)
+        //        //{
+        //        //    skillList.Add(item.ID);
+        //        //}
 
-            return PartialView("_StaffSkillAction", StaffDashboardVM);
-        }
+        //        //So is this
+        //        //List<int> staffSkillList = new List<int>();
+        //        //foreach (var item in StaffDashboardVM.SelectedStaffData.StaffSkills)
+        //        //{
+        //        //    staffSkillList.Add(item.Skill_ID);
+        //        //}
+
+        //        //I don't see what the purpose of this is
+        //        //IEnumerable<int> diffSkillList = new List<int>();
+        //        //diffSkillList = skillList.Except(staffSkillList);
+
+
+        //        //public SelectList(IEnumerable items, string dataValueField, string dataTextField, object selectedValue, IEnumerable disabledValues);
+        //        ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
+        //        ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
+        //    }
+
+        //    return PartialView("_StaffSkillAction", StaffDashboardVM);
+        //}
+
 
         public ActionResult StaffPositionAction(int? id)
         {
+            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
             if (id != null)
             {
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
@@ -140,7 +157,129 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffExitAction", staffActionsVM);
         }
 
+ 
+        public ActionResult StaffSkillAction(int? id)
+        {
+            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id); //find staff using selected id from table row click
 
+                //Load user's CURRENT skills
+                foreach (var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
+                }
+            }
+            //StaffDashboardVM = GetManageStaffSkillModal(StaffDashboardVM);
+
+            return PartialView("_StaffSkillAction", StaffDashboardVM);
+        }
+
+        [ChildActionOnly]
+        private bool hasStaffSkillEntityChanged(Staff_Skill oldStaffSkill, ManageSkillViewModel newStaffSkill)
+        {
+
+            if (oldStaffSkill.Staff_ID != newStaffSkill.StaffID ||
+                oldStaffSkill.Skill_ID != newStaffSkill.SkillID ||
+                oldStaffSkill.Proficiency_ID != newStaffSkill.ProficiencyID
+                //oldStaffSkill.Created_By != newStaffSkill. ||
+                //oldStaffSkill.Created_On != newStaffSkill.Created_On ||
+                //oldStaffSkill.Created_By != newStaffSkill.Created_By ||
+                //oldStaffSkill.Modified_By != newStaffSkill.Modified_By ||
+                //oldStaffSkill.Modified_On != newStaffSkill.Modified_On
+                )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        [HttpGet]
+        public ActionResult ManageStaffSkillModal(int id)
+        {
+            StaffDashboardViewModel sdVM = new StaffDashboardViewModel();
+            sdVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+
+            //Load all proficiencies
+            foreach (var proficiency in db.Adm_Proficiencies)
+            {
+                sdVM.AllSkillsData.Proficiencies.Add(proficiency);
+            }
+
+            //For each skill in the list of ALL skills
+            foreach (var skill in db.Ref_Skills)
+            {
+                sdVM.AllSkillsData.Skills.Add(skill);
+
+                //Create a view model, bind to properties
+                ManageSkillViewModel manageSkillVM = new ManageSkillViewModel();
+                
+                manageSkillVM.SkillID = skill.ID;
+                manageSkillVM.SkillName = skill.Skill; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Ref_Skill.Skill;
+                manageSkillVM.StaffID = sdVM.SelectedStaffData.Staff.ID; //Maybe should be doing a find of a staff's id (db.Staffs.Find(id)). 
+                                                 //Are we sure we sure we will always be sent a valid id?
+                manageSkillVM.StaffSkillRadioButtonID = skill.ID + ", " + sdVM.SelectedStaffData.Staff.ID; //Need unique model identifier for RadioButtonFor HtmlHelper
+
+                //Get relevant skill data if user has the skill
+                foreach (var mySkill in db.Staff_Skills.Where(x => x.Staff_ID == sdVM.SelectedStaffData.Staff.ID))
+                {
+                    if (mySkill.Skill_ID == skill.ID)
+                    {
+                        manageSkillVM.HasSkill = true;
+                        manageSkillVM.ProficiencyID = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID;
+                        manageSkillVM.ProficiencyName = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency;
+                    }
+                }
+
+                sdVM.ManageSkillDataList.Add(manageSkillVM); //Add view model to list of view models
+            }
+
+            return PartialView("_SkillModal", sdVM);
+        }
+        // StaffSkillAction: POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageStaffSkillModal(StaffDashboardViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                //Staff staff = db.Staffs
+                //              .Include(x => x.Staff_Skill)
+                //            .SingleOrDefault(x => x.ID == staffDashboardVM.SelectedStaffData.Staff.ID);
+                
+                //Iterate over all skills user may have added/modified
+                foreach (var newStaffSkill in model.ManageSkillDataList)
+                {
+                    //Iterate through the current skills the user has
+                    foreach (var currentStaffSkill in model.SelectedStaffData.StaffSkills)
+                    {
+                        if (hasStaffSkillEntityChanged(currentStaffSkill, newStaffSkill))
+                        {
+                            //Entity has changed or is new
+                            //Update audit fields
+                            Staff_Skill newStaffSkillToAdd = new Staff_Skill();
+                            newStaffSkillToAdd.Staff_ID = newStaffSkill.StaffID;
+                            newStaffSkillToAdd.Skill_ID = newStaffSkill.SkillID;
+                            newStaffSkillToAdd.Proficiency_ID = newStaffSkill.ProficiencyID;
+                            //newStaffSkillToAdd.Created_By = 
+
+                            db.Staff_Skills.Add(newStaffSkillToAdd);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+
+                //newStaffSkill.Staff_ID = staffDashboardVM.SelectedStaffData.
+            }
+            return View();
+        }
 
         public ActionResult Dashboard()
         {

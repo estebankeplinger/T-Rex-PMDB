@@ -57,7 +57,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Staff_ID,Skill_ID,Proficiency_ID,Created_On,Created_By,Modified_On,Modified_By")] Staff_Skill staff_Skill)
+        public ActionResult Create([Bind(Include = "Staff_ID,Skill_ID,Proficiency_ID,Created_On,Created_By,Modified_On,Modified_By")] Staff_Skill staff_Skill, string reRouteViewName = "")
         {
             if (ModelState.IsValid)
             {
@@ -70,6 +70,12 @@ namespace Portfolio_Management.Controllers
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency", staff_Skill.Proficiency_ID);
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill", staff_Skill.Skill_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Skill.Staff_ID);
+
+            if(reRouteViewName != "")
+            {
+                return View("reRouteViewName", staff_Skill);
+            }
+
             return View(staff_Skill);
         }
 

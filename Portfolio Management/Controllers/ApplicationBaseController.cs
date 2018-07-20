@@ -9,8 +9,10 @@ using Portfolio_Management.Controllers;
 
 namespace Portfolio_Management.Controllers
 {
+
     public class ApplicationBaseController : Controller
     {
+        public string FullName;
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             if (User != null)
@@ -21,8 +23,8 @@ namespace Portfolio_Management.Controllers
                 if (!string.IsNullOrEmpty(username))
                 { 
                     var user = context.Users.SingleOrDefault(u => u.UserName == username);
-                    string fullName = string.Concat(new string[] { user.FirstName, " ", user.LastName });
-                    ViewData.Add("FullName", fullName); 
+                    FullName = string.Concat(new string[] { user.FirstName, " ", user.LastName });
+                    ViewData.Add("FullName", FullName); 
                     //System.Diagnostics.Debug.WriteLine("full name is: "+fullName);
                 }
             }
@@ -30,5 +32,9 @@ namespace Portfolio_Management.Controllers
         }
         public ApplicationBaseController()
         { }
+        public string getCurrentUserFullName()
+        {
+            return FullName;
+        }
     }
 }

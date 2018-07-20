@@ -6159,6 +6159,7 @@
     <Content Include="Views\Shared\_StaffLayout.cshtml" />
     <Content Include="Views\Staff\_StaffList.cshtml" />
     <Content Include="Views\Staff\_StaffView.cshtml" />
+    <Content Include="Views\Staff\_StaffCertificationAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

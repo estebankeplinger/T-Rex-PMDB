@@ -52,11 +52,13 @@ namespace Portfolio_Management.Models
         public SelectedStaffDataViewModel()
         {
             StaffEducations = new List<Education>();
+            StaffCertifications = new List<Certification>();
             StaffSkills = new List<Staff_Skill>();
             StaffPositions = new List<Staff_Position>();
         }
         public Staff Staff { get; set; }
         public List<Education> StaffEducations { get; set; }
+        public List<Certification> StaffCertifications { get; set; }
         public List<Staff_Skill> StaffSkills { get; set; }
         public List<Staff_Position> StaffPositions { get; set; }
 

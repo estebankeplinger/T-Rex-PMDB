@@ -29,9 +29,22 @@
             </div>
             <div class="panel">
                 <a class="panel-heading collapsed" role="tab" id="headingTwo1" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
-                    <h4 class="panel-title">Skills</h4>
+                    <h4 class="panel-title">Certifications</h4>
                 </a>
                 <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <div id="staffCertification">
+                            Select a Staff Member
+                            @Html.Partial("_StaffCertificationAction")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <a class="panel-heading collapsed" role="tab" id="headingThree1" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree">
+                    <h4 class="panel-title">Skills</h4>
+                </a>
+                <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div class="panel-body">
                         <div id="staffSkill">
                             Select a Staff Member
@@ -41,10 +54,10 @@
                 </div>
             </div>
             <div class="panel">
-                <a class="panel-heading collapsed" role="tab" id="headingThree1" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree">
+                <a class="panel-heading collapsed" role="tab" id="headingFour1" data-toggle="collapse" data-parent="#accordion1" href="#collapseFour1" aria-expanded="false" aria-controls="collapseFour">
                     <h4 class="panel-title">Positions</h4>
                 </a>
-                <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                     <div class="panel-body">
                         <div id="staffPosition">
                             Select a Staff Member
@@ -96,6 +109,19 @@
 
                     $("#staffEducation").empty();
                     $("#staffEducation").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffCertificationAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+
+                    $("#staffCertification").empty();
+                    $("#staffCertification").html(data);
                 },
                 error: function (xhr, status, error) {
                     alert(xhr.responseText);

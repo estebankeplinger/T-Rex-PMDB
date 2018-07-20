@@ -133,6 +133,19 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffPositionAction", StaffDashboardVM);
         }
 
+        public ActionResult StaffCertificationAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var certification in StaffDashboardVM.SelectedStaffData.Staff.Certifications)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffCertifications.Add(certification);
+                }
+            }
+            return PartialView("_StaffCertificationAction", StaffDashboardVM);
+        }
+
         public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
         {
             ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);

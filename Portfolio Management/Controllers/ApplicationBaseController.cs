@@ -34,7 +34,10 @@ namespace Portfolio_Management.Controllers
         { }
         public string getCurrentUserFullName()
         {
-            return FullName;
+            var context = new ApplicationDbContext();
+            var username = User.Identity.Name;
+            var user = context.Users.SingleOrDefault(u => u.UserName == username);
+            return string.Concat(new string[] { user.FirstName, " ", user.LastName }); ;
         }
     }
 }

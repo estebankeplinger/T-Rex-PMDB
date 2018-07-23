@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace Portfolio_Management.Models
 {
@@ -11,10 +12,14 @@ namespace Portfolio_Management.Models
     {
         public StaffDashboardViewModel()
         {
+            PMDataEntities db = new PMDataEntities();
             SelectedStaffData = new SelectedStaffDataViewModel();
             AllStaffData = new AllStaffViewModel();
             AllSkillsData = new AllSkillsViewModel();
             ManageSkillDataList = new List<ManageSkillViewModel>();
+            
+            var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason).Include(s => s.Adm_Prefix).Include(s => s.Adm_Suffix).Include(s => s.Ref_Company).Include(s => s.Staff_Clearance);
+            AllStaffData.Staff = staffs.ToList();
         }
         public int NumStaff { get; set; }
         public int ActiveStaff { get; set; }
@@ -48,7 +53,7 @@ namespace Portfolio_Management.Models
         public bool HasSkill { get; set; }
 
         [Display(Name ="Remove Skill?")]
-        public bool RemoveSKill { get; set; }
+        public bool ShowRemoveSKill { get; set; }
 
        public string StaffSkillRadioButtonID { get; set; }
     }
@@ -64,6 +69,7 @@ namespace Portfolio_Management.Models
         {
             Skills = new List<Ref_Skill>();
             Proficiencies = new List<Adm_Proficiency>();
+
         }
         public List<Ref_Skill> Skills { get; set; }
         public List<Adm_Proficiency> Proficiencies { get; set; }

@@ -16,8 +16,10 @@ namespace Portfolio_Management.Models
             SelectedStaffData = new SelectedStaffDataViewModel();
             AllStaffData = new AllStaffViewModel();
             AllSkillsData = new AllSkillsViewModel();
+            AllEducationsData = new AllEducationsViewModel();
             ManageSkillDataList = new List<ManageSkillViewModel>();
-            
+            ManageEducationsDataList = new List<ManageStaffEducationsViewModel>();
+
             var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason).Include(s => s.Adm_Prefix).Include(s => s.Adm_Suffix).Include(s => s.Ref_Company).Include(s => s.Staff_Clearance);
             AllStaffData.Staff = staffs.ToList();
         }
@@ -29,9 +31,11 @@ namespace Portfolio_Management.Models
         public SelectedStaffDataViewModel SelectedStaffData { get; set; }
         public AllStaffViewModel AllStaffData { get; set; }
         public AllSkillsViewModel AllSkillsData { get; set; }
+        public AllEducationsViewModel AllEducationsData { get; set; }
 
         //List of all skills, along with whether or not the user has the skill
         public List<ManageSkillViewModel> ManageSkillDataList { get; set; }
+        public List<ManageStaffEducationsViewModel> ManageEducationsDataList { get; set; }
         public class CompanyData
         {
             public int CompanyID { get; set; }
@@ -42,13 +46,12 @@ namespace Portfolio_Management.Models
     }
     public class ManageSkillViewModel
     {
-
         public int StaffID { get; set; }
         public int SkillID { get; set; }
         public short ProficiencyID { get; set; }
         public string SkillName { get; set; }
         public string ProficiencyName { get; set; }
-        
+
         [Display(Name="Has Skill?")]
         public bool HasSkill { get; set; }
 
@@ -58,9 +61,37 @@ namespace Portfolio_Management.Models
        public string StaffSkillRadioButtonID { get; set; }
     }
 
+    public class ManageStaffEducationsViewModel
+    {
+        public int EducationID { get; set; }
+        public int StaffID { get; set; }
+        public string StaffName { get; set; }
+        public string School { get; set; }
+        public short DegreeID { get; set; }
+        public DateTime CompletedDate { get; set; }
+        [Display(Name ="Remove Education?")]
+        public bool RemoveEducation { get; set; }
+        public bool HasEducation { get; set; }
+    }
+
     public class AllStaffViewModel
     {
         public List<Staff> Staff { get; set; }
+    }
+    public class AllEducationsViewModel
+    {
+        public AllEducationsViewModel()
+        {
+            Educations = new List<Education>();
+            Degrees = new List<Adm_Degree>();
+
+            PMDataEntities db = new PMDataEntities();
+
+            Degrees = db.Adm_Degrees.ToList();
+            Educations = db.Educations.ToList();
+        }
+        public List<Education> Educations{ get; set; }
+        public List<Adm_Degree> Degrees { get; set; }
     }
 
     public class AllSkillsViewModel

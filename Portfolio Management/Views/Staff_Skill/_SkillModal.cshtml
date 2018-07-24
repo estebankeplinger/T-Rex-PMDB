@@ -1,4 +1,4 @@
-﻿<!--This view could be better named: "StaffSkillModel" as we are most likely going to have a view named skillmodal -->
+﻿
 @model Portfolio_Management.Models.StaffDashboardViewModel
 <div class="container">
     <!-- Modal -->
@@ -12,7 +12,7 @@
                         <h4 class="modal-title">Modify @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)'s Skills</h4>
                     </div>
                     <div id="modalForm" class="modal-body">
-                        @using (Html.BeginForm("ManageStaffSkillModal", "Staff"))
+                        @using (Html.BeginForm("ManageStaffSkillModal", "Staff_Skill"))
                         {
                             @Html.AntiForgeryToken()
                             <div class="form-horizontal" style="text-align:center">

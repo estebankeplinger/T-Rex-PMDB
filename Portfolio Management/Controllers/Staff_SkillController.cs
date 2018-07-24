@@ -57,7 +57,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Staff_ID,Skill_ID,Proficiency_ID,Created_On,Created_By,Modified_On,Modified_By")] Staff_Skill staff_Skill, string reRouteViewName = "")
+        public ActionResult Create([Bind(Include = "Staff_ID,Skill_ID,Proficiency_ID,Created_On,Created_By,Modified_On,Modified_By")] Staff_Skill staff_Skill)
         {
             if (ModelState.IsValid)
             {
@@ -70,12 +70,7 @@ namespace Portfolio_Management.Controllers
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency", staff_Skill.Proficiency_ID);
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill", staff_Skill.Skill_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Skill.Staff_ID);
-
-            if(reRouteViewName != "")
-            {
-                return View("reRouteViewName", staff_Skill);
-            }
-
+            
             return View(staff_Skill);
         }
 
@@ -123,6 +118,121 @@ namespace Portfolio_Management.Controllers
             return View(staff_Skill);
         }
 
+        [HttpGet]
+        public ActionResult ManageStaffSkillModal(int id)
+        {
+            StaffDashboardViewModel sdVM = new StaffDashboardViewModel();
+            sdVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+
+            //Load all proficiencies
+            foreach (var proficiency in db.Adm_Proficiencies)
+            {
+                sdVM.AllSkillsData.Proficiencies.Add(proficiency);
+            }
+
+            //For each skill in the list of ALL skills
+            foreach (var skill in db.Ref_Skills)
+            {
+                sdVM.AllSkillsData.Skills.Add(skill);
+
+                //Create a view model, map to properties in Ref_Skills
+                ManageSkillViewModel manageSkillVM = new ManageSkillViewModel();
+                manageSkillVM.SkillID = skill.ID;
+                manageSkillVM.SkillName = skill.Skill;
+                manageSkillVM.StaffID = sdVM.SelectedStaffData.Staff.ID;
+                manageSkillVM.StaffSkillRadioButtonID = skill.ID + ", " + sdVM.SelectedStaffData.Staff.ID;
+
+                //Get relevant skill data if user has the skill
+                foreach (var mySkill in db.Staff_Skills.Where(x => x.Staff_ID == sdVM.SelectedStaffData.Staff.ID))
+                {
+                    if (mySkill.Skill_ID == skill.ID)
+                    {
+                        manageSkillVM.HasSkill = true;
+                        manageSkillVM.ProficiencyID = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID;
+                        manageSkillVM.ProficiencyName = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency;
+                        manageSkillVM.RemoveSKill = false;
+                    }
+                }
+
+                sdVM.ManageSkillDataList.Add(manageSkillVM); //Add view model to list of view models
+            }
+
+            return PartialView("_SkillModal", sdVM);
+        }
+        // StaffSkillAction: POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageStaffSkillModal(StaffDashboardViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Iterate over all skills user may have added/modified using client-filled form data
+                foreach (var newStaffSkill in model.ManageSkillDataList)
+                {
+                    if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == false) //User modified skill
+                    {
+                        bool test = ModelState.IsValid;
+                        Staff_Skill skillToAdd = new Staff_Skill();
+                        skillToAdd = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)
+                            .Where(x => x.Skill_ID == newStaffSkill.SkillID)
+                            .SingleOrDefault();
+
+                        if (skillToAdd.Proficiency_ID != newStaffSkill.ProficiencyID)
+                        {
+                            skillToAdd.Proficiency_ID = newStaffSkill.ProficiencyID;
+                            skillToAdd.Modified_By = getCurrentUserFullName();
+                            skillToAdd.Modified_On = System.DateTime.Now;
+                            db.Staff_Skills.Attach(skillToAdd);
+                            var entry = db.Entry(skillToAdd);
+                            entry.State = EntityState.Modified;
+                        }
+                    }
+                    //User wants to remove skill
+                    else if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == true)
+                    {
+                        Staff_Skill skillToAdd = new Staff_Skill();
+                        skillToAdd = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)
+                            .Where(x => x.Skill_ID == newStaffSkill.SkillID)
+                            .SingleOrDefault();
+
+                        db.Staff_Skills.Attach(skillToAdd);
+                        db.Staff_Skills.Remove(skillToAdd);
+                    }
+                    else if (newStaffSkill.HasSkill == false)
+                    {
+                        //New skill to add
+                        if (newStaffSkill.ProficiencyID != 0) 
+                        {
+                            Staff_Skill newSkill = new Staff_Skill();
+                            newSkill.Skill_ID = newStaffSkill.SkillID;
+                            newSkill.Staff_ID = newStaffSkill.StaffID;
+                            newSkill.Proficiency_ID = newStaffSkill.ProficiencyID;
+                            newSkill.Created_By = getCurrentUserFullName();
+                            newSkill.Created_On = System.DateTime.Now;
+                            newSkill.Modified_By = getCurrentUserFullName();
+                            newSkill.Modified_On = System.DateTime.Now;
+
+                            db.Staff_Skills.Add(newSkill);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                List<string> modelStateErrors = new List<string>();
+                foreach (ModelState modelState in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        modelStateErrors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+
+            db.SaveChanges();
+            return RedirectToAction("Index","Staff");
+        }
+
         // GET: Staff_Skill/Delete/5
         public ActionResult Delete(int? staff_id, int? skill_id)
         {
@@ -148,59 +258,7 @@ namespace Portfolio_Management.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-        public ActionResult SkillModal()
-        {
-
-            return RedirectToAction("Index");
-        }
-
-        // POST: Staff_Skill/SkillModalSubmit
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SkillModal([Bind(Include = "SelectedStaffData")] StaffDashboardViewModel staffVM) //(int staff_id, List<int> skill_ids, List<int> prof_ids)
-        {
-            if (ModelState.IsValid)
-            {
-                var original = db.Staff_Skills.Where(x=>x.Staff_ID == staffVM.SelectedStaffData.Staff.ID).ToList();//get current staff_skills list for staff member from db
-                var originalIDs = new List<int>();
-                for (int i=0; i<original.Count; i++)
-                {
-                    originalIDs.Add(original[i].Skill_ID);//populate list of skill ids to compare by id
-                }
-                for (int i=0; i<original.Count; i++)
-                {
-                    //if (!original.Contains(staffVM.StaffSkills[i]))
-                    if (!originalIDs.Contains(staffVM.SelectedStaffData.StaffSkills[i].Skill_ID)) //new ID detected
-                    {
-                        //altered.Add(staffVM.StaffSkills[i].Skill_ID);
-                        db.Staff_Skills.Add(staffVM.SelectedStaffData.StaffSkills[i]);
-                    }
-                    //else if ()
-                    else //possible modified entry
-                    {
-                        //db.Entry(original.Find(staffVM.StaffSkills[i]).CurrentValues.SetValues(staffVM.StaffSkills[i]);
-                    }
-                }
-                //db.Entry(original[i]).CurrentValues.SetValues
-                //original.StartDate = project.StartDate;
-                //original.Duration = project.Duration;
-                //doSomething();
-                //db.Entry(original).CurrentValues.SetValues(project);
-                db.SaveChanges();
-            }
-            return View(staffVM);
-            //for (int i = 0; i < skill_ids.Count; i++)
-            //{
-            //Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_ids[i]);
-            //if ()
-            //}
-            //return RedirectToAction("Index");
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

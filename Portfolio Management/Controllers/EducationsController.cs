@@ -13,6 +13,8 @@ namespace Portfolio_Management.Controllers
     {
         private PMDataEntities db = new PMDataEntities();
 
+        
+
         // GET: Educations
         public ActionResult Index()
         {

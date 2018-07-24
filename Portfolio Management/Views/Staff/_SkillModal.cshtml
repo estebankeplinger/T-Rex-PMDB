@@ -47,12 +47,11 @@
                                                         @foreach (var prof in Model.AllSkillsData.Proficiencies)
                                                         {
                                                             <td style="padding:0px 4px 0px 0px; text-align:center;">
-                                                                @*@Html.DisplayFor(modelItem => prof.Proficiency) <br />*@
                                                                 @Html.RadioButtonFor(modelItem => Model.ManageSkillDataList[i].ProficiencyID, prof.Proficiency_ID)<br />
                                                                 @Html.ValidationMessageFor(modelItem => Model.ManageSkillDataList[i].ProficiencyID, "", new { @class = "text-danger" })
                                                             </td>
                                                         }
-                                                        <td id="@Model.ManageSkillDataList[i].StaffSkillRadioButtonID" style="padding:0px 4px 0px 0px; text-align:center;">
+                                                        <td style="padding:0px 4px 0px 0px; text-align:center;">
                                                             @if(Model.ManageSkillDataList[i].HasSkill == true)
                                                             {
                                                                 @Html.CheckBoxFor(modelItem => Model.ManageSkillDataList[i].RemoveSKill)
@@ -63,6 +62,7 @@
                                                         @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].SkillID)
                                                         @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].SkillName)
                                                         @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].StaffID)
+                                                        @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].HasSkill)
                                                     </tr>
                                                 }
                                             </tbody>

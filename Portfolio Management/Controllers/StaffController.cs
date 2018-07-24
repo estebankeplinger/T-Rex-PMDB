@@ -182,30 +182,8 @@ namespace Portfolio_Management.Controllers
                     StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
                 }
             }
-            //StaffDashboardVM = GetManageStaffSkillModal(StaffDashboardVM);
 
             return PartialView("_StaffSkillAction", StaffDashboardVM);
-        }
-
-
-        [ChildActionOnly]
-        private bool hasStaffSkillEntityChanged(Staff_Skill oldStaffSkill, ManageSkillViewModel newStaffSkill)
-        {
-
-            if (oldStaffSkill.Staff_ID != newStaffSkill.StaffID ||
-                oldStaffSkill.Skill_ID != newStaffSkill.SkillID ||
-                oldStaffSkill.Proficiency_ID != newStaffSkill.ProficiencyID
-                //oldStaffSkill.Created_By != newStaffSkill. ||
-                //oldStaffSkill.Created_On != newStaffSkill.Created_On ||
-                //oldStaffSkill.Created_By != newStaffSkill.Created_By ||
-                //oldStaffSkill.Modified_By != newStaffSkill.Modified_By ||
-                //oldStaffSkill.Modified_On != newStaffSkill.Modified_On
-                )
-            {
-                return true;
-            }
-
-            return false;
         }
 
         [HttpGet]
@@ -225,14 +203,12 @@ namespace Portfolio_Management.Controllers
             {
                 sdVM.AllSkillsData.Skills.Add(skill);
 
-                //Create a view model, bind to properties
+                //Create a view model, map to properties in Ref_Skills
                 ManageSkillViewModel manageSkillVM = new ManageSkillViewModel();
-                
                 manageSkillVM.SkillID = skill.ID;
-                manageSkillVM.SkillName = skill.Skill; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Ref_Skill.Skill;
-                manageSkillVM.StaffID = sdVM.SelectedStaffData.Staff.ID; //Maybe should be doing a find of a staff's id (db.Staffs.Find(id)). 
-                                                 //Are we sure we sure we will always be sent a valid id?
-                manageSkillVM.StaffSkillRadioButtonID = skill.ID + ", " + sdVM.SelectedStaffData.Staff.ID; //Need unique model identifier for RadioButtonFor HtmlHelper
+                manageSkillVM.SkillName = skill.Skill; 
+                manageSkillVM.StaffID = sdVM.SelectedStaffData.Staff.ID;
+                manageSkillVM.StaffSkillRadioButtonID = skill.ID + ", " + sdVM.SelectedStaffData.Staff.ID;
 
                 //Get relevant skill data if user has the skill
                 foreach (var mySkill in db.Staff_Skills.Where(x => x.Staff_ID == sdVM.SelectedStaffData.Staff.ID))
@@ -240,8 +216,8 @@ namespace Portfolio_Management.Controllers
                     if (mySkill.Skill_ID == skill.ID)
                     {
                         manageSkillVM.HasSkill = true;
-                        manageSkillVM.ProficiencyID = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID;
-                        manageSkillVM.ProficiencyName = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency;
+                        manageSkillVM.ProficiencyID = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID; 
+                        manageSkillVM.ProficiencyName = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency; 
                         manageSkillVM.RemoveSKill = false;
                     }
                 }
@@ -259,11 +235,7 @@ namespace Portfolio_Management.Controllers
 
             if (ModelState.IsValid)
             {
-                //Staff staff = db.Staffs
-                //              .Include(x => x.Staff_Skill)
-                //            .SingleOrDefault(x => x.ID == staffDashboardVM.SelectedStaffData.Staff.ID);
-                
-                //Iterate over all skills user may have added/modified
+                //Iterate over all skills user may have added/modified using client-filled form data
                 foreach (var newStaffSkill in model.ManageSkillDataList)
                 {
                     if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == false) //User modified skill
@@ -311,8 +283,6 @@ namespace Portfolio_Management.Controllers
                         }
                     }
                 }
-
-                //newStaffSkill.Staff_ID = staffDashboardVM.SelectedStaffData.
             }
             else
             {

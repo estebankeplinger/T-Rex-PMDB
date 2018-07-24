@@ -242,7 +242,7 @@ namespace Portfolio_Management.Controllers
                         manageSkillVM.HasSkill = true;
                         manageSkillVM.ProficiencyID = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Proficiency_ID;
                         manageSkillVM.ProficiencyName = db.Staff_Skills.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency; //skill.Staff_Skill.FirstOrDefault(x => x.Skill_ID == skill.ID).Adm_Proficiency.Proficiency;
-                        manageSkillVM.ShowRemoveSKill = true;
+                        manageSkillVM.RemoveSKill = false;
                     }
                 }
 
@@ -266,7 +266,7 @@ namespace Portfolio_Management.Controllers
                 //Iterate over all skills user may have added/modified
                 foreach (var newStaffSkill in model.ManageSkillDataList)
                 {
-                    if (newStaffSkill.HasSkill == true && newStaffSkill.ShowRemoveSKill == false) //User modified skill
+                    if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == false) //User modified skill
                     {
                         bool test = ModelState.IsValid;
                         Staff_Skill skillToAdd = new Staff_Skill();
@@ -284,7 +284,7 @@ namespace Portfolio_Management.Controllers
                             entry.State = EntityState.Modified;
                         }
                     }
-                    else if(newStaffSkill.HasSkill == true && newStaffSkill.ShowRemoveSKill == true)//User wants to remove skill
+                    else if(newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == true)//User wants to remove skill
                     {
                         Staff_Skill skillToAdd = new Staff_Skill();
                         skillToAdd = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)

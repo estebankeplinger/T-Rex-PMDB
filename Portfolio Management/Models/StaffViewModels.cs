@@ -53,7 +53,7 @@ namespace Portfolio_Management.Models
         public bool HasSkill { get; set; }
 
         [Display(Name ="Remove Skill?")]
-        public bool ShowRemoveSKill { get; set; }
+        public bool RemoveSKill { get; set; }
 
        public string StaffSkillRadioButtonID { get; set; }
     }

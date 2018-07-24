@@ -6,7 +6,7 @@
 {
     <div class="col-md-6 col-sm-10 col-xs-12">
 
-        @{Html.RenderAction("ManageStaffSkillModal", new { id = Model.SelectedStaffData.Staff.ID});}
+        @{Html.RenderAction("ManageStaffSkillModal", new { id = Model.SelectedStaffData.Staff.ID });}
 
         <div class="x_panel">
             <div class="x_title">
@@ -98,62 +98,6 @@
                 </div>
             </div>
         </div>
-            </div>
-        @*<script>
-            $(function() {
-                $('.staffSkillModal').modal();
-                //$('#staffSkillModal').modal('show'); 
-            });
-
-            function getStaffID(@Model.SelectedStaffData.Staff.ID) {
-                $.ajax({
-                    url: '/Staff/ManageStaffSkillModal/' + @Model.SelectedStaffData.Staff.ID, // The method name + paramater
-                    method: "POST",
-                    success: function(data) {
-                        $('#staffSkillModalWrapper').html(data); // This should be an empty div where you can inject your new html (the partial view)
-                       
-                    }
-                });
-            }
-
-        </script>*@
-        @*<script>
-
-            var TeamDetailPostBackURL = '/Staff/ManageStaffSkillModal';
-    $(function () {
-        $(".staffSkillModalAnchor").click(function () {
-            debugger;
-            var $buttonClicked = $(this);
-            var id = $buttonClicked.attr('data-id');
-            var options = { "backdrop": "static", keyboard: true };
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("ManageStaffSkillModal", "Staff")',
-                contentType: "application/json; charset=utf-8",
-                data: { "id": id },
-                datatype: "json",
-                success: function (data) {
-                    debugger;
-                    $('#myModalContent').html(data);
-                    $('#myModal').modal(options);
-                    $('#myModal').modal('show');
-
-                },
-                error: function () {
-                    alert("Dynamic content load failed.");
-                }
-            });
-        });
-        //$("#closebtn").on('click',function(){
-        //    $('#myModal').modal('hide');
-
-        $("#closbtn").click(function () {
-            $('#myModal').modal('hide');
-        });
-    });
-
-        </script>*@  
-
+    </div>
 }
 <!-- /page content -->
-

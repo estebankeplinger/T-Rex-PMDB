@@ -103,7 +103,6 @@
                                     <tr>
                                         <th>
                                             @Html.DisplayNameFor(model => Model.AllStaffData.Staff[0].Staff_Name)
-                               
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Last_Name)
@@ -126,7 +125,6 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Hire_Date)
                                         </th>
-
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -173,7 +171,6 @@
                                                 </button>*@
                                             @*<button id="action "class="btn"><i class="glyphicon glyphicon-menu-hamburger"></i> Actions</button>*@
                                         </td>
-
                                     </tr>
                                     }
                                 </tbody>
@@ -204,7 +201,6 @@
 
             </div>
         </div>
-            
     </div>
     <script>
         $(document).ready(function () {
@@ -226,7 +222,6 @@
                     }
                 }
             });
-
             $('#searchStaff').keyup(function () {
                 users.search($(this).val()).draw();
             })

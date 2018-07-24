@@ -15,7 +15,7 @@
                         @using (Html.BeginForm("ManageStaffSkillModal", "Staff"))
                         {
                             @Html.AntiForgeryToken()
-                            <div class="form-horizontal">
+                            <div class="form-horizontal" style="text-align:center">
                                 <div class="form-group">
                                     <div class="col-md-10">
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -23,19 +23,16 @@
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => Model.ManageSkillDataList[0].HasSkill)
-                                                    </th>
-                                                    <th>
                                                         @Html.DisplayNameFor(model => Model.SelectedStaffData.StaffSkills[0].Ref_Skill.Skill)
                                                     </th>
                                                     @foreach (var prof_item in Model.AllSkillsData.Proficiencies)
                                                     {
                                                         <th>
-                                                            @Html.DisplayNameFor(model => Model.SelectedStaffData.StaffSkills[0].Proficiency_ID)
+                                                            @Html.DisplayFor(model => prof_item.Proficiency)
                                                         </th>
                                                     }
                                                     <th>
-                                                        @Html.DisplayNameFor(model => Model.ManageSkillDataList[0].ShowRemoveSKill)
+                                                        @Html.DisplayNameFor(model => Model.ManageSkillDataList[0].RemoveSKill)
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -44,35 +41,24 @@
                                                 {
                                                     <tr>
                                                         <td>
-                                                            @if (Model.ManageSkillDataList[i].HasSkill == true)
-                                                            {
-                                                                @Html.CheckBoxFor(modelItem => Model.ManageSkillDataList[i].HasSkill)
-                                                                @Html.ValidationMessageFor(modelItem => Model.ManageSkillDataList[i].HasSkill, "", new { @class = "text-danger" })
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].HasSkill)
-                                                            }
-                                                        </td>
-                                                        <td>
                                                             @Html.DisplayFor(modelItem => Model.ManageSkillDataList[i].SkillName)
                                                             @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].SkillName)
                                                         </td>
                                                         @foreach (var prof in Model.AllSkillsData.Proficiencies)
                                                         {
                                                             <td style="padding:0px 4px 0px 0px; text-align:center;">
-                                                                @Html.DisplayFor(modelItem => prof.Proficiency)
+                                                                @*@Html.DisplayFor(modelItem => prof.Proficiency) <br />*@
                                                                 @Html.RadioButtonFor(modelItem => Model.ManageSkillDataList[i].ProficiencyID, prof.Proficiency_ID)<br />
                                                                 @Html.ValidationMessageFor(modelItem => Model.ManageSkillDataList[i].ProficiencyID, "", new { @class = "text-danger" })
                                                             </td>
                                                         }
-                                                        <td>
-                                                            @if(Model.ManageSkillDataList[i].ShowRemoveSKill == true)
+                                                        <td id="@Model.ManageSkillDataList[i].StaffSkillRadioButtonID" style="padding:0px 4px 0px 0px; text-align:center;">
+                                                            @if(Model.ManageSkillDataList[i].HasSkill == true)
                                                             {
-                                                                @Html.CheckBoxFor(modelItem => Model.ManageSkillDataList[i].ShowRemoveSKill)
-                                                                @Html.ValidationMessageFor(modelItem => Model.ManageSkillDataList[i].HasSkill, "", new { @class = "text-danger" })
+                                                                @Html.CheckBoxFor(modelItem => Model.ManageSkillDataList[i].RemoveSKill)
+                                                                @Html.ValidationMessageFor(modelItem => Model.ManageSkillDataList[i].RemoveSKill, "", new { @class = "text-danger" })
                                                             }
-                                                            
+
                                                         </td>
                                                         @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].SkillID)
                                                         @Html.HiddenFor(modelItem => Model.ManageSkillDataList[i].SkillName)
@@ -84,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
+                                    <div class="col-md-offset-2 col-md-10" >
                                         <input type="submit" value="Submit" class="btn btn-default" />
                                     </div>
                                 </div>
@@ -99,35 +85,4 @@
             </div>
         </div>
     </div>
-    @*<script>
-            $('form').submit(function () {
-                if ($(this).valid()) {
-                    $.ajax({
-                        url: this.action,
-                        type: this.method,
-                        data: $(this).serialize(),
-                        success: function (result) {
-                            $('#modalForm').html('');
-                            $('#modalForm').html(result);
-                        }
-                    });
-                }
-                return false;
-            });
-        </script>*@
-    @*<script>
-            $("#myModal").on("submit", "#form-manageSkill", function (e) {
-                e.preventDefault();  // prevent standard form submission
-
-                var form = $(this);
-                $.ajax({
-                    url: form.attr("action"),
-                    method: form.attr("method"),  // post
-                    data: form.serialize(),
-                    success: function (partialResult) {
-                        $("#modalForm").html(partialResult);
-                    }
-                });
-            });
-        </script>*@
 </div>

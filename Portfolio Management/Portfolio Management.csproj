@@ -6162,6 +6162,7 @@
     <Content Include="Views\Staff\_SkillModal.cshtml" />
     <Content Include="Views\Staff\_ManageStaffSkillsView.cshtml" />
     <Content Include="Views\Shared\_newStaffWidget.cshtml" />
+    <Content Include="Views\Staff\_Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

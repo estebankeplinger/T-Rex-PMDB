@@ -55,13 +55,20 @@ namespace Portfolio_Management.Models
             StaffCertifications = new List<Certification>();
             StaffSkills = new List<Staff_Skill>();
             StaffPositions = new List<Staff_Position>();
+            StaffAssets = new List<Staff_Asset>();
+            StaffTrainings = new List<Staff_Training>();
+            StaffClearances = new List<Staff_Clearance>();
+            StaffContracts = new List<Contract>();
         }
         public Staff Staff { get; set; }
         public List<Education> StaffEducations { get; set; }
         public List<Certification> StaffCertifications { get; set; }
         public List<Staff_Skill> StaffSkills { get; set; }
         public List<Staff_Position> StaffPositions { get; set; }
-
+        public List<Staff_Asset> StaffAssets { get; set; }
+        public List<Staff_Training> StaffTrainings { get; set; }
+        public List<Staff_Clearance> StaffClearances { get; set; }
+        public List<Contract> StaffContracts { get; set; }
     }
 
     public class StaffActionsViewModel

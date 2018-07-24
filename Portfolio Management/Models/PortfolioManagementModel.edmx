@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Clearance Status" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Contract Vehicle">
@@ -916,14 +916,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Staff Clearance_Staff">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
-          <End Role="Staff Clearance" Type="Self.Staff Clearance" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Staff Clearance" Type="Self.Staff Clearance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Staff Clearance">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="Staff ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1469,7 +1469,6 @@
           <EntitySet Name="Security_Workflows" EntityType="PMDataModel.Security_Workflow" />
           <EntitySet Name="Staffs" EntityType="PMDataModel.Staff" />
           <EntitySet Name="Staff_Assets" EntityType="PMDataModel.Staff_Asset" />
-          <EntitySet Name="Staff_Clearances" EntityType="PMDataModel.Staff_Clearance" />
           <EntitySet Name="Staff_Clearance_Workflows" EntityType="PMDataModel.Staff_Clearance_Workflow" />
           <EntitySet Name="Staff_Positions" EntityType="PMDataModel.Staff_Position" />
           <EntitySet Name="Staff_Skills" EntityType="PMDataModel.Staff_Skill" />
@@ -1528,10 +1527,6 @@
             <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
             <End Role="Contract_Position" EntitySet="Contract_Positions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Clearance_Adm_Security_Clearance" Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance">
-            <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
-            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Adm_Suffix" Association="PMDataModel.FK_Staff_Adm_Suffix">
             <End Role="Adm_Suffix" EntitySet="Adm_Suffixes" />
             <End Role="Staff" EntitySet="Staffs" />
@@ -1567,10 +1562,6 @@
           <AssociationSet Name="FK_Staff_Asset_Contract" Association="PMDataModel.FK_Staff_Asset_Contract">
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Clearance_Contract" Association="PMDataModel.FK_Staff_Clearance_Contract">
-            <End Role="Contract" EntitySet="Contracts" />
-            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
           </AssociationSet>
           <AssociationSet Name="FK_Contract_Position_Contract_WBS" Association="PMDataModel.FK_Contract_Position_Contract_WBS">
             <End Role="Contract_WB" EntitySet="Contract_WBS" />
@@ -1640,10 +1631,6 @@
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Staff_Asset" EntitySet="Staff_Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Clearance_Staff" Association="PMDataModel.FK_Staff_Clearance_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Position_Staff" Association="PMDataModel.FK_Staff_Position_Staff">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Staff_Position" EntitySet="Staff_Positions" />
@@ -1655,10 +1642,6 @@
           <AssociationSet Name="FK_Staff_Training_Staff" Association="PMDataModel.FK_Staff_Training_Staff">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Staff_Training" EntitySet="Staff_Trainings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance" Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance">
-            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
-            <End Role="Staff_Clearance_Workflow" EntitySet="Staff_Clearance_Workflows" />
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="PMDataModel.AspNetRole" />
           <EntitySet Name="AspNetUserLogins" EntityType="PMDataModel.AspNetUserLogin" />
@@ -1675,6 +1658,23 @@
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <EntitySet Name="Staff_Clearances" EntityType="PMDataModel.Staff_Clearance" />
+          <AssociationSet Name="FK_Staff_Clearance_Adm_Security_Clearance" Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance">
+            <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
+            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Clearance_Contract" Association="PMDataModel.FK_Staff_Clearance_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Clearance_Staff" Association="PMDataModel.FK_Staff_Clearance_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance" Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance">
+            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
+            <End Role="Staff_Clearance_Workflow" EntitySet="Staff_Clearance_Workflows" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2086,10 +2086,10 @@
           <NavigationProperty Name="Educations" Relationship="PMDataModel.FK_Education_Staff" FromRole="Staff" ToRole="Education" />
           <NavigationProperty Name="Ref_Company" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Staff" ToRole="Ref_Company" />
           <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff" ToRole="Staff_Asset" />
-          <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff" ToRole="Staff_Clearance" />
           <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff" ToRole="Staff_Position" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Staff" FromRole="Staff" ToRole="Staff_Skill" />
           <NavigationProperty Name="Staff_Training" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff" ToRole="Staff_Training" />
+          <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff" ToRole="Staff_Clearance" />
         </EntityType>
         <EntityType Name="Staff_Asset">
           <Key>
@@ -2110,24 +2110,6 @@
           <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Staff_Asset" ToRole="Contract" />
           <NavigationProperty Name="Ref_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Staff_Asset" ToRole="Ref_Asset" />
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff_Asset" ToRole="Staff" />
-        </EntityType>
-        <EntityType Name="Staff_Clearance">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Staff_ID" Type="Int32" />
-          <Property Name="Security_Clearance_ID" Type="Int16" />
-          <Property Name="Date_Authorized" Type="DateTime" Precision="0" />
-          <Property Name="Contract_ID" Type="Int32" />
-          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" FromRole="Staff_Clearance" ToRole="Adm_Security_Clearance" />
-          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Staff_Clearance" ToRole="Contract" />
-          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff_Clearance" ToRole="Staff" />
-          <NavigationProperty Name="Staff_Clearance_Workflow" Relationship="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" FromRole="Staff_Clearance" ToRole="Staff_Clearance_Workflow" />
         </EntityType>
         <EntityType Name="Staff_Clearance_Workflow">
           <Key>
@@ -2387,18 +2369,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Clearance_Adm_Security_Clearance">
-          <End Type="PMDataModel.Adm_Security_Clearance" Role="Adm_Security_Clearance" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Security_Clearance">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Clearance">
-              <PropertyRef Name="Security_Clearance_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Adm_Suffix">
           <End Type="PMDataModel.Adm_Suffix" Role="Adm_Suffix" Multiplicity="0..1" />
           <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="*" />
@@ -2503,18 +2473,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Contract_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Clearance_Contract">
-          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contract">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Clearance">
               <PropertyRef Name="Contract_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2723,18 +2681,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Clearance_Staff">
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Clearance">
-              <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Position_Staff">
           <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
           <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
@@ -2768,18 +2714,6 @@
             </Principal>
             <Dependent Role="Staff_Training">
               <PropertyRef Name="Staff_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance">
-          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Clearance_Workflow" Role="Staff_Clearance_Workflow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff_Clearance">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Clearance_Workflow">
-              <PropertyRef Name="Staff_Clearance_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2865,6 +2799,72 @@
             </Principal>
             <Dependent Role="AspNetUserClaim">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Staff_Clearance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Staff_ID" Type="Int32" />
+          <Property Name="Security_Clearance_ID" Type="Int16" />
+          <Property Name="Date_Authorized" Type="DateTime" Precision="0" />
+          <Property Name="Contract_ID" Type="Int32" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" FromRole="Staff_Clearance" ToRole="Adm_Security_Clearance" />
+          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Staff_Clearance" ToRole="Contract" />
+          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff_Clearance" ToRole="Staff" />
+          <NavigationProperty Name="Staff_Clearance_Workflow" Relationship="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" FromRole="Staff_Clearance" ToRole="Staff_Clearance_Workflow" />
+        </EntityType>
+        <Association Name="FK_Staff_Clearance_Adm_Security_Clearance">
+          <End Type="PMDataModel.Adm_Security_Clearance" Role="Adm_Security_Clearance" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Security_Clearance">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Clearance">
+              <PropertyRef Name="Security_Clearance_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Clearance_Contract">
+          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Clearance">
+              <PropertyRef Name="Contract_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Clearance_Staff">
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Clearance">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Clearance_Worrkflow_Staff_Clearance">
+          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Clearance_Workflow" Role="Staff_Clearance_Workflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff_Clearance">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Clearance_Workflow">
+              <PropertyRef Name="Staff_Clearance_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3278,21 +3278,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Staff_Clearances">
-            <EntityTypeMapping TypeName="PMDataModel.Staff_Clearance">
-              <MappingFragment StoreEntitySet="Staff Clearance">
-                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
-                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
-                <ScalarProperty Name="Created_By" ColumnName="Created By" />
-                <ScalarProperty Name="Created_On" ColumnName="Created On" />
-                <ScalarProperty Name="Contract_ID" ColumnName="Contract ID" />
-                <ScalarProperty Name="Date_Authorized" ColumnName="Date Authorized" />
-                <ScalarProperty Name="Security_Clearance_ID" ColumnName="Security Clearance ID" />
-                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Staff_Clearance_Workflows">
             <EntityTypeMapping TypeName="PMDataModel.Staff_Clearance_Workflow">
               <MappingFragment StoreEntitySet="Staff Clearance Workflow">
@@ -3440,6 +3425,21 @@
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
                 <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Clearances">
+            <EntityTypeMapping TypeName="PMDataModel.Staff_Clearance">
+              <MappingFragment StoreEntitySet="Staff Clearance">
+                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
+                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
+                <ScalarProperty Name="Created_By" ColumnName="Created By" />
+                <ScalarProperty Name="Created_On" ColumnName="Created On" />
+                <ScalarProperty Name="Contract_ID" ColumnName="Contract ID" />
+                <ScalarProperty Name="Date_Authorized" ColumnName="Date Authorized" />
+                <ScalarProperty Name="Security_Clearance_ID" ColumnName="Security Clearance ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

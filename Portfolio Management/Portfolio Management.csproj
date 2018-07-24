@@ -6160,6 +6160,10 @@
     <Content Include="Views\Staff\_StaffList.cshtml" />
     <Content Include="Views\Staff\_StaffView.cshtml" />
     <Content Include="Views\Staff\_StaffCertificationAction.cshtml" />
+    <Content Include="Views\Staff\_StaffTrainingAction.cshtml" />
+    <Content Include="Views\Staff\_StaffAssetAction.cshtml" />
+    <Content Include="Views\Staff\_StaffClearanceAction.cshtml" />
+    <Content Include="Views\Staff\_StaffContractAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

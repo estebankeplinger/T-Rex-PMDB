@@ -38,7 +38,6 @@
         <EntityTypeShape EntityType="PMDataModel.Security_Workflow" Width="1.5" PointX="10.5" PointY="19.25" />
         <EntityTypeShape EntityType="PMDataModel.Staff" Width="1.5" PointX="6" PointY="21.75" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Asset" Width="1.5" PointX="13.5" PointY="27.5" />
-        <EntityTypeShape EntityType="PMDataModel.Staff_Clearance" Width="1.5" PointX="13.5" PointY="22.625" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Clearance_Workflow" Width="1.5" PointX="15.75" PointY="25" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Position" Width="1.5" PointX="18" PointY="21.5" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Skill" Width="1.5" PointX="8.25" PointY="24.5" />
@@ -58,7 +57,6 @@
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Position_Adm_Resume_Status" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Suffix" />
         <AssociationConnector Association="PMDataModel.FK_Cetifications_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Contract1" />
@@ -68,7 +66,6 @@
         <AssociationConnector Association="PMDataModel.FK_Ref_LCAT_Contract1" />
         <AssociationConnector Association="PMDataModel.FK_Ref_Training_Contract" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Asset_Contract" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Contract" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Contract_WBS" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Ref_LCAT" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Ref_Role" />
@@ -86,11 +83,9 @@
         <AssociationConnector Association="PMDataModel.FK_Staff_Training_Ref_Training" />
         <AssociationConnector Association="PMDataModel.FK_Security_Clearance_Contract_Security_Workflow" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Asset_Staff" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Position_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Skill_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Training_Staff" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" />
         <EntityTypeShape EntityType="PMDataModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.625" />
         <EntityTypeShape EntityType="PMDataModel.AspNetUserLogin" Width="1.375" PointX="5.5" PointY="3.875" />
         <EntityTypeShape EntityType="PMDataModel.AspNetUser" Width="1.5" PointX="3" PointY="1" />
@@ -98,6 +93,11 @@
         <AssociationConnector Association="PMDataModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="PMDataModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.125" />
         <AssociationConnector Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <EntityTypeShape EntityType="PMDataModel.Staff_Clearance" Width="1.5" PointX="18.75" PointY="12.875" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Contract" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Staff" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

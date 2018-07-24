@@ -60,7 +60,6 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Security_Workflow> Security_Workflows { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Staff_Asset> Staff_Assets { get; set; }
-        public virtual DbSet<Staff_Clearance> Staff_Clearances { get; set; }
         public virtual DbSet<Staff_Clearance_Workflow> Staff_Clearance_Workflows { get; set; }
         public virtual DbSet<Staff_Position> Staff_Positions { get; set; }
         public virtual DbSet<Staff_Skill> Staff_Skills { get; set; }
@@ -71,6 +70,7 @@ namespace Portfolio_Management.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<Staff_Clearance> Staff_Clearances { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

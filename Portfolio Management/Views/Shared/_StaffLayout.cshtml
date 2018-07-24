@@ -47,64 +47,15 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
-                        @Html.Partial("_StaffList")
-
-                        <div class="clearfix"></div>
-
-                        <div class="menu_section">
-                            <h3>General</h3>
+                        @*<div class="menu_section">*@
                             <ul class="nav side-menu">
                                 <li><a href="/Home/Index"><i class="fa fa-home"></i> Home</a>
-                                <li>
-                                    <a><i class="fa fa-bookmark"></i> Centers <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#EmployeeCenter"><i class="fa fa-home"></i> Employee Center</a></li>
-                                        <li><a href="#ManagerCenter"><i class="fa fa-home"></i> Manager Center</a></li>
-                                        <li><a href="#TeamLeadCenter"><i class="fa fa-home"></i> Team Lead Center</a></li>
-                                        <li><a href="/production/index.html"><i class="fa fa-home"></i> Production Center</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-database"></i> Data <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/Certifications">Certifications</a></li>
-                                        <li>
-                                            <a>Contract Data<span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li class="sub_menu"><a href="/Contracts">Contracts</a></li>
-                                                <li><a href="/Contract_Position">Contract Position</a></li>
-                                                <li><a href="/Contract_WB">Contract WB</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/Educations">Educations</a></li>
-                                        <li><a href="/Position_Forecast">Position Forecast</a></li>
-                                        <li><a href="/Role">Role</a></li>
-                                        <li><a href="/Security_Workflow">Security Workflow</a></li>
-                                        <li>
-                                            <a>Staff Data<span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li class="sub_menu"><a href="/Staff">Staff</a></li>
-                                                <li><a href="/Staff_Asset">Staff Asset</a> </li>
-                                                <li><a href="/Staff_Clearance_Workflow">Staff Clearance Workflow</a></li>
-                                                <li><a href="/Staff_Clearance">Staff Clearance</a></li>
-                                                <li><a href="/Staff_Position">Staff Position</a></li>
-                                                <li><a href="/Staff_Skill">Staff Skill</a></li>
-                                                <li><a href="/Staff_Training">Staff Training</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/Workshares">Workshare</a></li>
-                                    </ul>
-                                </li>
 
-                                <li><a href="#Reports"><i class="fa fa-area-chart"></i> Reports</a>
-                                <li>
-                                    <a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/production/form.html">Production Form</a></li>
-                                    </ul>
-                                </li>
                             </ul>
-                        </div>
+                        @*</div>*@
+
+                        @Html.Partial("_StaffList")
+
                         @Html.Partial("_SidebarAdminMenu")
                         <!--Render admin sidebar-->
                     </div>

@@ -44,6 +44,7 @@ namespace Portfolio_Management.Controllers
             ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
             ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name");
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
+            ViewBag.DateTime = DateTime.Now;
             return View();
         }
 

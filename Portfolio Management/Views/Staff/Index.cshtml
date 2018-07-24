@@ -5,23 +5,33 @@
     Layout = "~/Views/Shared/_StaffLayout.cshtml";
 }
 
-
 <div class="right_col" role="main">
     <div class="">
-        <!-- Staff member view -->
-        <div id="staffView">
+        <div id="instructions" style="text-align:center;">
+            Select a staff member.
         </div>
 
         <!-- start accordion -->
         <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">
+             <div class="panel">
+                <a class="panel-heading" role="tab" id="headingZero1" data-toggle="collapse" data-parent="#accordion1" href="#collapseZero1" aria-expanded="false" aria-controls="collapseZero" style="width:100%;">
+                    <h4 class="panel-title">Staff Details</h4>
+                </a>
+                <div id="collapseZero1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingZero">
+                    <div class="panel-body">
+                        <!-- Staff member view -->
+                        <div id="staffView">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="panel">
-                <a class="panel-heading" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne" style="width:100%;">
+                <a class="panel-heading" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne" style="width:100%;">
                     <h4 class="panel-title">Education</h4>
                 </a>
-                <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
                         <div id="staffEducation">
-                            Select a Staff Member
                             @Html.Partial("_StaffEducationAction")
                         </div>
                     </div>
@@ -34,7 +44,6 @@
                 <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
                         <div id="staffCertification">
-                            Select a Staff Member
                             @Html.Partial("_StaffCertificationAction")
                         </div>
                     </div>
@@ -47,7 +56,6 @@
                 <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div class="panel-body">
                         <div id="staffSkill">
-                            Select a Staff Member
                             @Html.Partial("_StaffSkillAction")
                         </div>
                     </div>
@@ -60,8 +68,55 @@
                 <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                     <div class="panel-body">
                         <div id="staffPosition">
-                            Select a Staff Member
                             @Html.Partial("_StaffPositionAction")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <a class="panel-heading collapsed" role="tab" id="headingFive1" data-toggle="collapse" data-parent="#accordion1" href="#collapseFive1" aria-expanded="false" aria-controls="collapseFive">
+                    <h4 class="panel-title">Training</h4>
+                </a>
+                <div id="collapseFive1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        <div id="staffTraining">
+                            @Html.Partial("_StaffTrainingAction")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <a class="panel-heading collapsed" role="tab" id="headingSix1" data-toggle="collapse" data-parent="#accordion1" href="#collapseSix1" aria-expanded="false" aria-controls="collapseSix">
+                    <h4 class="panel-title">Assets</h4>
+                </a>
+                <div id="collapseSix1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                    <div class="panel-body">
+                        <div id="staffAsset">
+                            @Html.Partial("_StaffAssetAction")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <a class="panel-heading collapsed" role="tab" id="headingSeven1" data-toggle="collapse" data-parent="#accordion1" href="#collapseSeven1" aria-expanded="false" aria-controls="collapseSeven">
+                    <h4 class="panel-title">Clearances</h4>
+                </a>
+                <div id="collapseSeven1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                    <div class="panel-body">
+                        <div id="staffClearance">
+                            @Html.Partial("_StaffClearanceAction")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <a class="panel-heading collapsed" role="tab" id="headingEight1" data-toggle="collapse" data-parent="#accordion1" href="#collapseEight1" aria-expanded="false" aria-controls="collapseEight">
+                    <h4 class="panel-title">Contracts</h4>
+                </a>
+                <div id="collapseEight1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                    <div class="panel-body">
+                        <div id="staffContract">
+                            @Html.Partial("_StaffContractAction")
                         </div>
                     </div>
                 </div>
@@ -98,15 +153,19 @@
     </script>
 
     <script>
+        function clearInstructions() {
+            $("#instructions").empty();
+        }
+
         $('.clickableRow').click(function () {
             var targetRow = $(this).data('id');
+            clearInstructions();
 
             $.ajax({
                 url: '@Url.Action("StaffEducationAction","Staff")',
                 data: { id: targetRow },
                 method: "GET",
                 success: function (data) {
-
                     $("#staffEducation").empty();
                     $("#staffEducation").html(data);
                 },
@@ -119,7 +178,6 @@
                 data: { id: targetRow },
                 method: "GET",
                 success: function (data) {
-
                     $("#staffCertification").empty();
                     $("#staffCertification").html(data);
                 },
@@ -132,7 +190,6 @@
                 data: { id: targetRow },
                 method: "GET",
                 success: function (data) {
-
                     $("#staffSkill").empty();
                     $("#staffSkill").html(data);
                 },
@@ -147,6 +204,54 @@
                 success: function (data) {
                     $("#staffPosition").empty();
                     $("#staffPosition").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffAssetAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffAsset").empty();
+                    $("#staffAsset").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffTrainingAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffTraining").empty();
+                    $("#staffTraining").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffClearanceAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffClearance").empty();
+                    $("#staffClearance").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffContractAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffContract").empty();
+                    $("#staffContract").html(data);
                 },
                 error: function (xhr, status, error) {
                     alert(xhr.responseText);

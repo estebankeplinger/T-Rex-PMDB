@@ -146,6 +146,58 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffCertificationAction", StaffDashboardVM);
         }
 
+        public ActionResult StaffAssetAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var asset in StaffDashboardVM.SelectedStaffData.Staff.Staff_Asset)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffAssets.Add(asset);
+                }
+            }
+            return PartialView("_StaffAssetAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffTrainingAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var training in StaffDashboardVM.SelectedStaffData.Staff.Staff_Training)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffTrainings.Add(training);
+                }
+            }
+            return PartialView("_StaffTrainingAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffClearanceAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var clearance in StaffDashboardVM.SelectedStaffData.Staff.Staff_Clearance)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffClearances.Add(clearance);
+                }
+            }
+            return PartialView("_StaffClearanceAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffContractAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var position in StaffDashboardVM.SelectedStaffData.Staff.Staff_Position)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffContracts.Add(position.Contract_Position.Contract);
+                }
+            }
+            return PartialView("_StaffContractAction", StaffDashboardVM);
+        }
+
         public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
         {
             ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);

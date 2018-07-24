@@ -24,6 +24,7 @@ namespace Portfolio_Management.Models
             this.Staff_Position = new HashSet<Staff_Position>();
             this.Staff_Skill = new HashSet<Staff_Skill>();
             this.Staff_Training = new HashSet<Staff_Training>();
+            this.Staff_Clearance = new HashSet<Staff_Clearance>();
         }
     
         public int ID { get; set; }
@@ -66,12 +67,13 @@ namespace Portfolio_Management.Models
         public virtual Ref_Company Ref_Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Asset> Staff_Asset { get; set; }
-        public virtual Staff_Clearance Staff_Clearance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Position> Staff_Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Skill> Staff_Skill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Training> Staff_Training { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Staff_Clearance> Staff_Clearance { get; set; }
     }
 }

@@ -40,6 +40,7 @@ namespace Portfolio_Management.Controllers
         {
             ViewBag.Degree_ID = new SelectList(db.Adm_Degrees, "ID", "Degree");
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
+            ViewBag.DateTime = DateTime.Now;
             return View();
         }
 

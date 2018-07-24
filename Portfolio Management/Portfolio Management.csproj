@@ -390,6 +390,7 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DashboardViewModels.cs" />
     <Compile Include="Models\DataEntityExtensions.cs" />
     <Compile Include="Models\Education.cs">
       <DependentUpon>PortfolioManagementModel.tt</DependentUpon>
@@ -6159,12 +6160,15 @@
     <Content Include="Views\Staff\_StaffSkillAction.cshtml" />
     <Content Include="Views\Staff\_StaffPositionAction.cshtml" />
     <Content Include="Views\Staff\_SkillModal.cshtml" />
+    <Content Include="Views\Staff\_ManageStaffSkillsView.cshtml" />
+    <Content Include="Views\Shared\_newStaffWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Migrations\201802161707516_prefix\" />
     <Folder Include="Views\Actions\" />
     <Folder Include="Views\ApplicationBase\" />
+    <Folder Include="Views\DashboardViewModels\" />
     <Folder Include="Views\RoleView\" />
     <Folder Include="Views\StaffSkillViewModels\" />
   </ItemGroup>

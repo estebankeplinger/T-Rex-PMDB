@@ -44,7 +44,7 @@ namespace Portfolio_Management.Controllers
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
             if (ModelState.IsValid && id != null)
-                ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name",id);        
+                ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", id);
             else
                 ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
 
@@ -57,7 +57,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Staff_ID,Skill_ID,Proficiency_ID,Created_On,Created_By,Modified_On,Modified_By")] Staff_Skill staff_Skill)
+        public ActionResult Create([Bind(Include = "Staff_ID,Skill_ID,Proficiency_ID,Created_On,Created_By,Modified_On,Modified_By")] Staff_Skill staff_Skill, string reRouteViewName = "")
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +65,17 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
+
             ViewBag.DateTime = DateTime.Now;
             ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency", staff_Skill.Proficiency_ID);
             ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill", staff_Skill.Skill_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Skill.Staff_ID);
+
+            if(reRouteViewName != "")
+            {
+                return View("reRouteViewName", staff_Skill);
+            }
+
             return View(staff_Skill);
         }
 
@@ -141,6 +147,58 @@ namespace Portfolio_Management.Controllers
             db.Staff_Skills.Remove(staff_Skill);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult SkillModal()
+        {
+
+            return RedirectToAction("Index");
+        }
+
+        // POST: Staff_Skill/SkillModalSubmit
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SkillModal([Bind(Include = "SelectedStaffData")] StaffDashboardViewModel staffVM) //(int staff_id, List<int> skill_ids, List<int> prof_ids)
+        {
+            if (ModelState.IsValid)
+            {
+                var original = db.Staff_Skills.Where(x=>x.Staff_ID == staffVM.SelectedStaffData.Staff.ID).ToList();//get current staff_skills list for staff member from db
+                var originalIDs = new List<int>();
+                for (int i=0; i<original.Count; i++)
+                {
+                    originalIDs.Add(original[i].Skill_ID);//populate list of skill ids to compare by id
+                }
+                for (int i=0; i<original.Count; i++)
+                {
+                    //if (!original.Contains(staffVM.StaffSkills[i]))
+                    if (!originalIDs.Contains(staffVM.SelectedStaffData.StaffSkills[i].Skill_ID)) //new ID detected
+                    {
+                        //altered.Add(staffVM.StaffSkills[i].Skill_ID);
+                        db.Staff_Skills.Add(staffVM.SelectedStaffData.StaffSkills[i]);
+                    }
+                    //else if ()
+                    else //possible modified entry
+                    {
+                        //db.Entry(original.Find(staffVM.StaffSkills[i]).CurrentValues.SetValues(staffVM.StaffSkills[i]);
+                    }
+                }
+                //db.Entry(original[i]).CurrentValues.SetValues
+                //original.StartDate = project.StartDate;
+                //original.Duration = project.Duration;
+                //doSomething();
+                //db.Entry(original).CurrentValues.SetValues(project);
+                db.SaveChanges();
+            }
+            return View(staffVM);
+            //for (int i = 0; i < skill_ids.Count; i++)
+            //{
+            //Staff_Skill staff_Skill = db.Staff_Skills.Find(staff_id, skill_ids[i]);
+            //if ()
+            //}
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

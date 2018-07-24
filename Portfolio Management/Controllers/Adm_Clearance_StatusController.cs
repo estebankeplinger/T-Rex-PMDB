@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Portfolio_Management.Models;
+using System.Diagnostics;
 
 namespace Portfolio_Management.Controllers
 {
@@ -47,12 +48,34 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Clearance_Status")] Adm_Clearance_Status adm_Clearance_Status)
+        public ActionResult Create([Bind(Include = "Clearance_Status")] Adm_Clearance_Status adm_Clearance_Status)
         {
             if (ModelState.IsValid)
             {
-                db.Adm_Clearance_Status.Add(adm_Clearance_Status);
-                db.SaveChanges();
+                
+                try
+                {
+                    Debug.WriteLine("This is the id: " + adm_Clearance_Status.ID);
+                    db.Adm_Clearance_Status.Add(adm_Clearance_Status);
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
                 return RedirectToAction("Index");
             }
 

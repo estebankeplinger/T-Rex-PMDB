@@ -4253,3 +4253,13 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: #fff;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fafafa;
+}
+.table-striped>thead {
+    background-color: #fff;
+}

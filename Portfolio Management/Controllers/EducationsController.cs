@@ -18,10 +18,10 @@ namespace Portfolio_Management.Controllers
         {
             StaffDashboardViewModel sdVM = new StaffDashboardViewModel();
             sdVM.SelectedStaffData.Staff = db.Staffs.Find(id);
-
+            int i = 0;
             //get user's educations
             List<Education> selectedStaffEducations = db.Educations.Include(x => x.Staff).Where(x => x.Staff_ID == sdVM.SelectedStaffData.Staff.ID).ToList();
-
+            
             //Map user's educations to view model: ManageEducationsDataList
             foreach (var education in selectedStaffEducations)
             {
@@ -34,18 +34,28 @@ namespace Portfolio_Management.Controllers
                 manageEducationsVM.RemoveEducation = false;
                 manageEducationsVM.StaffName = education.Staff.Staff_Name;
                 manageEducationsVM.EducationID = education.ID;
+                manageEducationsVM.CurrentListIndex = i;
+                manageEducationsVM.IsNewSkill = false;
 
+                i++;
                 sdVM.ManageEducationsDataList.Add(manageEducationsVM);
             }
 
-            for(int i = 0; i < 4; i++)
-            {
-                sdVM.ManageEducationsDataList.Add(new ManageStaffEducationsViewModel());
-            }
-            ViewBag.Deg_ID = new SelectList(db.Adm_Degrees, "ID", "Degree");
+           
+            ViewBag.DegSelectList = new SelectList(db.Adm_Degrees, "ID", "Degree");
             ViewBag.ListDegrees = db.Adm_Degrees;
 
             return PartialView("_staffEducationsModal", sdVM);
+        }
+
+        public ActionResult addSingleEducation()
+        {
+            ViewBag.ListDegrees = db.Adm_Degrees;
+            ViewBag.DegSelectList = new SelectList(db.Adm_Degrees, "ID", "Degree");
+
+            ManageStaffEducationsViewModel newSEVM = new ManageStaffEducationsViewModel();
+            newSEVM.IsNewSkill = true;
+            return PartialView("_singleStaffEducation", newSEVM);
         }
 
         // StaffSkillAction: POST
@@ -55,10 +65,12 @@ namespace Portfolio_Management.Controllers
         {
             string currentUserName = getCurrentUserFullName();
             DateTime currentTime = System.DateTime.Now;
+            DateTime nullDateTimeValue = new DateTime(0001, 1, 1, 12, 0, 0);
+            int dateCompareResult = 0;
+       
 
             if (ModelState.IsValid)
             {
-                
                 foreach(var editEducation in model.ManageEducationsDataList)
                 {
                     //User wants to delete education
@@ -96,25 +108,33 @@ namespace Portfolio_Management.Controllers
                     else if(editEducation.HasEducation == false)
                     {
                         //User added new Education
-                        if (editEducation.DegreeID != null && editEducation.School != null && editEducation.CompletedDate != null)
-                        {
-                            Education newEducation = new Education();
-                            newEducation.Staff_ID = editEducation.StaffID;
-                            newEducation.Degree_ID = editEducation.DegreeID;
-                            newEducation.School = editEducation.School;
-                            newEducation.Completed_Date = editEducation.CompletedDate;
-                            newEducation.Created_By = currentUserName;
-                            newEducation.Created_On = currentTime;
-                            newEducation.Modified_By = currentUserName;
-                            newEducation.Modified_On = currentTime;
+                        Education newEducation = new Education();
+                        newEducation.Staff_ID = editEducation.StaffID;
+                        newEducation.Degree_ID = editEducation.DegreeID;
+                        newEducation.School = editEducation.School;
+                        newEducation.Completed_Date = editEducation.CompletedDate;
+                        newEducation.Created_By = currentUserName;
+                        newEducation.Created_On = currentTime;
+                        newEducation.Modified_By = currentUserName;
+                        newEducation.Modified_On = currentTime;
 
-                            db.Educations.Add(newEducation);
-                        }
+                        db.Educations.Add(newEducation);
+                    }
+                }
+            }
+            else
+            {
+                List<string> modelStateErrors = new List<string>();
+                foreach (ModelState modelState in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        modelStateErrors.Add(error.ErrorMessage);
                     }
                 }
             }
 
-            //db.SaveChanges();
+            db.SaveChanges();
             return RedirectToAction("Index", "Staff");
         }
 

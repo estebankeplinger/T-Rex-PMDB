@@ -37,41 +37,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="modal-skill-table-body">
-                                                @for (int i = 0; i < Model.ManageEducationsDataList.Count; i++)
+
+                                                @foreach (var staffEducation in Model.ManageEducationsDataList)
                                                 {
-                                                    <tr>
-                                                        <td>
-                                                            @if (Model.ManageEducationsDataList[i].HasEducation == true)
-                                                            {
-                                                                @Html.DropDownListFor(modelItem => Model.ManageEducationsDataList[i].DegreeID, new SelectList(Model.AllEducationsData.Degrees, "ID", "Degree", Model.ManageEducationsDataList[i].DegreeID), new { @class = "form-control" })
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.DropDownListFor(modelItem => Model.ManageEducationsDataList[i].DegreeID, new SelectList(ViewBag.ListDegrees, "ID", "Degree"), "-- Select Degree --", new { @class = "form-control" })
-                                                            }
-                                                            @Html.ValidationMessageFor(modelItem => Model.ManageEducationsDataList[i].DegreeID, "", new { @class = "text-danger" })
-                                                        </td>
-                                                        <td>
-                                                            @Html.EditorFor(modelItem => Model.ManageEducationsDataList[i].School)
-                                                            @Html.ValidationMessageFor(modelItem => Model.ManageEducationsDataList[i].School, "", new { @class = "text-danger" })
-                                                        </td>
-                                                        <td>
-                                                            @Html.EditorFor(modelItem => Model.ManageEducationsDataList[i].CompletedDate)
-                                                            @Html.ValidationMessageFor(modelItem => Model.ManageEducationsDataList[i].CompletedDate, "", new { @class = "text-danger" })
-                                                        </td>
-                                                        <td style="padding:0px 4px 0px 0px; text-align:center;">
-                                                            @if (Model.ManageEducationsDataList[i].HasEducation == true)
-                                                            {
-                                                                @Html.CheckBoxFor(modelItem => Model.ManageEducationsDataList[i].RemoveEducation)
-                                                                @Html.ValidationMessageFor(modelItem => Model.ManageEducationsDataList[i].RemoveEducation, "", new { @class = "text-danger" })
-                                                            }
-                                                        </td>
-                                                        @Html.HiddenFor(modelItem => Model.ManageEducationsDataList[i].StaffID)
-                                                        @Html.HiddenFor(modelItem => Model.ManageEducationsDataList[i].EducationID)
-                                                    </tr>
+                                                    Html.RenderPartial("_singleStaffEducation", staffEducation);
                                                 }
                                             </tbody>
                                         </table>
+                                        <input style="text-align:left" type="button" id="addemployee" name="addemployee" value="Add Employee" class="btn btn-default" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -79,7 +52,6 @@
                                         <input type="submit" value="Submit" class="btn btn-default" />
                                     </div>
                                 </div>
-
                             </div>
                         }
                     </div>
@@ -90,4 +62,19 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $('#addemployee').on('click', function () {
+            $.ajax({
+                async: false,
+                url: '/Educations/addSingleEducation'
+            }).success(function (partialView) {
+                $('#modal-skill-table-body').append(partialView);
+            });
+        });
+
+        //$("#deleteRow").live("click", function () {
+        //    $(this).parents("#employeeRow:first").remove();
+        //    return false;
+        //});
+    </script>
 </div>

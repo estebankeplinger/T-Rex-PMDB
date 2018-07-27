@@ -1,0 +1,38 @@
+﻿@model Portfolio_Management.Models.ManageStaffEducationsViewModel
+
+
+<tr @*id="employeeRow" class="employeeRow"*@>
+    @using (Html.BeginCollectionItem("ManageEducationsDataList"))
+    {
+        <td>
+            @if (Model.HasEducation == true)
+            {
+                @Html.DropDownListFor(modelItem => Model.DegreeID, new SelectList(ViewBag.ListDegrees, "ID", "Degree", Model.DegreeID), new { @class = "form-control" })
+            }
+            else
+            {
+                @Html.DropDownListFor(modelItem => Model.DegreeID, (SelectList)ViewBag.DegSelectList, "-- Select Degree --", new { @class = "form-control" })
+            }
+            @Html.ValidationMessageFor(modelItem => Model.DegreeID, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.EditorFor(modelItem => Model.School, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(modelItem => Model.School, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.EditorFor(modelItem => Model.CompletedDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(modelItem => Model.CompletedDate, "", new { @class = "text-danger" })
+        </td>
+        <td style="padding:0px 4px 0px 0px; text-align:center;">
+            @if (Model.HasEducation == true || Model.IsNewSkill == true)
+            {
+                @Html.CheckBoxFor(modelItem => Model.RemoveEducation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(modelItem => Model.RemoveEducation, "", new { @class = "text-danger" })
+            }
+        </td>
+        @Html.HiddenFor(modelItem => Model.StaffID)
+        @Html.HiddenFor(modelItem => Model.EducationID)
+        @Html.HiddenFor(modelItem => Model.CurrentListIndex)
+        @*<a href="#" id="deleteRow" class="deleteRow" onclick="deleteFunction()">Delete</a>*@
+    }
+</tr>

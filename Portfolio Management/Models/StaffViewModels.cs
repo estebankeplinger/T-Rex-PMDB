@@ -58,7 +58,8 @@ namespace Portfolio_Management.Models
         [Display(Name ="Remove Skill?")]
         public bool RemoveSKill { get; set; }
 
-       public string StaffSkillRadioButtonID { get; set; }
+        public string StaffSkillRadioButtonID { get; set; }
+        
     }
 
     public class ManageStaffEducationsViewModel
@@ -72,7 +73,10 @@ namespace Portfolio_Management.Models
         [Display(Name ="Remove Education?")]
         public bool RemoveEducation { get; set; }
         public bool HasEducation { get; set; }
+        public int CurrentListIndex { get; set; }
+        public bool IsNewSkill { get; set; }
     }
+    
 
     public class AllStaffViewModel
     {

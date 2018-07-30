@@ -19,9 +19,10 @@ namespace Portfolio_Management.Controllers
             StaffDashboardViewModel sdVM = new StaffDashboardViewModel();
             sdVM.SelectedStaffData.Staff = db.Staffs.Find(id);
             int i = 0;
+
             //get user's educations
             List<Education> selectedStaffEducations = db.Educations.Include(x => x.Staff).Where(x => x.Staff_ID == sdVM.SelectedStaffData.Staff.ID).ToList();
-            
+
             //Map user's educations to view model: ManageEducationsDataList
             foreach (var education in selectedStaffEducations)
             {
@@ -41,7 +42,7 @@ namespace Portfolio_Management.Controllers
                 sdVM.ManageEducationsDataList.Add(manageEducationsVM);
             }
 
-           
+
             ViewBag.DegSelectList = new SelectList(db.Adm_Degrees, "ID", "Degree");
             ViewBag.ListDegrees = db.Adm_Degrees;
 
@@ -67,36 +68,54 @@ namespace Portfolio_Management.Controllers
             DateTime currentTime = System.DateTime.Now;
             DateTime nullDateTimeValue = new DateTime(0001, 1, 1, 12, 0, 0);
             int dateCompareResult = 0;
-       
+
 
             if (ModelState.IsValid)
             {
-                foreach(var editEducation in model.ManageEducationsDataList)
+                //create copy of data while we enumerate through the model
+                List<ManageStaffEducationsViewModel> postIteratorCopy = model.ManageEducationsDataList;
+
+                foreach (var editedEducation in model.ManageEducationsDataList)
                 {
                     //User wants to delete education
-                    if(editEducation.HasEducation == true && editEducation.RemoveEducation == true)
+                    if (editedEducation.RemoveEducation == true)
                     {
-                        Education educationToFind = new Education();
-                        educationToFind = db.Educations.Where(x => x.ID == editEducation.EducationID).SingleOrDefault();
 
-                        db.Educations.Attach(educationToFind);
-                        db.Educations.Remove(educationToFind);
-                    }
+                        if (editedEducation.HasEducation == true)
+                        {
+                            Education educationToFind = new Education();
+                            educationToFind = db.Educations.Where(x => x.ID == editedEducation.EducationID).SingleOrDefault();
+
+                            db.Educations.Attach(educationToFind);
+                            db.Educations.Remove(educationToFind);
+                        }
+                        else
+                        {
+
+                            //don't look for database record
+                            //just remove from list
+                            if (editedEducation.IsNewSkill == true)
+                            {
+                                postIteratorCopy.Remove(editedEducation);
+                            }
+                        }
+                    }//edited 7/27
+
                     //Check if user edited education
-                    else if(editEducation.HasEducation == true && editEducation.RemoveEducation == false)
+                    else if (editedEducation.HasEducation == true && editedEducation.RemoveEducation == false)
                     {
                         Education educationFoundFromDb = new Education();
-                        educationFoundFromDb = db.Educations.Where(x => x.ID == editEducation.EducationID).SingleOrDefault();
+                        educationFoundFromDb = db.Educations.Where(x => x.ID == editedEducation.EducationID).SingleOrDefault();
 
                         //User modified a field in their existing Educations
-                        if (editEducation.DegreeID != educationFoundFromDb.Degree_ID ||
-                            editEducation.School != educationFoundFromDb.School ||
-                            editEducation.CompletedDate != educationFoundFromDb.Completed_Date)
+                        if (editedEducation.DegreeID != educationFoundFromDb.Degree_ID ||
+                            editedEducation.School != educationFoundFromDb.School ||
+                            editedEducation.CompletedDate != educationFoundFromDb.Completed_Date)
                         {
-                            educationFoundFromDb.Degree_ID = editEducation.DegreeID;
-                            educationFoundFromDb.School = editEducation.School;
-                            educationFoundFromDb.Completed_Date = editEducation.CompletedDate;
-                            educationFoundFromDb.Staff_ID = editEducation.StaffID;
+                            educationFoundFromDb.Degree_ID = editedEducation.DegreeID;
+                            educationFoundFromDb.School = editedEducation.School;
+                            educationFoundFromDb.Completed_Date = editedEducation.CompletedDate;
+                            educationFoundFromDb.Staff_ID = editedEducation.StaffID;
                             educationFoundFromDb.Modified_By = currentUserName;
                             educationFoundFromDb.Modified_On = currentTime;
 
@@ -105,14 +124,14 @@ namespace Portfolio_Management.Controllers
                             entry.State = EntityState.Modified;
                         }
                     }
-                    else if(editEducation.HasEducation == false)
+                    else if (editedEducation.HasEducation == false)
                     {
                         //User added new Education
                         Education newEducation = new Education();
-                        newEducation.Staff_ID = editEducation.StaffID;
-                        newEducation.Degree_ID = editEducation.DegreeID;
-                        newEducation.School = editEducation.School;
-                        newEducation.Completed_Date = editEducation.CompletedDate;
+                        newEducation.Staff_ID = editedEducation.StaffID;
+                        newEducation.Degree_ID = editedEducation.DegreeID;
+                        newEducation.School = editedEducation.School;
+                        newEducation.Completed_Date = editedEducation.CompletedDate;
                         newEducation.Created_By = currentUserName;
                         newEducation.Created_On = currentTime;
                         newEducation.Modified_By = currentUserName;
@@ -120,23 +139,23 @@ namespace Portfolio_Management.Controllers
 
                         db.Educations.Add(newEducation);
                     }
-                }
-            }
-            else
-            {
-                List<string> modelStateErrors = new List<string>();
-                foreach (ModelState modelState in ViewData.ModelState.Values)
-                {
-                    foreach (ModelError error in modelState.Errors)
-                    {
-                        modelStateErrors.Add(error.ErrorMessage);
                     }
                 }
-            }
+            else
+            {
+                    List<string> modelStateErrors = new List<string>();
+                    foreach (ModelState modelState in ViewData.ModelState.Values)
+                    {
+                        foreach (ModelError error in modelState.Errors)
+                        {
+                            modelStateErrors.Add(error.ErrorMessage);
+                        }
+                    }
+                }
 
-            db.SaveChanges();
-            return RedirectToAction("Index", "Staff");
-        }
+                db.SaveChanges();
+                return RedirectToAction("Index", "Staff");
+            }
 
         // GET: Educations
         public ActionResult Index()
@@ -202,7 +221,7 @@ namespace Portfolio_Management.Controllers
             }
 
             Education education = db.Educations.SingleOrDefault(x => x.ID == id && x.Staff_ID == staff_id);
-            
+
             if (education == null)
             {
                 return HttpNotFound();

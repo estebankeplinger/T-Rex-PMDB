@@ -80,7 +80,6 @@ namespace Portfolio_Management.Controllers
                     //User wants to delete education
                     if (editedEducation.RemoveEducation == true)
                     {
-
                         if (editedEducation.HasEducation == true)
                         {
                             Education educationToFind = new Education();
@@ -89,17 +88,11 @@ namespace Portfolio_Management.Controllers
                             db.Educations.Attach(educationToFind);
                             db.Educations.Remove(educationToFind);
                         }
-                        else
+                        else if (editedEducation.IsNewSkill == true)
                         {
-
-                            //don't look for database record
-                            //just remove from list
-                            if (editedEducation.IsNewSkill == true)
-                            {
-                                postIteratorCopy.Remove(editedEducation);
-                            }
+                            postIteratorCopy.Remove(editedEducation);
                         }
-                    }//edited 7/27
+                    }
 
                     //Check if user edited education
                     else if (editedEducation.HasEducation == true && editedEducation.RemoveEducation == false)
@@ -139,23 +132,23 @@ namespace Portfolio_Management.Controllers
 
                         db.Educations.Add(newEducation);
                     }
-                    }
                 }
+            }
             else
             {
-                    List<string> modelStateErrors = new List<string>();
-                    foreach (ModelState modelState in ViewData.ModelState.Values)
+                List<string> modelStateErrors = new List<string>();
+                foreach (ModelState modelState in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelState.Errors)
                     {
-                        foreach (ModelError error in modelState.Errors)
-                        {
-                            modelStateErrors.Add(error.ErrorMessage);
-                        }
+                        modelStateErrors.Add(error.ErrorMessage);
                     }
                 }
-
-                db.SaveChanges();
-                return RedirectToAction("Index", "Staff");
             }
+
+            db.SaveChanges();
+            return RedirectToAction("Index", "Staff");
+        }
 
         // GET: Educations
         public ActionResult Index()

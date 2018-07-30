@@ -104,7 +104,6 @@ namespace Portfolio_Management.Models
         {
             Skills = new List<Ref_Skill>();
             Proficiencies = new List<Adm_Proficiency>();
-
         }
         public List<Ref_Skill> Skills { get; set; }
         public List<Adm_Proficiency> Proficiencies { get; set; }

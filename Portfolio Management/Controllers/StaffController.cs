@@ -17,22 +17,57 @@ namespace Portfolio_Management.Controllers
     {
 
         private PMDataEntities db = new PMDataEntities();
-        //private StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
+        private StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
 
         // GET: Staff
-        public ActionResult Index()
+        public ActionResult Index(/*string searchString*/)
         {
-            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
+
+            var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason).Include(s => s.Adm_Prefix).Include(s => s.Adm_Suffix).Include(s => s.Ref_Company).Include(s => s.Staff_Clearance);
+            //Breaks datatable integration with index in url 
+            //List<Staff> staffList = new List<Staff>();
+
+            //staffList = staffs.ToList();
+            //if (!string.IsNullOrEmpty(searchString))
+            //{
+            //    foreach (var user in staffs.ToList())
+            //    {
+            //        //if user doesn't match search string, remove them from user list to show
+            //        if (!user.First_Name.Contains(searchString) && !user.Last_Name.Contains(searchString) &&
+            //            !user.Staff_Name.Contains(searchString))
+            //            staffList.Remove(user);
+            //    }
+            //}
+
+            
+            StaffDashboardVM.AllStaffData.Staff = staffs.ToList();
 
             return View(StaffDashboardVM);
         }
 
+        [HttpGet]
+        public ActionResult Action(int? id)
+        {
+            StaffActionsViewModel staffActionsVM = new StaffActionsViewModel();
+
+            if (id == null)
+            {
+                staffActionsVM.IsStaffSelected = false;
+                ViewBag.selectStaffError = "Choose a staff member to work with below"; 
+                return RedirectToAction("Index");
+            }
+
+            staffActionsVM.StaffSelected = db.Staffs.Find(id);
+            staffActionsVM.IsStaffSelected = true;
+            //StaffEducationAction(staffActionsVM);
+
+            return View(staffActionsVM);
+        }
+
         public ActionResult StaffEducationAction(int? id)
         {
-            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
             if (id != null)
             {
-
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
                 foreach (var education in StaffDashboardVM.SelectedStaffData.Staff.Educations)
                 {
@@ -43,9 +78,50 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffEducationAction", StaffDashboardVM);
         }
 
+        public ActionResult StaffSkillAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach(var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
+                }
+
+                foreach (var ref_skill in db.Ref_Skills)
+                {
+                    StaffDashboardVM.AllSkillsData.Skills.Add(ref_skill);
+                }
+                foreach (var adm_prof in db.Adm_Proficiencies)
+                {
+                    StaffDashboardVM.AllSkillsData.Proficiencies.Add(adm_prof);
+                }
+
+
+                List<int> skillList = new List<int>();
+                foreach (var item in db.Ref_Skills)
+                {
+                    skillList.Add(item.ID);
+                }
+                List<int> staffSkillList = new List<int>();
+                foreach (var item in StaffDashboardVM.SelectedStaffData.StaffSkills)
+                {
+                    staffSkillList.Add(item.Skill_ID);
+                }
+                IEnumerable<int> diffSkillList = new List<int>();
+                diffSkillList = skillList.Except(staffSkillList);
+
+
+                //public SelectList(IEnumerable items, string dataValueField, string dataTextField, object selectedValue, IEnumerable disabledValues);
+                ViewBag.Skill_ID = new SelectList(db.Ref_Skills, "ID", "Skill");
+                ViewBag.Proficiency_ID = new SelectList(db.Adm_Proficiencies, "Proficiency_ID", "Proficiency");
+            }
+
+            return PartialView("_StaffSkillAction", StaffDashboardVM);
+        }
+
         public ActionResult StaffPositionAction(int? id)
         {
-            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
             if (id != null)
             {
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
@@ -57,34 +133,91 @@ namespace Portfolio_Management.Controllers
             return PartialView("_StaffPositionAction", StaffDashboardVM);
         }
 
+        public ActionResult StaffCertificationAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var certification in StaffDashboardVM.SelectedStaffData.Staff.Certifications)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffCertifications.Add(certification);
+                }
+            }
+            return PartialView("_StaffCertificationAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffAssetAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var asset in StaffDashboardVM.SelectedStaffData.Staff.Staff_Asset)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffAssets.Add(asset);
+                }
+            }
+            return PartialView("_StaffAssetAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffTrainingAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var training in StaffDashboardVM.SelectedStaffData.Staff.Staff_Training)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffTrainings.Add(training);
+                }
+            }
+            return PartialView("_StaffTrainingAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffClearanceAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var clearance in StaffDashboardVM.SelectedStaffData.Staff.Staff_Clearance)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffClearances.Add(clearance);
+                }
+            }
+            return PartialView("_StaffClearanceAction", StaffDashboardVM);
+        }
+
+        public ActionResult StaffContractAction(int? id)
+        {
+            if (id != null)
+            {
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                foreach (var position in StaffDashboardVM.SelectedStaffData.Staff.Staff_Position)
+                {
+                    StaffDashboardVM.SelectedStaffData.StaffContracts.Add(position.Contract_Position.Contract);
+                }
+            }
+            return PartialView("_StaffContractAction", StaffDashboardVM);
+        }
+
         public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
         {
             ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);
-
+            
             return PartialView("_StaffExitAction", staffActionsVM);
         }
 
- 
-        public ActionResult StaffSkillAction(int? id)
+        public ActionResult StaffViewAction(int? id)
         {
-            StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
             if (id != null)
             {
-                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id); //find staff using selected id from table row click
-
-                //Load user's CURRENT skills
-                foreach (var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
-                {
-                    StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
-                }
+                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
             }
-
-            return PartialView("_StaffSkillAction", StaffDashboardVM);
+            return PartialView("_StaffView", StaffDashboardVM);
         }
+
 
         public ActionResult Dashboard()
         {
-
+            
             StaffDashboardViewModel staffDBVM = new StaffDashboardViewModel();
             staffDBVM.NumStaff = db.Staffs.Count();
             staffDBVM.CompanyChart = getCompanyChartData();
@@ -103,7 +236,7 @@ namespace Portfolio_Management.Controllers
                 StaffDashboardViewModel.CompanyData companyData = new StaffDashboardViewModel.CompanyData();
                 companyData.CompanyID = company.ID;
                 companyData.CompanyName = company.Company;
-
+                
                 foreach (var staff in db.Staffs.ToList())
                 {
                     if (company.ID == staff.Company_ID)
@@ -162,7 +295,7 @@ namespace Portfolio_Management.Controllers
                     //&&!user.Desk_Phone.Contains(searchString))
                     {
                         clVM.Staffs.Remove(user);
-                    }
+                    }  
                 }
             }
             return View("_ContactListView", clVM);

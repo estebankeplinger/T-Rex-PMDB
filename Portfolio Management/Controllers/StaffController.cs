@@ -177,10 +177,10 @@ namespace Portfolio_Management.Controllers
             if (id != null)
             {
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
-                foreach (var clearance in StaffDashboardVM.SelectedStaffData.Staff.Staff_Clearance)
+                /*foreach (var clearance in StaffDashboardVM.SelectedStaffData.Staff.Staff_Clearance)
                 {
                     StaffDashboardVM.SelectedStaffData.StaffClearances.Add(clearance);
-                }
+                }*/
             }
             return PartialView("_StaffClearanceAction", StaffDashboardVM);
         }

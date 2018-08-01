@@ -2,206 +2,175 @@
 
 @{
     ViewBag.Title = "Staff";
+    Layout = "~/Views/Shared/_StaffLayout.cshtml";
 }
 
 <div class="right_col" role="main">
-
     <div class="">
 
-        @*<div class="clearfix"></div>
-
-        @{ if (User.IsInRole("Manager"))
-            {
-                Html.RenderAction("ManagerMetrics", new { staffActionsVM = "Fun" });
-            }
-        }*@
-        @*<div class="row">
-            <a href='@Url.Action("ContactList", "Staff")'>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="tile-stats">
-
-                        <div class="count">Contact List</div>
-
-                        <p>Click to open</p>
-                    </div>
-                </div>
-            </a>
-            <a href='@Url.Action("Index", "Educations")'>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="tile-stats">
-
-                        <div class="count">Education</div>
-
-                        <p>Click to open</p>
-                    </div>
-                </div>
-            </a>
-            <a href='@Url.Action("Index", "Staff_Skill")'>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="tile-stats">
-
-                        <div class="count">Staff Skill</div>
-
-                        <p>Click to open</p>
-                    </div>
-                </div>
-            </a>
-        </div>*@
         <div class="row">
-            <!--Table Data -->
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon">
+                        <i class="fa fa-caret-square-o-right"></i>
+                    </div>
+                    <div class="count">347</div>
+
+                    <h3>Staff Members</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon">
+                        <i class="fa fa-comments-o"></i>
+                    </div>
+                    <div class="count">151</div>
+
+                    <h3>Contracts</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon">
+                        <i class="fa fa-sort-amount-desc"></i>
+                    </div>
+                    <div class="count">59</div>
+
+                    <h3>Open Recs</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon">
+                        <i class="fa fa-check-square-o"></i>
+                    </div>
+                    <div class="count">219</div>
+
+                    <h3>Security Clearances</h3>
+                    <p>Lorem ipsum psdea itgum rixt.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="instructions" style="text-align:center;">
+            Select a staff member.
+        </div>
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Staff</h2>
-
-                        <!--Navigation toolbar (top right)-->
+                        <h2><i class="fa fa-bars"></i> Tabs </h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
-                                <a title="New Staff" href="/Staff/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a title="Collapse" class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            @*@<li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Settings 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Settings 2</a>
-                                        </li>
-                                    </ul>
-                                </li>*@
-                            <li>
-                                <a title="Close" class="close-link"><i class="fa fa-close"></i></a>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-
-                    <!-- Search bar-->
-                    <div class="title_right">
-                        <div class="col-md-3 col-sm-3 col-xs-6 form-group pull-right top_search">
-                            @*@using (Html.BeginForm("Index", "Staff"))
-                            {*@
-                            <div class="input-group">
-                                @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search Staff", @id = "searchStaff" })
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Go</button>
-                                </span>
-                            </div>
-                            @*}*@
-                        </div>
-                    </div>
-                    <!-- /Search bar-->
-
                     <div class="x_content">
-                        <div style="overflow-x:auto">
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayNameFor(model => Model.AllStaffData.Staff[0].Staff_Name)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Last_Name)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].First_Name)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Ref_Company.Company)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Location)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Cell_Phone)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Company_Email)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.AllStaffData.Staff[0].Hire_Date)
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.AllStaffData.Staff)
-                                    {
-                                    <tr data-id="@item.ID" class="clickableRow">
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Staff_Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Last_Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.First_Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Ref_Company.Company)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Location)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Cell_Phone)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Company_Email)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Hire_Date)
-                                        </td>
-                                        <td>
-                                            <a href="@Url.Action("Edit", "Staff", new { id = item.ID })"><span title="Edit" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
-                                            <a href="@Url.Action("Details", "Staff", new { id = item.ID })"><span title="Details" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a> |
-                                            <a href="@Url.Action("Delete", "Staff", new { id = item.ID })"><span title="Delete" class="glyphicon glyphicon-trash" aria-hidden="true"></span></a> |
-                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
-                                            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-                                            @*<a data-id="(modelItem => item.ID)" id="action" href='@Url.Action("StaffEducationAction", "Staff", new { id = item.ID })'>
-                                                    <span title="Actions" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                                </a>*@
-                                            @*<button id="action" type="button" class="btn btn-default" aria-label="Left Align">
-                                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                                </button>*@
-                                            @*<button id="action "class="btn"><i class="glyphicon glyphicon-menu-hamburger"></i> Actions</button>*@
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
+
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#tab_content1" id="tab1" role="tab" data-toggle="tab" aria-expanded="true">Staff Details</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content2" role="tab" id="tab2" data-toggle="tab" aria-expanded="false">Education</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content3" role="tab" id="tab3" data-toggle="tab" aria-expanded="false">Certifications</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content4" role="tab" id="tab4" data-toggle="tab" aria-expanded="false">Skills</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content5" role="tab" id="tab5" data-toggle="tab" aria-expanded="false">Positions</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content6" role="tab" id="tab6" data-toggle="tab" aria-expanded="false">Training</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content7" role="tab" id="tab7" data-toggle="tab" aria-expanded="false">Assets</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content8" role="tab" id="tab8" data-toggle="tab" aria-expanded="false">Clearance</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content9" role="tab" id="tab9" data-toggle="tab" aria-expanded="false">Contracts</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                    <!-- Staff member view -->
+                                    <div id="staffView">
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                    <div id="staffEducation">
+                                        @Html.Partial("_StaffEducationAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                    <div id="staffCertification">
+                                        @Html.Partial("_StaffCertificationAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+                                    <div id="staffSkill">
+                                        @Html.Partial("_StaffSkillAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">
+                                    <div id="staffPosition">
+                                        @Html.Partial("_StaffPositionAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="profile-tab">
+                                    <div id="staffTraining">
+                                        @Html.Partial("_StaffTrainingAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content7" aria-labelledby="profile-tab">
+                                    <div id="staffAsset">
+                                        @Html.Partial("_StaffAssetAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content8" aria-labelledby="profile-tab">
+                                    <div id="staffClearance">
+                                        @Html.Partial("_StaffClearanceAction")
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content9" aria-labelledby="profile-tab">
+                                    <div id="staffContract">
+                                        @Html.Partial("_StaffContractAction")
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-            <!-- Table Data -->
-        </div>
-        <div class="row">
-            <div id="staffEducation">
-                @*@Html.Partial("_StaffEducationAction")*@
-            </div>
-            <div id="staffSkill">
-                @*@Html.Partial("_StaffSkillAction")*@
 
-                @*@Html.Partial("_SkillModal")*@
-            </div>
         </div>
-        <div class="row">
-            <div id="staffPosition">
-                @*@Html.Partial("_StaffPositionAction")*@
-            </div>
-        </div>
-        <div class="row">
-            <div>
-
-            </div>
-        </div>
-    </div>
     <script>
         $(document).ready(function () {
             var users = $('#datatable-responsive').DataTable({
@@ -222,6 +191,7 @@
                     }
                 }
             });
+
             $('#searchStaff').keyup(function () {
                 users.search($(this).val()).draw();
             })
@@ -229,48 +199,123 @@
     </script>
 
     <script>
-    $('.clickableRow').click(function () {
-        var targetRow = $(this).data('id');
+        function clearInstructions() {
+            $("#instructions").html("&nbsp;");
+        }
 
-        $.ajax({
-            url: '@Url.Action("StaffEducationAction","Staff")',
-            data: { id: targetRow },
-            method: "GET",
-            success: function (data) {
-               
-                $("#staffEducation").empty();
-                $("#staffEducation").html(data);
-            },
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            }
-        });
-        $.ajax({
-            url: '@Url.Action("StaffSkillAction", "Staff")',
-            data: { id: targetRow },
-            method: "GET",
-            success: function (data) {
-             
-                $("#staffSkill").empty();
-                $("#staffSkill").html(data);
-            },
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            }
-        });
-        $.ajax({
-            url: '@Url.Action("StaffPositionAction","Staff")',
-            data: { id: targetRow },
-            method: "GET",
-            success: function (data) {
-                $("#staffPosition").empty();
-                $("#staffPosition").html(data);
-            },
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            }
-        });
-    })
+        $('.clickableRow').click(function () {
+            var targetRow = $(this).data('id');
+            clearInstructions();
+
+            $.ajax({
+                url: '@Url.Action("StaffEducationAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffEducation").empty();
+                    $("#staffEducation").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffCertificationAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffCertification").empty();
+                    $("#staffCertification").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffSkillAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffSkill").empty();
+                    $("#staffSkill").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffPositionAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffPosition").empty();
+                    $("#staffPosition").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffAssetAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffAsset").empty();
+                    $("#staffAsset").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffTrainingAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffTraining").empty();
+                    $("#staffTraining").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffClearanceAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffClearance").empty();
+                    $("#staffClearance").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffContractAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffContract").empty();
+                    $("#staffContract").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("StaffViewAction","Staff")',
+                data: { id: targetRow },
+                method: "GET",
+                success: function (data) {
+                    $("#staffView").empty();
+                    $("#staffView").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+        })
 
     </script>
 

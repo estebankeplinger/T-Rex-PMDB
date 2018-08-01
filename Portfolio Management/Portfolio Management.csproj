@@ -6169,6 +6169,15 @@
     <Content Include="Views\Educations\_staffEducationsModal.cshtml" />
     <Content Include="Views\Educations\_singleStaffEducation.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Staff\_SkillModal.cshtml" />
+    <Content Include="Views\Staff\_StaffAssetAction.cshtml" />
+    <Content Include="Views\Staff\_StaffCertificationAction.cshtml" />
+    <Content Include="Views\Staff\_StaffClearanceAction.cshtml" />
+    <Content Include="Views\Staff\_StaffContractAction.cshtml" />
+    <Content Include="Views\Staff\_StaffList.cshtml" />
+    <Content Include="Views\Staff\_StaffTrainingAction.cshtml" />
+    <Content Include="Views\Staff\_StaffView.cshtml" />
+    <Content Include="Views\Shared\_StaffLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

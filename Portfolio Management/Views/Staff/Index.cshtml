@@ -203,9 +203,15 @@
             $("#instructions").html("&nbsp;");
         }
 
+        function highlightRow(hrow) {
+            hrow.parent().children().removeClass("selected-row");
+            hrow.addClass("selected-row");
+        }
+
         $('.clickableRow').click(function () {
             var targetRow = $(this).data('id');
             clearInstructions();
+            highlightRow($(this));
 
             $.ajax({
                 url: '@Url.Action("StaffEducationAction","Staff")',

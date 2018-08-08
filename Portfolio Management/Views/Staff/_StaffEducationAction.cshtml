@@ -4,32 +4,34 @@
 
 @if (Model.SelectedStaffData.Staff != null)
 {
-    @*<div class="col-md-6 col-sm-10 col-xs-12">*@
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>
-                @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)'s Education
-            </h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <a href="/Educations/Create" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
-                </li>
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li>
-                    <a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div style="overflow-x:auto">
-                @if (Model.SelectedStaffData.StaffEducations.Count > 0)
-                {
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @{Html.RenderAction("ManageStaffEducationsModal", "Educations", new { id = Model.SelectedStaffData.Staff.ID });}
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)'s Education
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a title="Manage @Html.DisplayFor(model => model.SelectedStaffData.Staff.First_Name)' Education" data-toggle="modal" data-target="#staffEducationsModal" role="button" aria-expanded="false"><i class="fa fa-plus-square"></i></a>
+                    </li>
+                    <li>
+                        <a title="Collapse this view" class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li>
+                        <a title="Close this view" class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div style="overflow-x:auto">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.SelectedStaffData.StaffEducations[0].Degree_ID)
+                                    </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.SelectedStaffData.StaffEducations[0].School)
                                 </th>
@@ -45,6 +47,9 @@
                             @foreach (var item in Model.SelectedStaffData.StaffEducations)
                             {
                                 <tr>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.Degree_ID)
+                                        </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.School)
                                     </td>
@@ -56,7 +61,7 @@
                                     </td>
 
                                     <td>
-                                        <a href='@Url.Action("Edit", "Educations", new { id = item.ID })'>
+                                        <a href='@Url.Action("Edit", "Educations", new { id = item.ID,staff_id = item.Staff_ID })'>
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true" aria-label="Edit Education"></span>
                                         </a>
 
@@ -69,16 +74,9 @@
                             }
                         </tbody>
                     </table>
-                }
-                else
-                {
-                    <div>
-                        No education found.
-                    </div>
-                }
+                </div>
             </div>
         </div>
     </div>
-        @*</div>*@
-}
+            }
 <!-- /page content -->

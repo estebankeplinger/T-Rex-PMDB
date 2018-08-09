@@ -4253,24 +4253,3 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
-
-/**.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: red;
-}**/
-
-.table-striped>tbody>tr:nth-child(odd)>td {
-   background-color: #f9f9f9;
- }
-
-.table-striped>tbody>tr:nth-child(even)>td {
-   background-color: #ffffff;
- }
-
-.table-striped>tbody>tr:hover>td {
-   background-color: #f5f5f5;
- }
-
-.table-striped>tbody>tr.selected-row>td {
-   /*background-color: #e47f1c; t-rex color*/
-   background-color: #f5cea8;
- }

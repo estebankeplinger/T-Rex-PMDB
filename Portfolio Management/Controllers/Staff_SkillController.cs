@@ -169,38 +169,38 @@ namespace Portfolio_Management.Controllers
                 //Iterate over all skills user may have added/modified using client-filled form data
                 foreach (var newStaffSkill in model.ManageSkillDataList)
                 {
-                    if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == false) //User modified skill
+                    //Staff has this skill and does not want to remove it (possible modification)
+                    if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == false)
                     {
-                        bool test = ModelState.IsValid;
-                        Staff_Skill skillToAdd = new Staff_Skill();
-                        skillToAdd = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)
-                            .Where(x => x.Skill_ID == newStaffSkill.SkillID)
-                            .SingleOrDefault();
+                        Staff_Skill skillToModify = new Staff_Skill();
+                        skillToModify = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)
+                            .Where(x => x.Skill_ID == newStaffSkill.SkillID).SingleOrDefault();
 
-                        if (skillToAdd.Proficiency_ID != newStaffSkill.ProficiencyID)
+                        //User has modified the proficiency
+                        if (skillToModify.Proficiency_ID != newStaffSkill.ProficiencyID)
                         {
-                            skillToAdd.Proficiency_ID = newStaffSkill.ProficiencyID;
-                            skillToAdd.Modified_By = getCurrentUserFullName();
-                            skillToAdd.Modified_On = System.DateTime.Now;
-                            db.Staff_Skills.Attach(skillToAdd);
-                            var entry = db.Entry(skillToAdd);
+                            skillToModify.Proficiency_ID = newStaffSkill.ProficiencyID;
+                            skillToModify.Modified_By = getCurrentUserFullName();
+                            skillToModify.Modified_On = System.DateTime.Now;
+                            db.Staff_Skills.Attach(skillToModify);
+                            var entry = db.Entry(skillToModify);
                             entry.State = EntityState.Modified;
                         }
                     }
-                    //User wants to remove skill
+                    //Staff has this skill and wants to remove it
                     else if (newStaffSkill.HasSkill == true && newStaffSkill.RemoveSKill == true)
                     {
-                        Staff_Skill skillToAdd = new Staff_Skill();
-                        skillToAdd = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)
-                            .Where(x => x.Skill_ID == newStaffSkill.SkillID)
-                            .SingleOrDefault();
+                        Staff_Skill skillToRemove = new Staff_Skill();
+                        skillToRemove = db.Staff_Skills.Where(x => x.Staff_ID == newStaffSkill.StaffID)
+                            .Where(x => x.Skill_ID == newStaffSkill.SkillID).SingleOrDefault();
 
-                        db.Staff_Skills.Attach(skillToAdd);
-                        db.Staff_Skills.Remove(skillToAdd);
+                        db.Staff_Skills.Attach(skillToRemove);
+                        db.Staff_Skills.Remove(skillToRemove);
                     }
+                    //Staff does not have this skill
                     else if (newStaffSkill.HasSkill == false)
                     {
-                        //New skill to add
+                        //If the proficiency was selected, user wants to add this skill
                         if (newStaffSkill.ProficiencyID != 0) 
                         {
                             Staff_Skill newSkill = new Staff_Skill();

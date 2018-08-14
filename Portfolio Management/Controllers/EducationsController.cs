@@ -67,8 +67,6 @@ namespace Portfolio_Management.Controllers
             string currentUserName = getCurrentUserFullName();
             DateTime currentTime = System.DateTime.Now;
             DateTime nullDateTimeValue = new DateTime(0001, 1, 1, 12, 0, 0);
-            int dateCompareResult = 0;
-
 
             if (ModelState.IsValid)
             {

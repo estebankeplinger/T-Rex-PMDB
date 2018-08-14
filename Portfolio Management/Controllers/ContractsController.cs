@@ -38,6 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Contracts/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Customer_ID = new SelectList(db.Ref_Customers, "ID", "Customer");
             ViewBag.Program_Manager_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
             return View();
@@ -48,7 +49,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Customer_ID,POP_Start,POP_End,Program_Manager_ID,IsPrime,FillByDuration,Created_On,Created_By,Modified_On,Modified_By")] Contract contract)
+        public ActionResult Create([Bind(Include = "ID,Customer_ID,POP_Start,POP_End,Program_Manager_ID,IsPrime,FillByDuration,Created_On,Created_By,Modified_On,Modified_By,Title")] Contract contract)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace Portfolio_Management.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Customer_ID = new SelectList(db.Ref_Customers, "ID", "Customer", contract.Customer_ID);
             ViewBag.Program_Manager_ID = new SelectList(db.Staffs, "ID", "Staff_Name", contract.Program_Manager_ID);
             return View(contract);
@@ -74,6 +76,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Customer_ID = new SelectList(db.Ref_Customers, "ID", "Customer", contract.Customer_ID);
             ViewBag.Program_Manager_ID = new SelectList(db.Staffs, "ID", "Staff_Name", contract.Program_Manager_ID);
             return View(contract);
@@ -84,7 +87,7 @@ namespace Portfolio_Management.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Customer_ID,POP_Start,POP_End,Program_Manager_ID,IsPrime,FillByDuration,Created_On,Created_By,Modified_On,Modified_By")] Contract contract)
+        public ActionResult Edit([Bind(Include = "ID,Customer_ID,POP_Start,POP_End,Program_Manager_ID,IsPrime,FillByDuration,Created_On,Created_By,Modified_On,Modified_By,Title")] Contract contract)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +95,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Customer_ID = new SelectList(db.Ref_Customers, "ID", "Customer", contract.Customer_ID);
             ViewBag.Program_Manager_ID = new SelectList(db.Staffs, "ID", "Staff_Name", contract.Program_Manager_ID);
             return View(contract);

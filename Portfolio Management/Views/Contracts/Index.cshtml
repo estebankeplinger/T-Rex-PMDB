@@ -39,6 +39,9 @@
                                             @Html.DisplayNameFor(model => model.ID)
                                         </th>
                                         <th>
+                                            @Html.DisplayNameFor(model => model.Title)
+                                        </th>
+                                        <th>
                                             @Html.DisplayNameFor(model => model.POP_Start)
                                         </th>
                                         <th>
@@ -77,6 +80,9 @@
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.ID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.POP_Start)

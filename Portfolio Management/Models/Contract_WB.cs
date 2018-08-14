@@ -33,6 +33,7 @@ namespace Portfolio_Management.Models
         public System.DateTime Modified_On { get; set; }
         public string Modified_By { get; set; }
     
+        public virtual Contract Contract { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contract_Position> Contract_Position { get; set; }
     }

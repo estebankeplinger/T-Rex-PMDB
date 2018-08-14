@@ -38,6 +38,8 @@ namespace Portfolio_Management.Controllers
         // GET: Contract_WB/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title");
             return View();
         }
 
@@ -76,6 +78,7 @@ namespace Portfolio_Management.Controllers
                     return View(contract_WB);
                 }
             }
+            ViewBag.DateTime = DateTime.Now;
 
             return View(contract_WB);
         }

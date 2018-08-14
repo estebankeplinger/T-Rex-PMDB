@@ -19,6 +19,7 @@ namespace Portfolio_Management.Models
         {
             this.Contract_Position = new HashSet<Contract_Position>();
             this.Security_Workflow = new HashSet<Security_Workflow>();
+            this.Contract_WBS = new HashSet<Contract_WB>();
             this.Ref_Contract_LCAT = new HashSet<Ref_Contract_LCAT>();
             this.Ref_Training = new HashSet<Ref_Training>();
             this.Staff_Asset = new HashSet<Staff_Asset>();
@@ -36,11 +37,14 @@ namespace Portfolio_Management.Models
         public string Created_By { get; set; }
         public System.DateTime Modified_On { get; set; }
         public string Modified_By { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contract_Position> Contract_Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Security_Workflow> Security_Workflow { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract_WB> Contract_WBS { get; set; }
         public virtual Ref_Customer Ref_Customer { get; set; }
         public virtual Staff Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

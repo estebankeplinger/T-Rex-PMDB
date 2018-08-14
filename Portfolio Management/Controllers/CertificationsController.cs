@@ -39,6 +39,7 @@ namespace Portfolio_Management.Controllers
         public ActionResult Create()
         {
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
+            ViewBag.DateTime = DateTime.Now;
             return View();
         }
 
@@ -56,6 +57,7 @@ namespace Portfolio_Management.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", certification.Staff_ID);
             return View(certification);
         }

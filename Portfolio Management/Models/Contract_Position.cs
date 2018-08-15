@@ -25,7 +25,7 @@ namespace Portfolio_Management.Models
         public int ID { get; set; }
         public int Contract_ID { get; set; }
         public int Role_ID { get; set; }
-        public string Contract_WBS_ID { get; set; }
+        public int Contract_WBS_ID { get; set; }
         public short Position__ { get; set; }
         public short Info_Risk_ID { get; set; }
         public int LCAT_ID { get; set; }

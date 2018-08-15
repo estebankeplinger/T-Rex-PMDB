@@ -201,7 +201,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Contract ID" Type="int" Nullable="false" />
           <Property Name="Role ID" Type="int" Nullable="false" />
-          <Property Name="Contract WBS ID" Type="nchar" MaxLength="10" />
+          <Property Name="Contract WBS ID" Type="int" Nullable="false" />
           <Property Name="Position #" Type="smallint" Nullable="false" />
           <Property Name="Info Risk ID" Type="smallint" Nullable="false" />
           <Property Name="LCAT ID" Type="int" Nullable="false" />
@@ -560,19 +560,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contract Position_Contract WBS">
-          <End Role="Contract WBS" Type="Self.Contract WBS" Multiplicity="1" />
-          <End Role="Contract Position" Type="Self.Contract Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contract WBS">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contract Position">
-              <PropertyRef Name="Contract ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contract Position_Contract1">
+        <Association Name="FK_Contract Position_Contract">
           <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
           <End Role="Contract Position" Type="Self.Contract Position" Multiplicity="*" />
           <ReferentialConstraint>
@@ -581,6 +569,18 @@
             </Principal>
             <Dependent Role="Contract Position">
               <PropertyRef Name="Contract ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract Position_Contract WBS">
+          <End Role="Contract WBS" Type="Self.Contract WBS" Multiplicity="1" />
+          <End Role="Contract Position" Type="Self.Contract Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract WBS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contract Position">
+              <PropertyRef Name="Contract WBS ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1225,12 +1225,12 @@
             <End Role="Adm Security Clearance" EntitySet="Adm Security Clearance" />
             <End Role="Contract Position" EntitySet="Contract Position" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contract Position_Contract WBS" Association="Self.FK_Contract Position_Contract WBS">
-            <End Role="Contract WBS" EntitySet="Contract WBS" />
+          <AssociationSet Name="FK_Contract Position_Contract" Association="Self.FK_Contract Position_Contract">
+            <End Role="Contract" EntitySet="Contract" />
             <End Role="Contract Position" EntitySet="Contract Position" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contract Position_Contract1" Association="Self.FK_Contract Position_Contract1">
-            <End Role="Contract" EntitySet="Contract" />
+          <AssociationSet Name="FK_Contract Position_Contract WBS" Association="Self.FK_Contract Position_Contract WBS">
+            <End Role="Contract WBS" EntitySet="Contract WBS" />
             <End Role="Contract Position" EntitySet="Contract Position" />
           </AssociationSet>
           <AssociationSet Name="FK_Contract Position_Ref LCAT" Association="Self.FK_Contract Position_Ref LCAT">
@@ -1569,7 +1569,7 @@
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Certification" EntitySet="Certifications" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contract_Position_Contract1" Association="PMDataModel.FK_Contract_Position_Contract1">
+          <AssociationSet Name="FK_Contract_Position_Contract" Association="PMDataModel.FK_Contract_Position_Contract">
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Contract_Position" EntitySet="Contract_Positions" />
           </AssociationSet>
@@ -1910,7 +1910,8 @@
           <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Contract1" FromRole="Contract" ToRole="Contract_Position" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Contract" FromRole="Contract" ToRole="Contract_Position" />
           <NavigationProperty Name="Security_Workflow" Relationship="PMDataModel.FK_Contract_Security_Workflow_Contract" FromRole="Contract" ToRole="Security_Workflow" />
           <NavigationProperty Name="Contract_WBS" Relationship="PMDataModel.FK_Contract_WBS_Contract_ID" FromRole="Contract" ToRole="Contract_WB" />
           <NavigationProperty Name="Ref_Customer" Relationship="PMDataModel.FK_Contract_Ref_Customer" FromRole="Contract" ToRole="Ref_Customer" />
@@ -1919,7 +1920,6 @@
           <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Contract" ToRole="Ref_Training" />
           <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Contract" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Contract" ToRole="Staff_Clearance" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Contract_Position">
           <Key>
@@ -1928,7 +1928,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Contract_ID" Type="Int32" Nullable="false" />
           <Property Name="Role_ID" Type="Int32" Nullable="false" />
-          <Property Name="Contract_WBS_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Contract_WBS_ID" Type="Int32" Nullable="false" />
           <Property Name="Position__" Type="Int16" Nullable="false" />
           <Property Name="Info_Risk_ID" Type="Int16" Nullable="false" />
           <Property Name="LCAT_ID" Type="Int32" Nullable="false" />
@@ -1942,7 +1942,7 @@
           <NavigationProperty Name="Adm_Info_Risk" Relationship="PMDataModel.FK_Contract_Position_Adm_Info_Risk" FromRole="Contract_Position" ToRole="Adm_Info_Risk" />
           <NavigationProperty Name="Adm_Requisition_Status" Relationship="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" FromRole="Contract_Position" ToRole="Adm_Requisition_Status" />
           <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" FromRole="Contract_Position" ToRole="Adm_Security_Clearance" />
-          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Contract_Position_Contract1" FromRole="Contract_Position" ToRole="Contract" />
+          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Contract_Position_Contract" FromRole="Contract_Position" ToRole="Contract" />
           <NavigationProperty Name="Contract_WBS" Relationship="PMDataModel.FK_Contract_Position_Contract_WBS" FromRole="Contract_Position" ToRole="Contract_WB" />
           <NavigationProperty Name="Ref_Contract_LCAT" Relationship="PMDataModel.FK_Contract_Position_Ref_LCAT" FromRole="Contract_Position" ToRole="Ref_Contract_LCAT" />
           <NavigationProperty Name="Ref_Role" Relationship="PMDataModel.FK_Contract_Position_Ref_Role" FromRole="Contract_Position" ToRole="Ref_Role" />
@@ -2528,7 +2528,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contract_Position_Contract1">
+        <Association Name="FK_Contract_Position_Contract">
           <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="1" />
           <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2644,7 +2644,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Contract_Position">
-              <PropertyRef Name="Contract_ID" />
+              <PropertyRef Name="Contract_WBS_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

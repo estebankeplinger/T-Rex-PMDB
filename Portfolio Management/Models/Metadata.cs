@@ -91,7 +91,7 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Certification ID")]
         public int ID { get; set; }
-        [Display(Name = "Staff ID")]
+        [Display(Name = "Staff")]
         public int Staff_ID { get; set; }
         [Display(Name = "Certification 1")]
         public string Certification1 { get; set; }
@@ -116,25 +116,25 @@ namespace Portfolio_Management.Models
     }
     public class ContractPositionMetaData
     {
-        [Display(Name = "Cintract Position ID")]
+        [Display(Name = "Contract Position")]
         public int ID { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public int Contract_ID { get; set; }
-        [Display(Name = "Role ID")]
+        [Display(Name = "Role")]
         public int Role_ID { get; set; }
-        [Display(Name = "Contract WBS ID")]
+        [Display(Name = "Contract WBS")]
         public string Contract_WBS_ID { get; set; }
-        [Display(Name = "Position__")]
+        [Display(Name = "Position #")]
         public short Position__ { get; set; }
-        [Display(Name = "Info Risk ID")]
+        [Display(Name = "Info Risk")]
         public short Info_Risk_ID { get; set; }
-        [Display(Name = "LCAT ID")]
+        [Display(Name = "LCAT")]
         public int LCAT_ID { get; set; }
         [Display(Name = "Date Needed")]
         public Nullable<System.DateTime> DateNeeded { get; set; }
-        [Display(Name = "Requisition Status ID")]
+        [Display(Name = "Requisition Status")]
         public short Requisition_Status_ID { get; set; }
-        [Display(Name = "Required Security Clearance ID")]
+        [Display(Name = "Required Security Clearance")]
         public Nullable<short> Required_Security_Clearance_ID { get; set; }
         [Display(Name = "Created On")]
         public System.DateTime Created_On { get; set; }
@@ -149,7 +149,7 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Contract WB ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public int Contract_ID { get; set; }
         [Display(Name = "Area")]
         public string Area { get; set; }
@@ -176,13 +176,13 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Contract ID")]
         public int ID { get; set; }
-        [Display(Name = "Customer ID")]
+        [Display(Name = "Customer")]
         public int Customer_ID { get; set; }
         [Display(Name = "POP Start")]
         public System.DateTime POP_Start { get; set; }
         [Display(Name = "POP End")]
         public System.DateTime POP_End { get; set; }
-        [Display(Name = "Program Manager ID")]
+        [Display(Name = "Program Manager")]
         public int Program_Manager_ID { get; set; }
         [Display(Name = "Is Prime?")]
         public bool IsPrime { get; set; }
@@ -201,11 +201,11 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Education ID")]
         public int ID { get; set; }
-        [Display(Name = "Staff ID")]
+        [Display(Name = "Staff")]
         public int Staff_ID { get; set; }
         [Display(Name = "School/University")]
         public string School { get; set; }
-        [Display(Name = "Degree ID")]
+        [Display(Name = "Degree")]
         public short Degree_ID { get; set; }
         [Display(Name = "Completed Date")]
         public System.DateTime Completed_Date { get; set; }
@@ -226,9 +226,9 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Position Forecast ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract Position ID")]
+        [Display(Name = "Contract Position")]
         public Nullable<int> Contract_Position_ID { get; set; }
-        [Display(Name = "Pay Period ID")]
+        [Display(Name = "Pay Period")]
         public Nullable<int> Pay_Period_ID { get; set; }
         [Display(Name = "FTE")]
         public Nullable<decimal> FTE { get; set; }
@@ -249,7 +249,7 @@ namespace Portfolio_Management.Models
         public int ID { get; set; }
         [Display(Name = "Asset Name")]
         public string Asset_Name { get; set; }
-        [Display(Name = "Asset Type ID")]
+        [Display(Name = "Asset Type")]
         public short Asset_Type_ID { get; set; }
     }
     public class RefCompanyMetaData
@@ -263,9 +263,9 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Contract LCAT ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public Nullable<int> Contract_ID { get; set; }
-        [Display(Name = "Vehicle LCAT ID")]
+        [Display(Name = "Vehicle LCAT")]
         public Nullable<int> Vehicle_LCAT_ID { get; set; }
         [Display(Name = "ESF LCAT")]
         public string ESF_LCAT { get; set; }
@@ -278,7 +278,7 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Contract Vehicle LCAT ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract Vehicle ID")]
+        [Display(Name = "Contract Vehicle")]
         public short Contract_Vehicle_ID { get; set; }
         [Display(Name = "LCAT")]
         public string LCAT { get; set; }
@@ -295,14 +295,14 @@ namespace Portfolio_Management.Models
         public int ID { get; set; }
         [Display(Name = "Cutomer")]
         public string Customer { get; set; }
-        [Display(Name = "Agency ID")]
+        [Display(Name = "Agency")]
         public Nullable<short> Agency_ID { get; set; }
     }
     public class RefPayPeriodMetaData
     {
         [Display(Name = "Pay Period ID")]
         public int ID { get; set; }
-        [Display(Name = "Period__")]
+        [Display(Name = "Period #")]
         public Nullable<short> Period__ { get; set; }
         public Nullable<short> Year { get; set; }
         public Nullable<short> Month { get; set; }
@@ -332,7 +332,7 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Training ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public Nullable<int> Contract_ID { get; set; }
         [Display(Name = "Training")]
         public string Training { get; set; }
@@ -345,7 +345,7 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Security Workflow ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public int Contract_ID { get; set; }
         [Display(Name = "Display Order")]
         public short Display_Order { get; set; }
@@ -353,7 +353,7 @@ namespace Portfolio_Management.Models
         public string Workflow { get; set; }
         [Display(Name = "Always Display")]
         public bool Always_Display { get; set; }
-        [Display(Name = "Clearance Status ID")]
+        [Display(Name = "Clearance Status")]
         public short Clearance_Status_ID { get; set; }
         [Display(Name = "Created On")]
         public System.DateTime Created_On { get; set; }
@@ -366,113 +366,58 @@ namespace Portfolio_Management.Models
     }
     public class StaffMetadata
     {
-        //Staff Model
-
-        //Staff.ID
         [Display(Name = "Staff ID")]
         public int ID;
-
-        //Staff.Person_key
         [Display(Name = "Person Key")]
         public Nullable<int> Person_Key;
-
-        //Staff.Company_ID
-        [Display(Name = "Company ID")]
+        [Display(Name = "Company")]
         public int Company_ID;
-
-        //Staff.Staff_Name
         [Display(Name = "Staff Name")]
         public string Staff_Name;
-
-        //Staff.Prefix
         [Display(Name = "Prefix")]
         public string Prefix;
-
-        //Staff.Last_Name
         [Display(Name = "Last Name")]
         public string Last_Name;
-
-        //Staff.First_Name
         [Display(Name = "First Name")]
         public string First_Name;
-
-        //Staff.Middle_Initial
         [Display(Name = "Middle Initial")]
         public string Middle_Initial;
-
-        //Staff.Suffix
         [Display(Name = "Suffix")]
         public string Suffix;
-
-        //Staff.Alias
         [Display(Name = "Alias")]
         public string Alias;
-
-        //Staff.Location
         [Display(Name = "Location")]
         public string Location;
-
-        //Staff.Cell_Phone
         [Display(Name = "Cell Phone")]
         public string Cell_Phone;
-
-        //Staff.Personal_Cell_Phone
         [Display(Name = "Personal Cell Phone")]
         public string Personal_Cell_Phone;
-
-        //Staff.Desk_Phone
         [Display(Name = "Desk Phone")]
         public string Desk_Phone;
-
-        //Staff.Company_Email
         [Display(Name = "Company Email")]
         public string Company_Email;
-
-        //Staff.IsForeign_National
         [Display(Name = "Foreign National?")]
         public Nullable<bool> IsForeign_National;
-
-        //Staff.IsBillable
         [Display(Name = "Billable?")]
         public Nullable<bool> IsBillable;
-
-        //Staff.Years_of_Experience
         [Display(Name = "Years of Experience")]
         public short Years_of_Experience;
-
-        //Staff.Hire_Date
         [Display(Name = "Hire Date")]
         public Nullable<System.DateTime> Hire_Date;
-
-        //Staff.Exit_Date
         [Display(Name = "Exit Date")]
         public Nullable<System.DateTime> Exit_Date;
-
-        //Staff.Exit_Note
         [Display(Name = "Exit Note")]
         public string Exit_Note;
-
-        //Staff.Exit_Reason_ID
-        [Display(Name = "Exit Reason ID")]
+        [Display(Name = "Exit Reason")]
         public Nullable<short> Exit_Reason_ID;
-
-        //Staff.Is_Eligible_for_Rehire
         [Display(Name = "Eligible for Rehire?")]
         public Nullable<bool> Is_Eligible_for_Rehire;
-
-        //Staff.Created_On
         [Display(Name = "Created on")]
         public Nullable<System.DateTime> Created_On;
-
-        //Staff.Created_By
         [Display(Name = "Created by")]
         public string Created_By;
-
-        //Staff.Modified_On
         [Display(Name = "Modified on")]
         public Nullable<System.DateTime> Modified_On;
-
-        //Staff.Modified_By
         [Display(Name = "Modified by")]
         public string Modified_By;
     }
@@ -480,11 +425,11 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Staff Asset ID")]
         public int ID { get; set; }
-        [Display(Name = "Staff ID")]
+        [Display(Name = "Staff")]
         public int Staff_ID { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public Nullable<int> Contract_ID { get; set; }
-        [Display(Name = "Asset ID")]
+        [Display(Name = "Asset")]
         public int Asset_ID { get; set; }
         [Display(Name = "Item Number")]
         public string Item_Number { get; set; }
@@ -507,13 +452,13 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Staff Clearance ID")]
         public int ID { get; set; }
-        [Display(Name = "Staff ID")]
+        [Display(Name = "Staff")]
         public Nullable<int> Staff_ID { get; set; }
-        [Display(Name = "Staff Clearance ID")]
+        [Display(Name = "Staff Clearance")]
         public Nullable<short> Security_Clearance_ID { get; set; }
         [Display(Name = "Date Authorized")]
         public Nullable<System.DateTime> Date_Authorized { get; set; }
-        [Display(Name = "Contract ID")]
+        [Display(Name = "Contract")]
         public Nullable<int> Contract_ID { get; set; }
         [Display(Name = "Created On")]
         public System.DateTime Created_On { get; set; }
@@ -528,9 +473,9 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Staff Clearance Workflow ID")]
         public int ID { get; set; }
-        [Display(Name = "Staff Clearance ID")]
+        [Display(Name = "Staff Clearance")]
         public int Staff_Clearance_ID { get; set; }
-        [Display(Name = "Security Workflow ID")]
+        [Display(Name = "Security Workflow")]
         public int Security_Workflow_ID { get; set; }
         [Display(Name = "Is Active?")]
         public bool Is_Active { get; set; }
@@ -551,7 +496,7 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Staff ID")]
         public int Staff_ID { get; set; }
-        [Display(Name = "Contract Position ID")]
+        [Display(Name = "Contract Position")]
         public int Contract_Position_ID { get; set; }
         [Display(Name = "Is Active?")]
         public Nullable<bool> IsActive { get; set; }
@@ -561,9 +506,9 @@ namespace Portfolio_Management.Models
         public Nullable<System.DateTime> Active_Start_Date { get; set; }
         [Display(Name = "Active End Date")]
         public Nullable<System.DateTime> Active_End_Date { get; set; }
-        [Display(Name = "Telework Agreement ID")]
+        [Display(Name = "Telework Agreement")]
         public Nullable<int> Telework_Agreement_ID { get; set; }
-        [Display(Name = "Resume Status ID")]
+        [Display(Name = "Resume Status")]
         public Nullable<short> Resume_Status_ID { get; set; }
         [Display(Name = "Is Resume Compliant?")]
         public Nullable<bool> Is_Resume_Compliant { get; set; }
@@ -590,9 +535,9 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Staff ID")]
         public int Staff_ID { get; set; }
-        [Display(Name = "Skill ID")]
+        [Display(Name = "Skill")]
         public int Skill_ID { get; set; }
-        [Display(Name = "Proficiency ID")]
+        [Display(Name = "Proficiency")]
         public short Proficiency_ID { get; set; }
         [Display(Name = "Created On")]
         public System.DateTime Created_On { get; set; }
@@ -607,9 +552,9 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Staff Training ID")]
         public int ID { get; set; }
-        [Display(Name = "Staff ID")]
+        [Display(Name = "Staff")]
         public int Staff_ID { get; set; }
-        [Display(Name = "Training ID")]
+        [Display(Name = "Training")]
         public int Training_ID { get; set; }
         [Display(Name = "Date Completed")]
         public Nullable<System.DateTime> Date_Completed { get; set; }
@@ -626,9 +571,9 @@ namespace Portfolio_Management.Models
     {
         [Display(Name = "Workshare ID")]
         public int ID { get; set; }
-        [Display(Name = "Contract Position ID")]
+        [Display(Name = "Contract Position")]
         public Nullable<int> Contract_Position_ID { get; set; }
-        [Display(Name = "Company ID")]
+        [Display(Name = "Company")]
         public Nullable<int> Company_ID { get; set; }
         [Display(Name = "Date Released")]
         public Nullable<System.DateTime> Date_Released { get; set; }

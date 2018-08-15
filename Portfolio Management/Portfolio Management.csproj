@@ -495,7 +495,6 @@
   <ItemGroup>
     <Content Include="build\css\custom.css" />
     <Content Include="build\css\custom.min.css" />
-    <Content Include="build\css\stafflayout.css" />
     <Content Include="build\js\custom.js" />
     <Content Include="build\js\custom.min.js" />
     <Content Include="Content\bootstrap.css" />

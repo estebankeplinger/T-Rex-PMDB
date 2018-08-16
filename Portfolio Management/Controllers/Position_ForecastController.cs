@@ -38,6 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Position_Forecast/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID");
             ViewBag.Pay_Period_ID = new SelectList(db.Ref_Pay_Periods, "ID", "ID");
             return View();
@@ -56,7 +57,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", position_Forecast.Contract_Position_ID);
             ViewBag.Pay_Period_ID = new SelectList(db.Ref_Pay_Periods, "ID", "ID", position_Forecast.Pay_Period_ID);
             return View(position_Forecast);
@@ -74,6 +75,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", position_Forecast.Contract_Position_ID);
             ViewBag.Pay_Period_ID = new SelectList(db.Ref_Pay_Periods, "ID", "ID", position_Forecast.Pay_Period_ID);
             return View(position_Forecast);
@@ -92,6 +94,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", position_Forecast.Contract_Position_ID);
             ViewBag.Pay_Period_ID = new SelectList(db.Ref_Pay_Periods, "ID", "ID", position_Forecast.Pay_Period_ID);
             return View(position_Forecast);

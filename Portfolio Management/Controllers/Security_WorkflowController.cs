@@ -38,8 +38,9 @@ namespace Portfolio_Management.Controllers
         // GET: Security_Workflow/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Clearance_Status_ID = new SelectList(db.Adm_Clearance_Status, "ID", "Clearance_Status");
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title");
             return View();
         }
 
@@ -56,9 +57,9 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Clearance_Status_ID = new SelectList(db.Adm_Clearance_Status, "ID", "Clearance_Status", security_Workflow.Clearance_Status_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", security_Workflow.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", security_Workflow.Contract_ID);
             return View(security_Workflow);
         }
 
@@ -74,8 +75,9 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Clearance_Status_ID = new SelectList(db.Adm_Clearance_Status, "ID", "Clearance_Status", security_Workflow.Clearance_Status_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", security_Workflow.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", security_Workflow.Contract_ID);
             return View(security_Workflow);
         }
 
@@ -92,8 +94,9 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Clearance_Status_ID = new SelectList(db.Adm_Clearance_Status, "ID", "Clearance_Status", security_Workflow.Clearance_Status_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", security_Workflow.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", security_Workflow.Contract_ID);
             return View(security_Workflow);
         }
 

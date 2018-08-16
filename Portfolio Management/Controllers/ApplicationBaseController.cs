@@ -39,5 +39,7 @@ namespace Portfolio_Management.Controllers
             var user = context.Users.SingleOrDefault(u => u.UserName == username);
             return string.Concat(new string[] { user.FirstName, " ", user.LastName }); ;
         }
+
+
     }
 }

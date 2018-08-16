@@ -55,14 +55,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="Exit Reason" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Info Risk">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="Info Risk" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Prefix">
@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Adm Resume Status">
@@ -96,7 +96,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="Security Clearance" Type="nvarchar" MaxLength="50" />
           <Property Name="Security Clearance Abbreviation" Type="nvarchar" MaxLength="10" />
         </EntityType>
@@ -262,7 +262,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Asset Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Asset Type ID" Type="smallint" Nullable="false" />
         </EntityType>
@@ -270,7 +270,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Company" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Ref Contract LCAT">
@@ -332,14 +332,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Telework Agreement" Type="nvarchar" MaxLength="255" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Telework Agreement" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Ref Training">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Contract ID" Type="int" />
           <Property Name="Training" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Date Due" Type="datetime2" Precision="0" Nullable="false" />
@@ -443,7 +443,7 @@
             <PropertyRef Name="Staff ID" />
             <PropertyRef Name="Contract Position ID" />
           </Key>
-          <Property Name="Staff ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Staff ID" Type="int" Nullable="false" />
           <Property Name="Contract Position ID" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Planned Start Date" Type="datetime2" Precision="0" />
@@ -1459,13 +1459,9 @@
           <EntitySet Name="Adm_Clearance_Status" EntityType="PMDataModel.Adm_Clearance_Status" />
           <EntitySet Name="Adm_Contract_Vehicles" EntityType="PMDataModel.Adm_Contract_Vehicle" />
           <EntitySet Name="Adm_Degrees" EntityType="PMDataModel.Adm_Degree" />
-          <EntitySet Name="Adm_Exit_Reasons" EntityType="PMDataModel.Adm_Exit_Reason" />
-          <EntitySet Name="Adm_Info_Risks" EntityType="PMDataModel.Adm_Info_Risk" />
           <EntitySet Name="Adm_Prefixes" EntityType="PMDataModel.Adm_Prefix" />
           <EntitySet Name="Adm_Proficiencies" EntityType="PMDataModel.Adm_Proficiency" />
-          <EntitySet Name="Adm_Requisition_Status" EntityType="PMDataModel.Adm_Requisition_Status" />
           <EntitySet Name="Adm_Resume_Status" EntityType="PMDataModel.Adm_Resume_Status" />
-          <EntitySet Name="Adm_Security_Clearances" EntityType="PMDataModel.Adm_Security_Clearance" />
           <EntitySet Name="Adm_Suffixes" EntityType="PMDataModel.Adm_Suffix" />
           <EntitySet Name="AspNetRoles" EntityType="PMDataModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="PMDataModel.AspNetUserClaim" />
@@ -1477,22 +1473,17 @@
           <EntitySet Name="Contract_WBS" EntityType="PMDataModel.Contract_WB" />
           <EntitySet Name="Educations" EntityType="PMDataModel.Education" />
           <EntitySet Name="Position_Forecasts" EntityType="PMDataModel.Position_Forecast" />
-          <EntitySet Name="Ref_Assets" EntityType="PMDataModel.Ref_Asset" />
-          <EntitySet Name="Ref_Companies" EntityType="PMDataModel.Ref_Company" />
           <EntitySet Name="Ref_Contract_LCATs" EntityType="PMDataModel.Ref_Contract_LCAT" />
           <EntitySet Name="Ref_Contract_Vehicle_LCATs" EntityType="PMDataModel.Ref_Contract_Vehicle_LCAT" />
           <EntitySet Name="Ref_Customers" EntityType="PMDataModel.Ref_Customer" />
           <EntitySet Name="Ref_Pay_Periods" EntityType="PMDataModel.Ref_Pay_Period" />
           <EntitySet Name="Ref_Roles" EntityType="PMDataModel.Ref_Role" />
           <EntitySet Name="Ref_Skills" EntityType="PMDataModel.Ref_Skill" />
-          <EntitySet Name="Ref_Telework_Agreements" EntityType="PMDataModel.Ref_Telework_Agreement" />
-          <EntitySet Name="Ref_Trainings" EntityType="PMDataModel.Ref_Training" />
           <EntitySet Name="Security_Workflows" EntityType="PMDataModel.Security_Workflow" />
           <EntitySet Name="Staffs" EntityType="PMDataModel.Staff" />
           <EntitySet Name="Staff_Assets" EntityType="PMDataModel.Staff_Asset" />
           <EntitySet Name="Staff_Clearances" EntityType="PMDataModel.Staff_Clearance" />
           <EntitySet Name="Staff_Clearance_Workflows" EntityType="PMDataModel.Staff_Clearance_Workflow" />
-          <EntitySet Name="Staff_Positions" EntityType="PMDataModel.Staff_Position" />
           <EntitySet Name="Staff_Skills" EntityType="PMDataModel.Staff_Skill" />
           <EntitySet Name="Staff_Trainings" EntityType="PMDataModel.Staff_Training" />
           <EntitySet Name="sysdiagrams" EntityType="PMDataModel.sysdiagram" />
@@ -1500,10 +1491,6 @@
           <AssociationSet Name="FK_Ref_Customer_Adm_Agency" Association="PMDataModel.FK_Ref_Customer_Adm_Agency">
             <End Role="Adm_Agency" EntitySet="Adm_Agencies" />
             <End Role="Ref_Customer" EntitySet="Ref_Customers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ref_Asset_Adm_Asset_Type" Association="PMDataModel.FK_Ref_Asset_Adm_Asset_Type">
-            <End Role="Adm_Asset_Type" EntitySet="Adm_Asset_Types" />
-            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
           </AssociationSet>
           <AssociationSet Name="FK_Ref_Security_Workflow_Adm_Clearance_Status" Association="PMDataModel.FK_Ref_Security_Workflow_Adm_Clearance_Status">
             <End Role="Adm_Clearance_Status" EntitySet="Adm_Clearance_Status" />
@@ -1521,14 +1508,6 @@
             <End Role="Adm_Degree" EntitySet="Adm_Degrees" />
             <End Role="Ref_Contract_Vehicle_LCAT" EntitySet="Ref_Contract_Vehicle_LCATs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Adm_Exit_Reason" Association="PMDataModel.FK_Staff_Adm_Exit_Reason">
-            <End Role="Adm_Exit_Reason" EntitySet="Adm_Exit_Reasons" />
-            <End Role="Staff" EntitySet="Staffs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contract_Position_Adm_Info_Risk" Association="PMDataModel.FK_Contract_Position_Adm_Info_Risk">
-            <End Role="Adm_Info_Risk" EntitySet="Adm_Info_Risks" />
-            <End Role="Contract_Position" EntitySet="Contract_Positions" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Adm_Prefix" Association="PMDataModel.FK_Staff_Adm_Prefix">
             <End Role="Adm_Prefix" EntitySet="Adm_Prefixes" />
             <End Role="Staff" EntitySet="Staffs" />
@@ -1536,22 +1515,6 @@
           <AssociationSet Name="FK_Staff_Skill_Adm_Proficiency" Association="PMDataModel.FK_Staff_Skill_Adm_Proficiency">
             <End Role="Adm_Proficiency" EntitySet="Adm_Proficiencies" />
             <End Role="Staff_Skill" EntitySet="Staff_Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contract_Position_Adm_Requisition_Status" Association="PMDataModel.FK_Contract_Position_Adm_Requisition_Status">
-            <End Role="Adm_Requisition_Status" EntitySet="Adm_Requisition_Status" />
-            <End Role="Contract_Position" EntitySet="Contract_Positions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Position_Adm_Resume_Status" Association="PMDataModel.FK_Staff_Position_Adm_Resume_Status">
-            <End Role="Adm_Resume_Status" EntitySet="Adm_Resume_Status" />
-            <End Role="Staff_Position" EntitySet="Staff_Positions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contract_Position_Adm_Security_Clearance" Association="PMDataModel.FK_Contract_Position_Adm_Security_Clearance">
-            <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
-            <End Role="Contract_Position" EntitySet="Contract_Positions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Clearance_Adm_Security_Clearance" Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance">
-            <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
-            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Adm_Suffix" Association="PMDataModel.FK_Staff_Adm_Suffix">
             <End Role="Adm_Suffix" EntitySet="Adm_Suffixes" />
@@ -1593,10 +1556,6 @@
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Ref_Contract_LCAT" EntitySet="Ref_Contract_LCATs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ref_Training_Contract" Association="PMDataModel.FK_Ref_Training_Contract">
-            <End Role="Contract" EntitySet="Contracts" />
-            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Asset_Contract" Association="PMDataModel.FK_Staff_Asset_Contract">
             <End Role="Contract" EntitySet="Contracts" />
             <End Role="Staff_Asset" EntitySet="Staff_Assets" />
@@ -1621,10 +1580,6 @@
             <End Role="Contract_Position" EntitySet="Contract_Positions" />
             <End Role="Position_Forecast" EntitySet="Position_Forecasts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Position_Contract_Position" Association="PMDataModel.FK_Staff_Position_Contract_Position">
-            <End Role="Contract_Position" EntitySet="Contract_Positions" />
-            <End Role="Staff_Position" EntitySet="Staff_Positions" />
-          </AssociationSet>
           <AssociationSet Name="FK_Workshare_Contract_Position" Association="PMDataModel.FK_Workshare_Contract_Position">
             <End Role="Contract_Position" EntitySet="Contract_Positions" />
             <End Role="Workshare" EntitySet="Workshares" />
@@ -1637,18 +1592,6 @@
             <End Role="Ref_Pay_Period" EntitySet="Ref_Pay_Periods" />
             <End Role="Position_Forecast" EntitySet="Position_Forecasts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Staff_Asset_Ref_Asset" Association="PMDataModel.FK_Staff_Asset_Ref_Asset">
-            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
-            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Workshare_Ref_Company" Association="PMDataModel.FK_Workshare_Ref_Company">
-            <End Role="Ref_Company" EntitySet="Ref_Companies" />
-            <End Role="Workshare" EntitySet="Workshares" />
-          </AssociationSet>
-          <AssociationSet Name="Staff_Ref_CompanyStaff" Association="PMDataModel.Staff_Ref_CompanyStaff">
-            <End Role="Ref_Company" EntitySet="Ref_Companies" />
-            <End Role="Staff" EntitySet="Staffs" />
-          </AssociationSet>
           <AssociationSet Name="FK_Ref_Contract_LCAT_Ref_Vehicle_LCAT" Association="PMDataModel.FK_Ref_Contract_LCAT_Ref_Vehicle_LCAT">
             <End Role="Ref_Contract_Vehicle_LCAT" EntitySet="Ref_Contract_Vehicle_LCATs" />
             <End Role="Ref_Contract_LCAT" EntitySet="Ref_Contract_LCATs" />
@@ -1656,14 +1599,6 @@
           <AssociationSet Name="FK_Staff_Skill_Ref_Skill" Association="PMDataModel.FK_Staff_Skill_Ref_Skill">
             <End Role="Ref_Skill" EntitySet="Ref_Skills" />
             <End Role="Staff_Skill" EntitySet="Staff_Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Position_Ref_Telework_Agreement" Association="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement">
-            <End Role="Ref_Telework_Agreement" EntitySet="Ref_Telework_Agreements" />
-            <End Role="Staff_Position" EntitySet="Staff_Positions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Training_Ref_Training" Association="PMDataModel.FK_Staff_Training_Ref_Training">
-            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
-            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Clearance_Contract_Security_Workflow" Association="PMDataModel.FK_Security_Clearance_Contract_Security_Workflow">
             <End Role="Security_Workflow" EntitySet="Security_Workflows" />
@@ -1676,10 +1611,6 @@
           <AssociationSet Name="FK_Staff_Clearance_Staff" Association="PMDataModel.FK_Staff_Clearance_Staff">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Position_Staff" Association="PMDataModel.FK_Staff_Position_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="Staff_Position" EntitySet="Staff_Positions" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Skill_Staff" Association="PMDataModel.FK_Staff_Skill_Staff">
             <End Role="Staff" EntitySet="Staffs" />
@@ -1696,6 +1627,75 @@
           <AssociationSet Name="AspNetUserRoles" Association="PMDataModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Adm_Info_Risks" EntityType="PMDataModel.Adm_Info_Risk" />
+          <AssociationSet Name="FK_Contract_Position_Adm_Info_Risk" Association="PMDataModel.FK_Contract_Position_Adm_Info_Risk">
+            <End Role="Adm_Info_Risk" EntitySet="Adm_Info_Risks" />
+            <End Role="Contract_Position" EntitySet="Contract_Positions" />
+          </AssociationSet>
+          <EntitySet Name="Adm_Security_Clearances" EntityType="PMDataModel.Adm_Security_Clearance" />
+          <AssociationSet Name="FK_Contract_Position_Adm_Security_Clearance" Association="PMDataModel.FK_Contract_Position_Adm_Security_Clearance">
+            <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
+            <End Role="Contract_Position" EntitySet="Contract_Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Clearance_Adm_Security_Clearance" Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance">
+            <End Role="Adm_Security_Clearance" EntitySet="Adm_Security_Clearances" />
+            <End Role="Staff_Clearance" EntitySet="Staff_Clearances" />
+          </AssociationSet>
+          <EntitySet Name="Adm_Requisition_Status" EntityType="PMDataModel.Adm_Requisition_Status" />
+          <AssociationSet Name="FK_Contract_Position_Adm_Requisition_Status" Association="PMDataModel.FK_Contract_Position_Adm_Requisition_Status">
+            <End Role="Adm_Requisition_Status" EntitySet="Adm_Requisition_Status" />
+            <End Role="Contract_Position" EntitySet="Contract_Positions" />
+          </AssociationSet>
+          <EntitySet Name="Adm_Exit_Reasons" EntityType="PMDataModel.Adm_Exit_Reason" />
+          <AssociationSet Name="FK_Staff_Adm_Exit_Reason" Association="PMDataModel.FK_Staff_Adm_Exit_Reason">
+            <End Role="Adm_Exit_Reason" EntitySet="Adm_Exit_Reasons" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <EntitySet Name="Ref_Assets" EntityType="PMDataModel.Ref_Asset" />
+          <EntitySet Name="Ref_Companies" EntityType="PMDataModel.Ref_Company" />
+          <AssociationSet Name="FK_Ref_Asset_Adm_Asset_Type" Association="PMDataModel.FK_Ref_Asset_Adm_Asset_Type">
+            <End Role="Adm_Asset_Type" EntitySet="Adm_Asset_Types" />
+            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Asset_Ref_Asset" Association="PMDataModel.FK_Staff_Asset_Ref_Asset">
+            <End Role="Ref_Asset" EntitySet="Ref_Assets" />
+            <End Role="Staff_Asset" EntitySet="Staff_Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workshare_Ref_Company" Association="PMDataModel.FK_Workshare_Ref_Company">
+            <End Role="Ref_Company" EntitySet="Ref_Companies" />
+            <End Role="Workshare" EntitySet="Workshares" />
+          </AssociationSet>
+          <AssociationSet Name="Staff_Ref_CompanyStaff" Association="PMDataModel.Staff_Ref_CompanyStaff">
+            <End Role="Ref_Company" EntitySet="Ref_Companies" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <EntitySet Name="Ref_Telework_Agreements" EntityType="PMDataModel.Ref_Telework_Agreement" />
+          <EntitySet Name="Ref_Trainings" EntityType="PMDataModel.Ref_Training" />
+          <AssociationSet Name="FK_Ref_Training_Contract" Association="PMDataModel.FK_Ref_Training_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Training_Ref_Training" Association="PMDataModel.FK_Staff_Training_Ref_Training">
+            <End Role="Ref_Training" EntitySet="Ref_Trainings" />
+            <End Role="Staff_Training" EntitySet="Staff_Trainings" />
+          </AssociationSet>
+          <EntitySet Name="Staff_Positions" EntityType="PMDataModel.Staff_Position" />
+          <AssociationSet Name="FK_Staff_Position_Adm_Resume_Status" Association="PMDataModel.FK_Staff_Position_Adm_Resume_Status">
+            <End Role="Adm_Resume_Status" EntitySet="Adm_Resume_Status" />
+            <End Role="Staff_Position" EntitySet="Staff_Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Position_Contract_Position" Association="PMDataModel.FK_Staff_Position_Contract_Position">
+            <End Role="Contract_Position" EntitySet="Contract_Positions" />
+            <End Role="Staff_Position" EntitySet="Staff_Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Position_Ref_Telework_Agreement" Association="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement">
+            <End Role="Ref_Telework_Agreement" EntitySet="Ref_Telework_Agreements" />
+            <End Role="Staff_Position" EntitySet="Staff_Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Position_Staff" Association="PMDataModel.FK_Staff_Position_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Position" EntitySet="Staff_Positions" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1761,22 +1761,6 @@
           <NavigationProperty Name="Educations" Relationship="PMDataModel.FK_Education_Adm_Degree" FromRole="Adm_Degree" ToRole="Education" />
           <NavigationProperty Name="Ref_Contract_Vehicle_LCAT" Relationship="PMDataModel.FK_Ref_Contract_Vehicle_LCAT_Adm_Degree" FromRole="Adm_Degree" ToRole="Ref_Contract_Vehicle_LCAT" />
         </EntityType>
-        <EntityType Name="Adm_Exit_Reason">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Exit_Reason" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Staffs" Relationship="PMDataModel.FK_Staff_Adm_Exit_Reason" FromRole="Adm_Exit_Reason" ToRole="Staff" />
-        </EntityType>
-        <EntityType Name="Adm_Info_Risk">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Info_Risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Info_Risk" FromRole="Adm_Info_Risk" ToRole="Contract_Position" />
-        </EntityType>
         <EntityType Name="Adm_Prefix">
           <Key>
             <PropertyRef Name="Prefix" />
@@ -1792,14 +1776,6 @@
           <Property Name="Proficiency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Adm_Proficiency" FromRole="Adm_Proficiency" ToRole="Staff_Skill" />
         </EntityType>
-        <EntityType Name="Adm_Requisition_Status">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" FromRole="Adm_Requisition_Status" ToRole="Contract_Position" />
-        </EntityType>
         <EntityType Name="Adm_Resume_Status">
           <Key>
             <PropertyRef Name="ID" />
@@ -1807,16 +1783,6 @@
           <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Adm_Resume_Status" FromRole="Adm_Resume_Status" ToRole="Staff_Position" />
-        </EntityType>
-        <EntityType Name="Adm_Security_Clearance">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Security_Clearance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Security_Clearance_Abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" FromRole="Adm_Security_Clearance" ToRole="Contract_Position" />
-          <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" FromRole="Adm_Security_Clearance" ToRole="Staff_Clearance" />
         </EntityType>
         <EntityType Name="Adm_Suffix">
           <Key>
@@ -1917,9 +1883,9 @@
           <NavigationProperty Name="Ref_Customer" Relationship="PMDataModel.FK_Contract_Ref_Customer" FromRole="Contract" ToRole="Ref_Customer" />
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Contract_Staff" FromRole="Contract" ToRole="Staff" />
           <NavigationProperty Name="Ref_Contract_LCAT" Relationship="PMDataModel.FK_Ref_LCAT_Contract1" FromRole="Contract" ToRole="Ref_Contract_LCAT" />
-          <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Contract" ToRole="Ref_Training" />
           <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Contract" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Contract" ToRole="Staff_Clearance" />
+          <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Contract" ToRole="Ref_Training" />
         </EntityType>
         <EntityType Name="Contract_Position">
           <Key>
@@ -1939,16 +1905,16 @@
           <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Adm_Info_Risk" Relationship="PMDataModel.FK_Contract_Position_Adm_Info_Risk" FromRole="Contract_Position" ToRole="Adm_Info_Risk" />
-          <NavigationProperty Name="Adm_Requisition_Status" Relationship="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" FromRole="Contract_Position" ToRole="Adm_Requisition_Status" />
-          <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" FromRole="Contract_Position" ToRole="Adm_Security_Clearance" />
           <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Contract_Position_Contract" FromRole="Contract_Position" ToRole="Contract" />
           <NavigationProperty Name="Contract_WBS" Relationship="PMDataModel.FK_Contract_Position_Contract_WBS" FromRole="Contract_Position" ToRole="Contract_WB" />
           <NavigationProperty Name="Ref_Contract_LCAT" Relationship="PMDataModel.FK_Contract_Position_Ref_LCAT" FromRole="Contract_Position" ToRole="Ref_Contract_LCAT" />
           <NavigationProperty Name="Ref_Role" Relationship="PMDataModel.FK_Contract_Position_Ref_Role" FromRole="Contract_Position" ToRole="Ref_Role" />
           <NavigationProperty Name="Position_Forecast" Relationship="PMDataModel.FK_Position_Forecast_Contract_Position" FromRole="Contract_Position" ToRole="Position_Forecast" />
-          <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Contract_Position" FromRole="Contract_Position" ToRole="Staff_Position" />
           <NavigationProperty Name="Workshares" Relationship="PMDataModel.FK_Workshare_Contract_Position" FromRole="Contract_Position" ToRole="Workshare" />
+          <NavigationProperty Name="Adm_Info_Risk" Relationship="PMDataModel.FK_Contract_Position_Adm_Info_Risk" FromRole="Contract_Position" ToRole="Adm_Info_Risk" />
+          <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" FromRole="Contract_Position" ToRole="Adm_Security_Clearance" />
+          <NavigationProperty Name="Adm_Requisition_Status" Relationship="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" FromRole="Contract_Position" ToRole="Adm_Requisition_Status" />
+          <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Contract_Position" FromRole="Contract_Position" ToRole="Staff_Position" />
         </EntityType>
         <EntityType Name="Contract_WB">
           <Key>
@@ -2000,25 +1966,6 @@
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Position_Forecast_Contract_Position" FromRole="Position_Forecast" ToRole="Contract_Position" />
           <NavigationProperty Name="Ref_Pay_Period" Relationship="PMDataModel.Requisition_Hours_Ref_Pay_PeriodRequisition_Hours" FromRole="Position_Forecast" ToRole="Ref_Pay_Period" />
-        </EntityType>
-        <EntityType Name="Ref_Asset">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Asset_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Asset_Type_ID" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Adm_Asset_Type" Relationship="PMDataModel.FK_Ref_Asset_Adm_Asset_Type" FromRole="Ref_Asset" ToRole="Adm_Asset_Type" />
-          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Ref_Asset" ToRole="Staff_Asset" />
-        </EntityType>
-        <EntityType Name="Ref_Company">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Workshares" Relationship="PMDataModel.FK_Workshare_Ref_Company" FromRole="Ref_Company" ToRole="Workshare" />
-          <NavigationProperty Name="Staffs" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Ref_Company" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Ref_Contract_LCAT">
           <Key>
@@ -2086,26 +2033,6 @@
           <Property Name="Skill" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Ref_Skill" FromRole="Ref_Skill" ToRole="Staff_Skill" />
         </EntityType>
-        <EntityType Name="Ref_Telework_Agreement">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Telework_Agreement" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement" FromRole="Ref_Telework_Agreement" ToRole="Staff_Position" />
-        </EntityType>
-        <EntityType Name="Ref_Training">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Contract_ID" Type="Int32" />
-          <Property Name="Training" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Date_Due" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Ref_Training" ToRole="Contract" />
-          <NavigationProperty Name="Staff_Training" Relationship="PMDataModel.FK_Staff_Training_Ref_Training" FromRole="Ref_Training" ToRole="Staff_Training" />
-        </EntityType>
         <EntityType Name="Security_Workflow">
           <Key>
             <PropertyRef Name="ID" />
@@ -2155,18 +2082,18 @@
           <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Modified_On" Type="DateTime" Precision="7" />
           <Property Name="Modified_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Adm_Exit_Reason" Relationship="PMDataModel.FK_Staff_Adm_Exit_Reason" FromRole="Staff" ToRole="Adm_Exit_Reason" />
           <NavigationProperty Name="Adm_Prefix" Relationship="PMDataModel.FK_Staff_Adm_Prefix" FromRole="Staff" ToRole="Adm_Prefix" />
           <NavigationProperty Name="Adm_Suffix" Relationship="PMDataModel.FK_Staff_Adm_Suffix" FromRole="Staff" ToRole="Adm_Suffix" />
           <NavigationProperty Name="Certifications" Relationship="PMDataModel.FK_Cetifications_Staff" FromRole="Staff" ToRole="Certification" />
           <NavigationProperty Name="Contracts" Relationship="PMDataModel.FK_Contract_Staff" FromRole="Staff" ToRole="Contract" />
           <NavigationProperty Name="Educations" Relationship="PMDataModel.FK_Education_Staff" FromRole="Staff" ToRole="Education" />
-          <NavigationProperty Name="Ref_Company" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Staff" ToRole="Ref_Company" />
           <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff" ToRole="Staff_Asset" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff" ToRole="Staff_Clearance" />
-          <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff" ToRole="Staff_Position" />
           <NavigationProperty Name="Staff_Skill" Relationship="PMDataModel.FK_Staff_Skill_Staff" FromRole="Staff" ToRole="Staff_Skill" />
           <NavigationProperty Name="Staff_Training" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff" ToRole="Staff_Training" />
+          <NavigationProperty Name="Adm_Exit_Reason" Relationship="PMDataModel.FK_Staff_Adm_Exit_Reason" FromRole="Staff" ToRole="Adm_Exit_Reason" />
+          <NavigationProperty Name="Ref_Company" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Staff" ToRole="Ref_Company" />
+          <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff" ToRole="Staff_Position" />
         </EntityType>
         <EntityType Name="Staff_Asset">
           <Key>
@@ -2185,8 +2112,8 @@
           <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Asset_Contract" FromRole="Staff_Asset" ToRole="Contract" />
-          <NavigationProperty Name="Ref_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Staff_Asset" ToRole="Ref_Asset" />
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Asset_Staff" FromRole="Staff_Asset" ToRole="Staff" />
+          <NavigationProperty Name="Ref_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Staff_Asset" ToRole="Ref_Asset" />
         </EntityType>
         <EntityType Name="Staff_Clearance">
           <Key>
@@ -2201,10 +2128,10 @@
           <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" FromRole="Staff_Clearance" ToRole="Adm_Security_Clearance" />
           <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Staff_Clearance_Contract" FromRole="Staff_Clearance" ToRole="Contract" />
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Clearance_Staff" FromRole="Staff_Clearance" ToRole="Staff" />
           <NavigationProperty Name="Staff_Clearance_Workflow" Relationship="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" FromRole="Staff_Clearance" ToRole="Staff_Clearance_Workflow" />
+          <NavigationProperty Name="Adm_Security_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" FromRole="Staff_Clearance" ToRole="Adm_Security_Clearance" />
         </EntityType>
         <EntityType Name="Staff_Clearance_Workflow">
           <Key>
@@ -2222,34 +2149,6 @@
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Security_Workflow" Relationship="PMDataModel.FK_Security_Clearance_Contract_Security_Workflow" FromRole="Staff_Clearance_Workflow" ToRole="Security_Workflow" />
           <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" FromRole="Staff_Clearance_Workflow" ToRole="Staff_Clearance" />
-        </EntityType>
-        <EntityType Name="Staff_Position">
-          <Key>
-            <PropertyRef Name="Staff_ID" />
-            <PropertyRef Name="Contract_Position_ID" />
-          </Key>
-          <Property Name="Staff_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Contract_Position_ID" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Planned_Start_Date" Type="DateTime" Precision="0" />
-          <Property Name="Active_Start_Date" Type="DateTime" Precision="0" />
-          <Property Name="Active_End_Date" Type="DateTime" Precision="0" />
-          <Property Name="Telework_Agreement_ID" Type="Int32" />
-          <Property Name="Resume_Status_ID" Type="Int16" />
-          <Property Name="Is_Resume_Compliant" Type="Boolean" />
-          <Property Name="Is_LCAT_Compliant" Type="Boolean" />
-          <Property Name="Compliance_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Desk_Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Cell_Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Adm_Resume_Status" Relationship="PMDataModel.FK_Staff_Position_Adm_Resume_Status" FromRole="Staff_Position" ToRole="Adm_Resume_Status" />
-          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Staff_Position_Contract_Position" FromRole="Staff_Position" ToRole="Contract_Position" />
-          <NavigationProperty Name="Ref_Telework_Agreement" Relationship="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement" FromRole="Staff_Position" ToRole="Ref_Telework_Agreement" />
-          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff_Position" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Staff_Skill">
           <Key>
@@ -2279,8 +2178,8 @@
           <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Staff_Training_Ref_Training" FromRole="Staff_Training" ToRole="Ref_Training" />
           <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Training_Staff" FromRole="Staff_Training" ToRole="Staff" />
+          <NavigationProperty Name="Ref_Training" Relationship="PMDataModel.FK_Staff_Training_Ref_Training" FromRole="Staff_Training" ToRole="Ref_Training" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -2317,18 +2216,6 @@
             </Principal>
             <Dependent Role="Ref_Customer">
               <PropertyRef Name="Agency_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ref_Asset_Adm_Asset_Type">
-          <End Type="PMDataModel.Adm_Asset_Type" Role="Adm_Asset_Type" Multiplicity="1" />
-          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Asset_Type">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ref_Asset">
-              <PropertyRef Name="Asset_Type_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2380,30 +2267,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Adm_Exit_Reason">
-          <End Type="PMDataModel.Adm_Exit_Reason" Role="Adm_Exit_Reason" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Exit_Reason">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff">
-              <PropertyRef Name="Exit_Reason_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contract_Position_Adm_Info_Risk">
-          <End Type="PMDataModel.Adm_Info_Risk" Role="Adm_Info_Risk" Multiplicity="1" />
-          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Info_Risk">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contract_Position">
-              <PropertyRef Name="Info_Risk_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Adm_Prefix">
           <End Type="PMDataModel.Adm_Prefix" Role="Adm_Prefix" Multiplicity="0..1" />
           <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="*" />
@@ -2425,54 +2288,6 @@
             </Principal>
             <Dependent Role="Staff_Skill">
               <PropertyRef Name="Proficiency_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contract_Position_Adm_Requisition_Status">
-          <End Type="PMDataModel.Adm_Requisition_Status" Role="Adm_Requisition_Status" Multiplicity="1" />
-          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Requisition_Status">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contract_Position">
-              <PropertyRef Name="Requisition_Status_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Position_Adm_Resume_Status">
-          <End Type="PMDataModel.Adm_Resume_Status" Role="Adm_Resume_Status" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Resume_Status">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Position">
-              <PropertyRef Name="Resume_Status_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contract_Position_Adm_Security_Clearance">
-          <End Type="PMDataModel.Adm_Security_Clearance" Role="Adm_Security_Clearance" Multiplicity="0..1" />
-          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Security_Clearance">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contract_Position">
-              <PropertyRef Name="Required_Security_Clearance_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Clearance_Adm_Security_Clearance">
-          <End Type="PMDataModel.Adm_Security_Clearance" Role="Adm_Security_Clearance" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Security_Clearance">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Clearance">
-              <PropertyRef Name="Security_Clearance_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2600,18 +2415,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ref_Training_Contract">
-          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
-          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contract">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ref_Training">
-              <PropertyRef Name="Contract_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Asset_Contract">
           <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
           <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
@@ -2684,18 +2487,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Position_Contract_Position">
-          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contract_Position">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Position">
-              <PropertyRef Name="Contract_Position_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Workshare_Contract_Position">
           <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="0..1" />
           <End Type="PMDataModel.Workshare" Role="Workshare" Multiplicity="*" />
@@ -2732,42 +2523,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Staff_Asset_Ref_Asset">
-          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Asset">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Asset">
-              <PropertyRef Name="Asset_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Workshare_Ref_Company">
-          <End Type="PMDataModel.Ref_Company" Role="Ref_Company" Multiplicity="0..1" />
-          <End Type="PMDataModel.Workshare" Role="Workshare" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Company">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Workshare">
-              <PropertyRef Name="Company_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Staff_Ref_CompanyStaff">
-          <End Type="PMDataModel.Ref_Company" Role="Ref_Company" Multiplicity="1" />
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Company">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff">
-              <PropertyRef Name="Company_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Ref_Contract_LCAT_Ref_Vehicle_LCAT">
           <End Type="PMDataModel.Ref_Contract_Vehicle_LCAT" Role="Ref_Contract_Vehicle_LCAT" Multiplicity="0..1" />
           <End Type="PMDataModel.Ref_Contract_LCAT" Role="Ref_Contract_LCAT" Multiplicity="*" />
@@ -2789,30 +2544,6 @@
             </Principal>
             <Dependent Role="Staff_Skill">
               <PropertyRef Name="Skill_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Position_Ref_Telework_Agreement">
-          <End Type="PMDataModel.Ref_Telework_Agreement" Role="Ref_Telework_Agreement" Multiplicity="0..1" />
-          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Telework_Agreement">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Position">
-              <PropertyRef Name="Telework_Agreement_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Training_Ref_Training">
-          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ref_Training">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Training">
-              <PropertyRef Name="Training_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2848,18 +2579,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Staff_Clearance">
-              <PropertyRef Name="Staff_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Staff_Position_Staff">
-          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Staff_Position">
               <PropertyRef Name="Staff_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2903,6 +2622,287 @@
         <Association Name="AspNetUserRoles">
           <End Type="PMDataModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="PMDataModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Adm_Info_Risk">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Info_Risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Info_Risk" FromRole="Adm_Info_Risk" ToRole="Contract_Position" />
+        </EntityType>
+        <Association Name="FK_Contract_Position_Adm_Info_Risk">
+          <End Type="PMDataModel.Adm_Info_Risk" Role="Adm_Info_Risk" Multiplicity="1" />
+          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Info_Risk">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contract_Position">
+              <PropertyRef Name="Info_Risk_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Adm_Security_Clearance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Security_Clearance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Security_Clearance_Abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" FromRole="Adm_Security_Clearance" ToRole="Contract_Position" />
+          <NavigationProperty Name="Staff_Clearance" Relationship="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" FromRole="Adm_Security_Clearance" ToRole="Staff_Clearance" />
+        </EntityType>
+        <Association Name="FK_Contract_Position_Adm_Security_Clearance">
+          <End Type="PMDataModel.Adm_Security_Clearance" Role="Adm_Security_Clearance" Multiplicity="0..1" />
+          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Security_Clearance">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contract_Position">
+              <PropertyRef Name="Required_Security_Clearance_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Clearance_Adm_Security_Clearance">
+          <End Type="PMDataModel.Adm_Security_Clearance" Role="Adm_Security_Clearance" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Clearance" Role="Staff_Clearance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Security_Clearance">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Clearance">
+              <PropertyRef Name="Security_Clearance_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Adm_Requisition_Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" FromRole="Adm_Requisition_Status" ToRole="Contract_Position" />
+        </EntityType>
+        <Association Name="FK_Contract_Position_Adm_Requisition_Status">
+          <End Type="PMDataModel.Adm_Requisition_Status" Role="Adm_Requisition_Status" Multiplicity="1" />
+          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Requisition_Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contract_Position">
+              <PropertyRef Name="Requisition_Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Adm_Exit_Reason">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Exit_Reason" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Staffs" Relationship="PMDataModel.FK_Staff_Adm_Exit_Reason" FromRole="Adm_Exit_Reason" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Staff_Adm_Exit_Reason">
+          <End Type="PMDataModel.Adm_Exit_Reason" Role="Adm_Exit_Reason" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Exit_Reason">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Exit_Reason_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ref_Asset">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Asset_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Asset_Type_ID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Adm_Asset_Type" Relationship="PMDataModel.FK_Ref_Asset_Adm_Asset_Type" FromRole="Ref_Asset" ToRole="Adm_Asset_Type" />
+          <NavigationProperty Name="Staff_Asset" Relationship="PMDataModel.FK_Staff_Asset_Ref_Asset" FromRole="Ref_Asset" ToRole="Staff_Asset" />
+        </EntityType>
+        <EntityType Name="Ref_Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Workshares" Relationship="PMDataModel.FK_Workshare_Ref_Company" FromRole="Ref_Company" ToRole="Workshare" />
+          <NavigationProperty Name="Staffs" Relationship="PMDataModel.Staff_Ref_CompanyStaff" FromRole="Ref_Company" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Ref_Asset_Adm_Asset_Type">
+          <End Type="PMDataModel.Adm_Asset_Type" Role="Adm_Asset_Type" Multiplicity="1" />
+          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Asset_Type">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ref_Asset">
+              <PropertyRef Name="Asset_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Asset_Ref_Asset">
+          <End Type="PMDataModel.Ref_Asset" Role="Ref_Asset" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Asset" Role="Staff_Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Asset">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Asset">
+              <PropertyRef Name="Asset_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workshare_Ref_Company">
+          <End Type="PMDataModel.Ref_Company" Role="Ref_Company" Multiplicity="0..1" />
+          <End Type="PMDataModel.Workshare" Role="Workshare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workshare">
+              <PropertyRef Name="Company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Staff_Ref_CompanyStaff">
+          <End Type="PMDataModel.Ref_Company" Role="Ref_Company" Multiplicity="1" />
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ref_Telework_Agreement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Telework_Agreement" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Staff_Position" Relationship="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement" FromRole="Ref_Telework_Agreement" ToRole="Staff_Position" />
+        </EntityType>
+        <EntityType Name="Ref_Training">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Contract_ID" Type="Int32" />
+          <Property Name="Training" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Due" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract" Relationship="PMDataModel.FK_Ref_Training_Contract" FromRole="Ref_Training" ToRole="Contract" />
+          <NavigationProperty Name="Staff_Training" Relationship="PMDataModel.FK_Staff_Training_Ref_Training" FromRole="Ref_Training" ToRole="Staff_Training" />
+        </EntityType>
+        <Association Name="FK_Ref_Training_Contract">
+          <End Type="PMDataModel.Contract" Role="Contract" Multiplicity="0..1" />
+          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ref_Training">
+              <PropertyRef Name="Contract_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Training_Ref_Training">
+          <End Type="PMDataModel.Ref_Training" Role="Ref_Training" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Training" Role="Staff_Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Training">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Training">
+              <PropertyRef Name="Training_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Staff_Position">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+            <PropertyRef Name="Contract_Position_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <Property Name="Contract_Position_ID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Planned_Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="Active_Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="Active_End_Date" Type="DateTime" Precision="0" />
+          <Property Name="Telework_Agreement_ID" Type="Int32" />
+          <Property Name="Resume_Status_ID" Type="Int16" />
+          <Property Name="Is_Resume_Compliant" Type="Boolean" />
+          <Property Name="Is_LCAT_Compliant" Type="Boolean" />
+          <Property Name="Compliance_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Desk_Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Cell_Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modified_On" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Modified_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adm_Resume_Status" Relationship="PMDataModel.FK_Staff_Position_Adm_Resume_Status" FromRole="Staff_Position" ToRole="Adm_Resume_Status" />
+          <NavigationProperty Name="Contract_Position" Relationship="PMDataModel.FK_Staff_Position_Contract_Position" FromRole="Staff_Position" ToRole="Contract_Position" />
+          <NavigationProperty Name="Ref_Telework_Agreement" Relationship="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement" FromRole="Staff_Position" ToRole="Ref_Telework_Agreement" />
+          <NavigationProperty Name="Staff" Relationship="PMDataModel.FK_Staff_Position_Staff" FromRole="Staff_Position" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Staff_Position_Adm_Resume_Status">
+          <End Type="PMDataModel.Adm_Resume_Status" Role="Adm_Resume_Status" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Resume_Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Position">
+              <PropertyRef Name="Resume_Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Position_Contract_Position">
+          <End Type="PMDataModel.Contract_Position" Role="Contract_Position" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract_Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Position">
+              <PropertyRef Name="Contract_Position_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Position_Ref_Telework_Agreement">
+          <End Type="PMDataModel.Ref_Telework_Agreement" Role="Ref_Telework_Agreement" Multiplicity="0..1" />
+          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ref_Telework_Agreement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Position">
+              <PropertyRef Name="Telework_Agreement_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Position_Staff">
+          <End Type="PMDataModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="PMDataModel.Staff_Position" Role="Staff_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff_Position">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2985,22 +2985,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Adm_Exit_Reasons">
-            <EntityTypeMapping TypeName="PMDataModel.Adm_Exit_Reason">
-              <MappingFragment StoreEntitySet="Adm Exit Reason">
-                <ScalarProperty Name="Exit_Reason" ColumnName="Exit Reason" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Adm_Info_Risks">
-            <EntityTypeMapping TypeName="PMDataModel.Adm_Info_Risk">
-              <MappingFragment StoreEntitySet="Adm Info Risk">
-                <ScalarProperty Name="Info_Risk" ColumnName="Info Risk" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Adm_Prefixes">
             <EntityTypeMapping TypeName="PMDataModel.Adm_Prefix">
               <MappingFragment StoreEntitySet="Adm Prefix">
@@ -3016,27 +3000,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Adm_Requisition_Status">
-            <EntityTypeMapping TypeName="PMDataModel.Adm_Requisition_Status">
-              <MappingFragment StoreEntitySet="Adm Requisition Status">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Adm_Resume_Status">
             <EntityTypeMapping TypeName="PMDataModel.Adm_Resume_Status">
               <MappingFragment StoreEntitySet="Adm Resume Status">
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Adm_Security_Clearances">
-            <EntityTypeMapping TypeName="PMDataModel.Adm_Security_Clearance">
-              <MappingFragment StoreEntitySet="Adm Security Clearance">
-                <ScalarProperty Name="Security_Clearance_Abbreviation" ColumnName="Security Clearance Abbreviation" />
-                <ScalarProperty Name="Security_Clearance" ColumnName="Security Clearance" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3200,23 +3167,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ref_Assets">
-            <EntityTypeMapping TypeName="PMDataModel.Ref_Asset">
-              <MappingFragment StoreEntitySet="Ref Asset">
-                <ScalarProperty Name="Asset_Type_ID" ColumnName="Asset Type ID" />
-                <ScalarProperty Name="Asset_Name" ColumnName="Asset Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ref_Companies">
-            <EntityTypeMapping TypeName="PMDataModel.Ref_Company">
-              <MappingFragment StoreEntitySet="Ref Company">
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ref_Contract_LCATs">
             <EntityTypeMapping TypeName="PMDataModel.Ref_Contract_LCAT">
               <MappingFragment StoreEntitySet="Ref Contract LCAT">
@@ -3274,25 +3224,6 @@
             <EntityTypeMapping TypeName="PMDataModel.Ref_Skill">
               <MappingFragment StoreEntitySet="Ref Skill">
                 <ScalarProperty Name="Skill" ColumnName="Skill" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ref_Telework_Agreements">
-            <EntityTypeMapping TypeName="PMDataModel.Ref_Telework_Agreement">
-              <MappingFragment StoreEntitySet="Ref Telework Agreement">
-                <ScalarProperty Name="Telework_Agreement" ColumnName="Telework Agreement" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ref_Trainings">
-            <EntityTypeMapping TypeName="PMDataModel.Ref_Training">
-              <MappingFragment StoreEntitySet="Ref Training">
-                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
-                <ScalarProperty Name="Date_Due" ColumnName="Date Due" />
-                <ScalarProperty Name="Training" ColumnName="Training" />
-                <ScalarProperty Name="Contract_ID" ColumnName="Contract ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3395,30 +3326,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Staff_Positions">
-            <EntityTypeMapping TypeName="PMDataModel.Staff_Position">
-              <MappingFragment StoreEntitySet="Staff Position">
-                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
-                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
-                <ScalarProperty Name="Created_By" ColumnName="Created By" />
-                <ScalarProperty Name="Created_On" ColumnName="Created On" />
-                <ScalarProperty Name="Cell_Phone" ColumnName="Cell Phone" />
-                <ScalarProperty Name="Desk_Phone" ColumnName="Desk Phone" />
-                <ScalarProperty Name="Email_Address" ColumnName="Email Address" />
-                <ScalarProperty Name="Compliance_Notes" ColumnName="Compliance Notes" />
-                <ScalarProperty Name="Is_LCAT_Compliant" ColumnName="Is LCAT Compliant" />
-                <ScalarProperty Name="Is_Resume_Compliant" ColumnName="Is Resume Compliant" />
-                <ScalarProperty Name="Resume_Status_ID" ColumnName="Resume Status ID" />
-                <ScalarProperty Name="Telework_Agreement_ID" ColumnName="Telework Agreement ID" />
-                <ScalarProperty Name="Active_End_Date" ColumnName="Active End Date" />
-                <ScalarProperty Name="Active_Start_Date" ColumnName="Active Start Date" />
-                <ScalarProperty Name="Planned_Start_Date" ColumnName="Planned Start Date" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Contract_Position_ID" ColumnName="Contract Position ID" />
-                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Staff_Skills">
             <EntityTypeMapping TypeName="PMDataModel.Staff_Skill">
               <MappingFragment StoreEntitySet="Staff Skill">
@@ -3480,6 +3387,99 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Adm_Info_Risks">
+            <EntityTypeMapping TypeName="PMDataModel.Adm_Info_Risk">
+              <MappingFragment StoreEntitySet="Adm Info Risk">
+                <ScalarProperty Name="Info_Risk" ColumnName="Info Risk" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adm_Security_Clearances">
+            <EntityTypeMapping TypeName="PMDataModel.Adm_Security_Clearance">
+              <MappingFragment StoreEntitySet="Adm Security Clearance">
+                <ScalarProperty Name="Security_Clearance_Abbreviation" ColumnName="Security Clearance Abbreviation" />
+                <ScalarProperty Name="Security_Clearance" ColumnName="Security Clearance" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adm_Requisition_Status">
+            <EntityTypeMapping TypeName="PMDataModel.Adm_Requisition_Status">
+              <MappingFragment StoreEntitySet="Adm Requisition Status">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adm_Exit_Reasons">
+            <EntityTypeMapping TypeName="PMDataModel.Adm_Exit_Reason">
+              <MappingFragment StoreEntitySet="Adm Exit Reason">
+                <ScalarProperty Name="Exit_Reason" ColumnName="Exit Reason" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ref_Assets">
+            <EntityTypeMapping TypeName="PMDataModel.Ref_Asset">
+              <MappingFragment StoreEntitySet="Ref Asset">
+                <ScalarProperty Name="Asset_Type_ID" ColumnName="Asset Type ID" />
+                <ScalarProperty Name="Asset_Name" ColumnName="Asset Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ref_Companies">
+            <EntityTypeMapping TypeName="PMDataModel.Ref_Company">
+              <MappingFragment StoreEntitySet="Ref Company">
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ref_Telework_Agreements">
+            <EntityTypeMapping TypeName="PMDataModel.Ref_Telework_Agreement">
+              <MappingFragment StoreEntitySet="Ref Telework Agreement">
+                <ScalarProperty Name="Telework_Agreement" ColumnName="Telework Agreement" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ref_Trainings">
+            <EntityTypeMapping TypeName="PMDataModel.Ref_Training">
+              <MappingFragment StoreEntitySet="Ref Training">
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="Date_Due" ColumnName="Date Due" />
+                <ScalarProperty Name="Training" ColumnName="Training" />
+                <ScalarProperty Name="Contract_ID" ColumnName="Contract ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Positions">
+            <EntityTypeMapping TypeName="PMDataModel.Staff_Position">
+              <MappingFragment StoreEntitySet="Staff Position">
+                <ScalarProperty Name="Modified_By" ColumnName="Modified By" />
+                <ScalarProperty Name="Modified_On" ColumnName="Modified On" />
+                <ScalarProperty Name="Created_By" ColumnName="Created By" />
+                <ScalarProperty Name="Created_On" ColumnName="Created On" />
+                <ScalarProperty Name="Cell_Phone" ColumnName="Cell Phone" />
+                <ScalarProperty Name="Desk_Phone" ColumnName="Desk Phone" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email Address" />
+                <ScalarProperty Name="Compliance_Notes" ColumnName="Compliance Notes" />
+                <ScalarProperty Name="Is_LCAT_Compliant" ColumnName="Is LCAT Compliant" />
+                <ScalarProperty Name="Is_Resume_Compliant" ColumnName="Is Resume Compliant" />
+                <ScalarProperty Name="Resume_Status_ID" ColumnName="Resume Status ID" />
+                <ScalarProperty Name="Telework_Agreement_ID" ColumnName="Telework Agreement ID" />
+                <ScalarProperty Name="Active_End_Date" ColumnName="Active End Date" />
+                <ScalarProperty Name="Active_Start_Date" ColumnName="Active Start Date" />
+                <ScalarProperty Name="Planned_Start_Date" ColumnName="Planned Start Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Contract_Position_ID" ColumnName="Contract Position ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

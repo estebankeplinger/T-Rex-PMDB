@@ -74,7 +74,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Telework_Agreement_ID, "Telework_Agreement_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Telework_Agreement_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.DropDownList("Telework_Agreement_ID", null, htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Telework_Agreement_ID, "", new { @class = "text-danger" })
@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Resume_Status_ID, "Resume_Status_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Resume_Status_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.DropDownList("Resume_Status_ID", null, htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Resume_Status_ID, "", new { @class = "text-danger" })
@@ -140,38 +140,6 @@
                                         @Html.ValidationMessageFor(model => model.Cell_Phone, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
-                                @*<div class="form-group">
-                                    @Html.LabelFor(model => model.Created_On, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Created_On, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Created_On, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Created_By, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Created_By, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Created_By, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Modified_On, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Modified_On, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Modified_On, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Modified_By, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Modified_By, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Modified_By, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>*@
 
                                 @Html.HiddenFor(model => model.Created_On, new { @Value = Model.Created_On }) @*Don't change Created fields on edit*@
                                 @Html.HiddenFor(model => model.Created_By, new { @Value = Model.Created_By })

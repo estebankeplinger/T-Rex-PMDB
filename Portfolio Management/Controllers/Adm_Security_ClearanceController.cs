@@ -50,7 +50,15 @@ namespace Portfolio_Management.Controllers
             if (ModelState.IsValid)
             {
                 db.Adm_Security_Clearances.Add(adm_Security_Clearance);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+                
                 return RedirectToAction("Index");
             }
 

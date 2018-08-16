@@ -22,9 +22,9 @@ namespace Portfolio_Management.Models
             this.Educations = new HashSet<Education>();
             this.Staff_Asset = new HashSet<Staff_Asset>();
             this.Staff_Clearance = new HashSet<Staff_Clearance>();
-            this.Staff_Position = new HashSet<Staff_Position>();
             this.Staff_Skill = new HashSet<Staff_Skill>();
             this.Staff_Training = new HashSet<Staff_Training>();
+            this.Staff_Position = new HashSet<Staff_Position>();
         }
     
         public int ID { get; set; }
@@ -55,7 +55,6 @@ namespace Portfolio_Management.Models
         public Nullable<System.DateTime> Modified_On { get; set; }
         public string Modified_By { get; set; }
     
-        public virtual Adm_Exit_Reason Adm_Exit_Reason { get; set; }
         public virtual Adm_Prefix Adm_Prefix { get; set; }
         public virtual Adm_Suffix Adm_Suffix { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -64,16 +63,17 @@ namespace Portfolio_Management.Models
         public virtual ICollection<Contract> Contracts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Education> Educations { get; set; }
-        public virtual Ref_Company Ref_Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Asset> Staff_Asset { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Clearance> Staff_Clearance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff_Position> Staff_Position { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Skill> Staff_Skill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Training> Staff_Training { get; set; }
+        public virtual Adm_Exit_Reason Adm_Exit_Reason { get; set; }
+        public virtual Ref_Company Ref_Company { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Staff_Position> Staff_Position { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Ref_Contract_LCAT/Create
         public ActionResult Create()
         {
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title");
             ViewBag.Vehicle_LCAT_ID = new SelectList(db.Ref_Contract_Vehicle_LCATs, "ID", "LCAT");
             return View();
         }

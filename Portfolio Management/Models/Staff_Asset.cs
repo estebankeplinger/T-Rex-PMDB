@@ -28,7 +28,7 @@ namespace Portfolio_Management.Models
         public string Modified_By { get; set; }
     
         public virtual Contract Contract { get; set; }
-        public virtual Ref_Asset Ref_Asset { get; set; }
         public virtual Staff Staff { get; set; }
+        public virtual Ref_Asset Ref_Asset { get; set; }
     }
 }

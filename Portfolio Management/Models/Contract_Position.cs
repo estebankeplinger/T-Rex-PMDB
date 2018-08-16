@@ -18,8 +18,8 @@ namespace Portfolio_Management.Models
         public Contract_Position()
         {
             this.Position_Forecast = new HashSet<Position_Forecast>();
-            this.Staff_Position = new HashSet<Staff_Position>();
             this.Workshares = new HashSet<Workshare>();
+            this.Staff_Position = new HashSet<Staff_Position>();
         }
     
         public int ID { get; set; }
@@ -37,9 +37,6 @@ namespace Portfolio_Management.Models
         public System.DateTime Modified_On { get; set; }
         public string Modified_By { get; set; }
     
-        public virtual Adm_Info_Risk Adm_Info_Risk { get; set; }
-        public virtual Adm_Requisition_Status Adm_Requisition_Status { get; set; }
-        public virtual Adm_Security_Clearance Adm_Security_Clearance { get; set; }
         public virtual Contract Contract { get; set; }
         public virtual Contract_WB Contract_WBS { get; set; }
         public virtual Ref_Contract_LCAT Ref_Contract_LCAT { get; set; }
@@ -47,8 +44,11 @@ namespace Portfolio_Management.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Position_Forecast> Position_Forecast { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff_Position> Staff_Position { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workshare> Workshares { get; set; }
+        public virtual Adm_Info_Risk Adm_Info_Risk { get; set; }
+        public virtual Adm_Security_Clearance Adm_Security_Clearance { get; set; }
+        public virtual Adm_Requisition_Status Adm_Requisition_Status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Staff_Position> Staff_Position { get; set; }
     }
 }

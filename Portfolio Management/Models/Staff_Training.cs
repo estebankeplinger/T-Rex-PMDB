@@ -23,7 +23,7 @@ namespace Portfolio_Management.Models
         public System.DateTime Modified_On { get; set; }
         public string Modified_By { get; set; }
     
-        public virtual Ref_Training Ref_Training { get; set; }
         public virtual Staff Staff { get; set; }
+        public virtual Ref_Training Ref_Training { get; set; }
     }
 }

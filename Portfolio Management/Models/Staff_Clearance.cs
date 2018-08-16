@@ -30,10 +30,10 @@ namespace Portfolio_Management.Models
         public System.DateTime Modified_On { get; set; }
         public string Modified_By { get; set; }
     
-        public virtual Adm_Security_Clearance Adm_Security_Clearance { get; set; }
         public virtual Contract Contract { get; set; }
         public virtual Staff Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Clearance_Workflow> Staff_Clearance_Workflow { get; set; }
+        public virtual Adm_Security_Clearance Adm_Security_Clearance { get; set; }
     }
 }

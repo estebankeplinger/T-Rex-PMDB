@@ -38,11 +38,13 @@ namespace Portfolio_Management.Controllers
         // GET: Contract_Position/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Info_Risk_ID = new SelectList(db.Adm_Info_Risks, "ID", "Info_Risk");
             ViewBag.Requisition_Status_ID = new SelectList(db.Adm_Requisition_Status, "ID", "Status");
             ViewBag.Required_Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance");
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
-            ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area");
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title");
+            ViewBag.Contract_WBS_ID = new SelectList(db.Contract_WBS, "ID", "Area");
+            //ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area");
             ViewBag.LCAT_ID = new SelectList(db.Ref_Contract_LCATs, "ID", "ESF_LCAT");
             ViewBag.Role_ID = new SelectList(db.Ref_Roles, "ID", "Role");
             return View();
@@ -61,12 +63,13 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Info_Risk_ID = new SelectList(db.Adm_Info_Risks, "ID", "Info_Risk", contract_Position.Info_Risk_ID);
             ViewBag.Requisition_Status_ID = new SelectList(db.Adm_Requisition_Status, "ID", "Status", contract_Position.Requisition_Status_ID);
             ViewBag.Required_Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance", contract_Position.Required_Security_Clearance_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", contract_Position.Contract_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", contract_Position.Contract_ID);
+            ViewBag.Contract_WBS_ID = new SelectList(db.Contract_WBS, "ID", "Area",contract_Position.Contract_WBS_ID);
+            //ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_ID);
             ViewBag.LCAT_ID = new SelectList(db.Ref_Contract_LCATs, "ID", "ESF_LCAT", contract_Position.LCAT_ID);
             ViewBag.Role_ID = new SelectList(db.Ref_Roles, "ID", "Role", contract_Position.Role_ID);
             return View(contract_Position);
@@ -84,11 +87,13 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Info_Risk_ID = new SelectList(db.Adm_Info_Risks, "ID", "Info_Risk", contract_Position.Info_Risk_ID);
             ViewBag.Requisition_Status_ID = new SelectList(db.Adm_Requisition_Status, "ID", "Status", contract_Position.Requisition_Status_ID);
             ViewBag.Required_Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance", contract_Position.Required_Security_Clearance_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", contract_Position.Contract_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", contract_Position.Contract_ID);
+            //ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_ID);
+            ViewBag.Contract_WBS_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_WBS_ID);
             ViewBag.LCAT_ID = new SelectList(db.Ref_Contract_LCATs, "ID", "ESF_LCAT", contract_Position.LCAT_ID);
             ViewBag.Role_ID = new SelectList(db.Ref_Roles, "ID", "Role", contract_Position.Role_ID);
             return View(contract_Position);
@@ -107,11 +112,13 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Info_Risk_ID = new SelectList(db.Adm_Info_Risks, "ID", "Info_Risk", contract_Position.Info_Risk_ID);
             ViewBag.Requisition_Status_ID = new SelectList(db.Adm_Requisition_Status, "ID", "Status", contract_Position.Requisition_Status_ID);
             ViewBag.Required_Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance", contract_Position.Required_Security_Clearance_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", contract_Position.Contract_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", contract_Position.Contract_ID);
+            ViewBag.Contract_WBS_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_WBS_ID);
+            //ViewBag.Contract_ID = new SelectList(db.Contract_WBS, "ID", "Area", contract_Position.Contract_ID);
             ViewBag.LCAT_ID = new SelectList(db.Ref_Contract_LCATs, "ID", "ESF_LCAT", contract_Position.LCAT_ID);
             ViewBag.Role_ID = new SelectList(db.Ref_Roles, "ID", "Role", contract_Position.Role_ID);
             return View(contract_Position);

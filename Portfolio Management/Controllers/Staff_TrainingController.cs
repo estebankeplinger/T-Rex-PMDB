@@ -38,6 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Staff_Training/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Training_ID = new SelectList(db.Ref_Trainings, "ID", "Training");
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
             return View();
@@ -56,7 +57,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Training_ID = new SelectList(db.Ref_Trainings, "ID", "Training", staff_Training.Training_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Training.Staff_ID);
             return View(staff_Training);
@@ -74,6 +75,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Training_ID = new SelectList(db.Ref_Trainings, "ID", "Training", staff_Training.Training_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Training.Staff_ID);
             return View(staff_Training);
@@ -92,6 +94,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Training_ID = new SelectList(db.Ref_Trainings, "ID", "Training", staff_Training.Training_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Training.Staff_ID);
             return View(staff_Training);

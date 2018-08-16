@@ -4,20 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56f19cc1b0604ddabc754c2c3b3cfb88" Name="Diagram1" ZoomLevel="55">
+      <Diagram DiagramId="56f19cc1b0604ddabc754c2c3b3cfb88" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="PMDataModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Agency" Width="1.5" PointX="3.75" PointY="19.875" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Asset_Type" Width="1.5" PointX="6" PointY="16.25" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Clearance_Status" Width="1.5" PointX="11.25" PointY="15.25" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Contract_Vehicle" Width="1.5" PointX="6" PointY="37.625" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Degree" Width="1.5" PointX="6" PointY="34.875" />
-        <EntityTypeShape EntityType="PMDataModel.Adm_Exit_Reason" Width="1.5" PointX="0.75" PointY="30.25" />
-        <EntityTypeShape EntityType="PMDataModel.Adm_Info_Risk" Width="1.5" PointX="10.5" PointY="43.375" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Prefix" Width="1.5" PointX="0.75" PointY="32.625" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Proficiency" Width="1.5" PointX="3" PointY="33.125" />
-        <EntityTypeShape EntityType="PMDataModel.Adm_Requisition_Status" Width="1.5" PointX="10.5" PointY="18.25" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Resume_Status" Width="1.5" PointX="12.75" PointY="23.375" />
-        <EntityTypeShape EntityType="PMDataModel.Adm_Security_Clearance" Width="1.5" PointX="10.5" PointY="40.625" />
         <EntityTypeShape EntityType="PMDataModel.Adm_Suffix" Width="1.5" PointX="0.75" PointY="24.125" />
         <EntityTypeShape EntityType="PMDataModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.625" />
         <EntityTypeShape EntityType="PMDataModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
@@ -29,40 +25,28 @@
         <EntityTypeShape EntityType="PMDataModel.Contract_WB" Width="1.5" PointX="8.375" PointY="40.625" />
         <EntityTypeShape EntityType="PMDataModel.Education" Width="1.5" PointX="5.25" PointY="22.5" />
         <EntityTypeShape EntityType="PMDataModel.Position_Forecast" Width="1.5" PointX="15" PointY="39.5" />
-        <EntityTypeShape EntityType="PMDataModel.Ref_Asset" Width="1.5" PointX="8.25" PointY="16.125" />
-        <EntityTypeShape EntityType="PMDataModel.Ref_Company" Width="1.5" PointX="0.75" PointY="27.125" />
         <EntityTypeShape EntityType="PMDataModel.Ref_Contract_LCAT" Width="1.5" PointX="10.5" PointY="26.625" />
         <EntityTypeShape EntityType="PMDataModel.Ref_Contract_Vehicle_LCAT" Width="1.5" PointX="8.25" PointY="35.625" />
         <EntityTypeShape EntityType="PMDataModel.Ref_Customer" Width="1.5" PointX="6" PointY="19.75" />
         <EntityTypeShape EntityType="PMDataModel.Ref_Pay_Period" Width="1.5" PointX="12.75" PointY="46.875" />
         <EntityTypeShape EntityType="PMDataModel.Ref_Role" Width="1.5" PointX="10.5" PointY="45.75" />
         <EntityTypeShape EntityType="PMDataModel.Ref_Skill" Width="1.5" PointX="3" PointY="35.375" />
-        <EntityTypeShape EntityType="PMDataModel.Ref_Telework_Agreement" Width="1.5" PointX="12.75" PointY="43.75" />
-        <EntityTypeShape EntityType="PMDataModel.Ref_Training" Width="1.5" PointX="10.5" PointY="37.125" />
         <EntityTypeShape EntityType="PMDataModel.Security_Workflow" Width="1.5" PointX="13.5" PointY="26.25" />
         <EntityTypeShape EntityType="PMDataModel.Staff" Width="1.5" PointX="3" PointY="23.75" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Asset" Width="1.5" PointX="10.5" PointY="21.125" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Clearance" Width="1.5" PointX="10.5" PointY="30.25" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Clearance_Workflow" Width="1.5" PointX="15.75" PointY="28.375" />
-        <EntityTypeShape EntityType="PMDataModel.Staff_Position" Width="1.5" PointX="15" PointY="32.75" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Skill" Width="1.5" PointX="5.25" PointY="30.625" />
         <EntityTypeShape EntityType="PMDataModel.Staff_Training" Width="1.5" PointX="12.75" PointY="31.125" />
         <EntityTypeShape EntityType="PMDataModel.sysdiagram" Width="1.5" PointX="2.75" PointY="6.75" />
         <EntityTypeShape EntityType="PMDataModel.Workshare" Width="1.5" PointX="6" PointY="26.5" />
         <AssociationConnector Association="PMDataModel.FK_Ref_Customer_Adm_Agency" />
-        <AssociationConnector Association="PMDataModel.FK_Ref_Asset_Adm_Asset_Type" />
         <AssociationConnector Association="PMDataModel.FK_Ref_Security_Workflow_Adm_Clearance_Status" />
         <AssociationConnector Association="PMDataModel.FK_Ref_Vehicle_LCAT_Adm_Contract_Vehicle" />
         <AssociationConnector Association="PMDataModel.FK_Education_Adm_Degree" />
         <AssociationConnector Association="PMDataModel.FK_Ref_Contract_Vehicle_LCAT_Adm_Degree" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Exit_Reason" />
-        <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Info_Risk" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Prefix" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Skill_Adm_Proficiency" />
-        <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Adm_Resume_Status" />
-        <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Suffix" />
         <AssociationConnector Association="PMDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="PMDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
@@ -73,32 +57,48 @@
         <AssociationConnector Association="PMDataModel.FK_Contract_Ref_Customer" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Ref_LCAT_Contract1" />
-        <AssociationConnector Association="PMDataModel.FK_Ref_Training_Contract" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Asset_Contract" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Contract" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Contract_WBS" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Ref_LCAT" />
         <AssociationConnector Association="PMDataModel.FK_Contract_Position_Ref_Role" />
         <AssociationConnector Association="PMDataModel.FK_Position_Forecast_Contract_Position" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Contract_Position" />
         <AssociationConnector Association="PMDataModel.FK_Workshare_Contract_Position" />
         <AssociationConnector Association="PMDataModel.FK_Education_Staff" />
         <AssociationConnector Association="PMDataModel.Requisition_Hours_Ref_Pay_PeriodRequisition_Hours" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Asset_Ref_Asset" />
-        <AssociationConnector Association="PMDataModel.FK_Workshare_Ref_Company" />
-        <AssociationConnector Association="PMDataModel.Staff_Ref_CompanyStaff" />
         <AssociationConnector Association="PMDataModel.FK_Ref_Contract_LCAT_Ref_Vehicle_LCAT" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Skill_Ref_Skill" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Training_Ref_Training" />
         <AssociationConnector Association="PMDataModel.FK_Security_Clearance_Contract_Security_Workflow" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Asset_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Staff" />
-        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Skill_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Training_Staff" />
         <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Worrkflow_Staff_Clearance" />
         <AssociationConnector Association="PMDataModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="PMDataModel.Adm_Info_Risk" Width="1.5" PointX="7.625" PointY="12.75" />
+        <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Info_Risk" />
+        <EntityTypeShape EntityType="PMDataModel.Adm_Security_Clearance" Width="1.5" PointX="5.375" PointY="6.875" />
+        <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Security_Clearance" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Clearance_Adm_Security_Clearance" />
+        <EntityTypeShape EntityType="PMDataModel.Adm_Requisition_Status" Width="1.5" PointX="7.375" PointY="0.875" />
+        <AssociationConnector Association="PMDataModel.FK_Contract_Position_Adm_Requisition_Status" />
+        <EntityTypeShape EntityType="PMDataModel.Adm_Exit_Reason" Width="1.5" PointX="7.375" PointY="3.875" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Adm_Exit_Reason" />
+        <EntityTypeShape EntityType="PMDataModel.Ref_Asset" Width="1.5" PointX="8.25" PointY="16" />
+        <EntityTypeShape EntityType="PMDataModel.Ref_Company" Width="1.5" PointX="0.75" PointY="27.125" />
+        <AssociationConnector Association="PMDataModel.FK_Ref_Asset_Adm_Asset_Type" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Asset_Ref_Asset" />
+        <AssociationConnector Association="PMDataModel.FK_Workshare_Ref_Company" />
+        <AssociationConnector Association="PMDataModel.Staff_Ref_CompanyStaff" />
+        <EntityTypeShape EntityType="PMDataModel.Ref_Telework_Agreement" Width="1.5" PointX="7.375" PointY="6.875" />
+        <EntityTypeShape EntityType="PMDataModel.Ref_Training" Width="1.5" PointX="10.5" PointY="34.875" />
+        <AssociationConnector Association="PMDataModel.FK_Ref_Training_Contract" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Training_Ref_Training" />
+        <EntityTypeShape EntityType="PMDataModel.Staff_Position" Width="1.5" PointX="16" PointY="22.25" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Adm_Resume_Status" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Contract_Position" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Ref_Telework_Agreement" />
+        <AssociationConnector Association="PMDataModel.FK_Staff_Position_Staff" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

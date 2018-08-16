@@ -38,6 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Staff_Position/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Resume_Status_ID = new SelectList(db.Adm_Resume_Status, "ID", "Status");
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID");
             ViewBag.Telework_Agreement_ID = new SelectList(db.Ref_Telework_Agreements, "ID", "Telework_Agreement");
@@ -58,7 +59,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Resume_Status_ID = new SelectList(db.Adm_Resume_Status, "ID", "Status", staff_Position.Resume_Status_ID);
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", staff_Position.Contract_Position_ID);
             ViewBag.Telework_Agreement_ID = new SelectList(db.Ref_Telework_Agreements, "ID", "Telework_Agreement", staff_Position.Telework_Agreement_ID);
@@ -78,6 +79,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Resume_Status_ID = new SelectList(db.Adm_Resume_Status, "ID", "Status", staff_Position.Resume_Status_ID);
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", staff_Position.Contract_Position_ID);
             ViewBag.Telework_Agreement_ID = new SelectList(db.Ref_Telework_Agreements, "ID", "Telework_Agreement", staff_Position.Telework_Agreement_ID);
@@ -98,6 +100,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Resume_Status_ID = new SelectList(db.Adm_Resume_Status, "ID", "Status", staff_Position.Resume_Status_ID);
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", staff_Position.Contract_Position_ID);
             ViewBag.Telework_Agreement_ID = new SelectList(db.Ref_Telework_Agreements, "ID", "Telework_Agreement", staff_Position.Telework_Agreement_ID);

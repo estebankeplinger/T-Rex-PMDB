@@ -38,6 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Workshares/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID");
             ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company");
             return View();
@@ -56,7 +57,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", workshare.Contract_Position_ID);
             ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company", workshare.Company_ID);
             return View(workshare);
@@ -74,6 +75,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", workshare.Contract_Position_ID);
             ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company", workshare.Company_ID);
             return View(workshare);
@@ -92,6 +94,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Contract_Position_ID = new SelectList(db.Contract_Positions, "ID", "Contract_WBS_ID", workshare.Contract_Position_ID);
             ViewBag.Company_ID = new SelectList(db.Ref_Companies, "ID", "Company", workshare.Company_ID);
             return View(workshare);

@@ -43,8 +43,10 @@ namespace Portfolio_Management.Controllers
         // GET: Staff_Clearance/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
             ViewBag.Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance");
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title");
             ViewBag.ID = new SelectList(db.Staffs, "ID", "Staff_Name");
             return View();
         }
@@ -62,9 +64,10 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Clearance.Staff_ID);
             ViewBag.Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance", staff_Clearance.Security_Clearance_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Clearance.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", staff_Clearance.Contract_ID);
             ViewBag.ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Clearance.ID);
             return View(staff_Clearance);
         }
@@ -81,8 +84,10 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Clearance.Staff_ID);
             ViewBag.Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance", staff_Clearance.Security_Clearance_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Clearance.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", staff_Clearance.Contract_ID);
             ViewBag.ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Clearance.ID);
             return View(staff_Clearance);
         }
@@ -100,8 +105,10 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Clearance.Staff_ID);
             ViewBag.Security_Clearance_ID = new SelectList(db.Adm_Security_Clearances, "ID", "Security_Clearance", staff_Clearance.Security_Clearance_ID);
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Clearance.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", staff_Clearance.Contract_ID);
             ViewBag.ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Clearance.ID);
             return View(staff_Clearance);
         }

@@ -56,7 +56,7 @@ namespace Portfolio_Management.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", ref_Training.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", ref_Training.Contract_ID);
             return View(ref_Training);
         }
 
@@ -72,7 +72,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", ref_Training.Contract_ID);
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", ref_Training.Contract_ID);
             return View(ref_Training);
         }
 

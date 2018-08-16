@@ -33,13 +33,9 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Adm_Clearance_Status> Adm_Clearance_Status { get; set; }
         public virtual DbSet<Adm_Contract_Vehicle> Adm_Contract_Vehicles { get; set; }
         public virtual DbSet<Adm_Degree> Adm_Degrees { get; set; }
-        public virtual DbSet<Adm_Exit_Reason> Adm_Exit_Reasons { get; set; }
-        public virtual DbSet<Adm_Info_Risk> Adm_Info_Risks { get; set; }
         public virtual DbSet<Adm_Prefix> Adm_Prefixes { get; set; }
         public virtual DbSet<Adm_Proficiency> Adm_Proficiencies { get; set; }
-        public virtual DbSet<Adm_Requisition_Status> Adm_Requisition_Status { get; set; }
         public virtual DbSet<Adm_Resume_Status> Adm_Resume_Status { get; set; }
-        public virtual DbSet<Adm_Security_Clearance> Adm_Security_Clearances { get; set; }
         public virtual DbSet<Adm_Suffix> Adm_Suffixes { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -51,26 +47,30 @@ namespace Portfolio_Management.Models
         public virtual DbSet<Contract_WB> Contract_WBS { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<Position_Forecast> Position_Forecasts { get; set; }
-        public virtual DbSet<Ref_Asset> Ref_Assets { get; set; }
-        public virtual DbSet<Ref_Company> Ref_Companies { get; set; }
         public virtual DbSet<Ref_Contract_LCAT> Ref_Contract_LCATs { get; set; }
         public virtual DbSet<Ref_Contract_Vehicle_LCAT> Ref_Contract_Vehicle_LCATs { get; set; }
         public virtual DbSet<Ref_Customer> Ref_Customers { get; set; }
         public virtual DbSet<Ref_Pay_Period> Ref_Pay_Periods { get; set; }
         public virtual DbSet<Ref_Role> Ref_Roles { get; set; }
         public virtual DbSet<Ref_Skill> Ref_Skills { get; set; }
-        public virtual DbSet<Ref_Telework_Agreement> Ref_Telework_Agreements { get; set; }
-        public virtual DbSet<Ref_Training> Ref_Trainings { get; set; }
         public virtual DbSet<Security_Workflow> Security_Workflows { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<Staff_Asset> Staff_Assets { get; set; }
         public virtual DbSet<Staff_Clearance> Staff_Clearances { get; set; }
         public virtual DbSet<Staff_Clearance_Workflow> Staff_Clearance_Workflows { get; set; }
-        public virtual DbSet<Staff_Position> Staff_Positions { get; set; }
         public virtual DbSet<Staff_Skill> Staff_Skills { get; set; }
         public virtual DbSet<Staff_Training> Staff_Trainings { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Workshare> Workshares { get; set; }
+        public virtual DbSet<Adm_Info_Risk> Adm_Info_Risks { get; set; }
+        public virtual DbSet<Adm_Security_Clearance> Adm_Security_Clearances { get; set; }
+        public virtual DbSet<Adm_Requisition_Status> Adm_Requisition_Status { get; set; }
+        public virtual DbSet<Adm_Exit_Reason> Adm_Exit_Reasons { get; set; }
+        public virtual DbSet<Ref_Asset> Ref_Assets { get; set; }
+        public virtual DbSet<Ref_Company> Ref_Companies { get; set; }
+        public virtual DbSet<Ref_Telework_Agreement> Ref_Telework_Agreements { get; set; }
+        public virtual DbSet<Ref_Training> Ref_Trainings { get; set; }
+        public virtual DbSet<Staff_Position> Staff_Positions { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

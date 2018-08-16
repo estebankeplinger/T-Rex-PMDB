@@ -38,6 +38,7 @@ namespace Portfolio_Management.Controllers
         // GET: Staff_Clearance_Workflow/Create
         public ActionResult Create()
         {
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Security_Workflow_ID = new SelectList(db.Security_Workflows, "ID", "Workflow");
             ViewBag.Staff_Clearance_ID = new SelectList(db.Staff_Clearances, "ID", "Created_By");
             return View();
@@ -56,7 +57,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Security_Workflow_ID = new SelectList(db.Security_Workflows, "ID", "Workflow", staff_Clearance_Workflow.Security_Workflow_ID);
             ViewBag.Staff_Clearance_ID = new SelectList(db.Staff_Clearances, "ID", "Created_By", staff_Clearance_Workflow.Staff_Clearance_ID);
             return View(staff_Clearance_Workflow);
@@ -74,6 +75,7 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Security_Workflow_ID = new SelectList(db.Security_Workflows, "ID", "Workflow", staff_Clearance_Workflow.Security_Workflow_ID);
             ViewBag.Staff_Clearance_ID = new SelectList(db.Staff_Clearances, "ID", "Created_By", staff_Clearance_Workflow.Staff_Clearance_ID);
             return View(staff_Clearance_Workflow);
@@ -92,6 +94,7 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DateTime = DateTime.Now;
             ViewBag.Security_Workflow_ID = new SelectList(db.Security_Workflows, "ID", "Workflow", staff_Clearance_Workflow.Security_Workflow_ID);
             ViewBag.Staff_Clearance_ID = new SelectList(db.Staff_Clearances, "ID", "Created_By", staff_Clearance_Workflow.Staff_Clearance_ID);
             return View(staff_Clearance_Workflow);

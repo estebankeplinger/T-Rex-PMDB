@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Portfolio_Management.Models.Contract_Position>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Contract Position Index";
 }
 <!-- page content -->
 <div class="right_col" role="main">
@@ -35,6 +35,12 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ID)
+                                        </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Contract_WBS_ID)
                                         </th>
@@ -84,6 +90,12 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Contract_ID)
+                                            </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Contract_WBS_ID)
                                             </td>

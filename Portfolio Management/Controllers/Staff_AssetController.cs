@@ -41,7 +41,8 @@ namespace Portfolio_Management.Controllers
         // GET: Staff_Asset/Create
         public ActionResult Create()
         {
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By");
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title");
             ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name");
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name");
             ViewBag.DateTime = DateTime.Now;
@@ -61,8 +62,8 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", staff_Asset.Contract_ID);
             ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
@@ -80,7 +81,8 @@ namespace Portfolio_Management.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", staff_Asset.Contract_ID);
             ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);
@@ -99,7 +101,8 @@ namespace Portfolio_Management.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Created_By", staff_Asset.Contract_ID);
+            ViewBag.DateTime = DateTime.Now;
+            ViewBag.Contract_ID = new SelectList(db.Contracts, "ID", "Title", staff_Asset.Contract_ID);
             ViewBag.Asset_ID = new SelectList(db.Ref_Assets, "ID", "Asset_Name", staff_Asset.Asset_ID);
             ViewBag.Staff_ID = new SelectList(db.Staffs, "ID", "Staff_Name", staff_Asset.Staff_ID);
             return View(staff_Asset);

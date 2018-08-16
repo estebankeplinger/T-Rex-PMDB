@@ -1,7 +1,7 @@
 ﻿@model Portfolio_Management.Models.Contract_Position
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Contract Position Details";
 }
 <!-- page content -->
 <div class="right_col" role="main">
@@ -30,6 +30,20 @@
                     <div class="x_content">
                         <div>
                             <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ID)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ID)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Contract_ID)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Contract_ID)
+                                </dd>
                                 <dt>
                                     @Html.DisplayNameFor(model => model.Contract_WBS_ID)
                                 </dt>

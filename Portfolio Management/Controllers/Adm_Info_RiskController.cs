@@ -47,11 +47,28 @@ namespace Portfolio_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Info_Risk")] Adm_Info_Risk adm_Info_Risk)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Adm_Info_Risks.Add(adm_Info_Risk);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Adm_Info_Risks.Add(adm_Info_Risk);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    List<string> modelStateErrors = new List<string>();
+                    foreach (ModelState modelState in ViewData.ModelState.Values)
+                    {
+                        foreach (ModelError error in modelState.Errors)
+                        {
+                            modelStateErrors.Add(error.ErrorMessage);
+                        }
+                    }
+                }
+            }catch(Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.InnerException.Message);
             }
 
             return View(adm_Info_Risk);

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Portfolio_Management.Models.Adm_Info_Risk>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Adm Info Risk Index";
 }
 <!-- page content -->
 <div class="right_col" role="main">
@@ -36,15 +36,19 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Info_Risk)
+                                            @Html.DisplayNameFor(model => model.ID)
                                         </th>
-                                        <th></th>
+                                        <th>@Html.DisplayNameFor(model => model.Info_Risk)
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ID)
+                                            </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Info_Risk)
                                             </td>

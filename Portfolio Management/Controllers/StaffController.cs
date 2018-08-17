@@ -41,7 +41,7 @@ namespace Portfolio_Management.Controllers
         [ChildActionOnly]
         public SelectedStaffDataViewModel SetStaffSelected(SelectedStaffDataViewModel StaffToSelect)
         {
-            if (StaffToSelect != null)
+            if (StaffToSelect.Staff != null)
                 StaffDashboardVM.SelectedStaffData.IsStaffSelected = true;
             else
                 StaffDashboardVM.SelectedStaffData.IsStaffSelected = false;

@@ -60,13 +60,10 @@
             Select a staff member.
         </div>
 
-        <!--Staff Showing as null-->
-            @if (Model.SelectedStaffData.Staff != null)
-            {
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2><i class="fa fa-bars"></i> @Model.SelectedStaffData.Staff.Staff_Name's Profile Data </h2>
+                            <h2><i class="fa fa-bars"></i> @{ if (Model.SelectedStaffData.Staff != null) { @Model.SelectedStaffData.Staff.First_Name; } }'s Profile Data </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -172,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-            }
             
 
         </div>
@@ -202,9 +198,19 @@
             })
 
             var IsStaffSelected = @Html.Raw(Json.Encode(Model.SelectedStaffData.IsStaffSelected));
-            if(IsStaffSelected)
-                loadAllStaffPartial(@Html.Raw(Json.Encode(Model.SelectedStaffData.Staff.ID))
-        });
+
+            if(IsStaffSelected) {
+                var selectedStaffID = @{ 
+                        if (Model.SelectedStaffData.Staff != null)
+                        {
+                            Html.Raw(Json.Encode(Model.SelectedStaffData.Staff.ID));
+                        }
+                    };
+
+                loadAllStaffPartial(selectedStaffID);
+                        }
+
+                    });
     </script>
 
     <script>
@@ -219,7 +225,7 @@
 
         $('.clickableRow').click(function () {
             var targetRow = $(this).data('id');
-            loadAllStaffPartial(targetRow)
+            loadAllStaffPartial(targetRow);
         })
 
         function loadAllStaffPartial(targetRow){

@@ -145,7 +145,7 @@ namespace Portfolio_Management.Controllers
             }
 
             db.SaveChanges();
-            return RedirectToAction("Index", "Staff");
+            return RedirectToAction("Index","Staff");
         }
 
         // GET: Educations

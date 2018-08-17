@@ -131,6 +131,7 @@ namespace Portfolio_Management.Models
         public List<Staff_Training> StaffTrainings { get; set; }
         public List<Staff_Clearance> StaffClearances { get; set; }
         public List<Contract> StaffContracts { get; set; }
+        public bool IsStaffSelected { get; set; }
     }
 
     public class StaffActionsViewModel

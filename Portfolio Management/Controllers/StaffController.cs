@@ -20,29 +20,33 @@ namespace Portfolio_Management.Controllers
         private StaffDashboardViewModel StaffDashboardVM = new StaffDashboardViewModel();
 
         // GET: Staff
-        public ActionResult Index(/*string searchString*/)
+        public ActionResult Index(int? id)
         {
 
-            var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason).Include(s => s.Adm_Prefix).Include(s => s.Adm_Suffix).Include(s => s.Ref_Company).Include(s => s.Staff_Clearance);
-            //Breaks datatable integration with index in url 
-            //List<Staff> staffList = new List<Staff>();
-
-            //staffList = staffs.ToList();
-            //if (!string.IsNullOrEmpty(searchString))
-            //{
-            //    foreach (var user in staffs.ToList())
-            //    {
-            //        //if user doesn't match search string, remove them from user list to show
-            //        if (!user.First_Name.Contains(searchString) && !user.Last_Name.Contains(searchString) &&
-            //            !user.Staff_Name.Contains(searchString))
-            //            staffList.Remove(user);
-            //    }
-            //}
-
+            StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+            StaffDashboardVM.SelectedStaffData = SetStaffSelected(StaffDashboardVM.SelectedStaffData);
+            
+            
+            var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason)
+                                  .Include(s => s.Adm_Prefix)
+                                  .Include(s => s.Adm_Suffix)
+                                  .Include(s => s.Ref_Company)
+                                  .Include(s => s.Staff_Clearance);
             
             StaffDashboardVM.AllStaffData.Staff = staffs.ToList();
 
             return View(StaffDashboardVM);
+        }
+        
+        [ChildActionOnly]
+        public SelectedStaffDataViewModel SetStaffSelected(SelectedStaffDataViewModel StaffToSelect)
+        {
+            if (StaffToSelect != null)
+                StaffDashboardVM.SelectedStaffData.IsStaffSelected = true;
+            else
+                StaffDashboardVM.SelectedStaffData.IsStaffSelected = false;
+
+            return StaffToSelect;
         }
 
         [HttpGet]
@@ -209,11 +213,20 @@ namespace Portfolio_Management.Controllers
         {
             if (id != null)
             {
-                StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
+                StaffDashboardVM.SelectedStaffData.Staff = GetStaffByID((int)id);
             }
             return PartialView("_StaffView", StaffDashboardVM);
         }
 
+        /*  Purpose: returns Staff with user ID
+         *  Returns: Staff
+         *  Parameters: ID of Staff to find
+         */
+        [ChildActionOnly]
+        public Staff GetStaffByID(int id)
+        {
+            return db.Staffs.Find(id);
+        }
 
         public ActionResult Dashboard()
         {

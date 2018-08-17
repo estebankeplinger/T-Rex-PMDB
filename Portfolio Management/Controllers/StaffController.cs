@@ -25,19 +25,19 @@ namespace Portfolio_Management.Controllers
 
             StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
             StaffDashboardVM.SelectedStaffData = SetStaffSelected(StaffDashboardVM.SelectedStaffData);
-            
-            
+
+
             var staffs = db.Staffs.Include(s => s.Adm_Exit_Reason)
                                   .Include(s => s.Adm_Prefix)
                                   .Include(s => s.Adm_Suffix)
                                   .Include(s => s.Ref_Company)
                                   .Include(s => s.Staff_Clearance);
-            
+
             StaffDashboardVM.AllStaffData.Staff = staffs.ToList();
 
             return View(StaffDashboardVM);
         }
-        
+
         [ChildActionOnly]
         public SelectedStaffDataViewModel SetStaffSelected(SelectedStaffDataViewModel StaffToSelect)
         {
@@ -57,7 +57,7 @@ namespace Portfolio_Management.Controllers
             if (id == null)
             {
                 staffActionsVM.IsStaffSelected = false;
-                ViewBag.selectStaffError = "Choose a staff member to work with below"; 
+                ViewBag.selectStaffError = "Choose a staff member to work with below";
                 return RedirectToAction("Index");
             }
 
@@ -87,7 +87,7 @@ namespace Portfolio_Management.Controllers
             if (id != null)
             {
                 StaffDashboardVM.SelectedStaffData.Staff = db.Staffs.Find(id);
-                foreach(var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
+                foreach (var skill in StaffDashboardVM.SelectedStaffData.Staff.Staff_Skill)
                 {
                     StaffDashboardVM.SelectedStaffData.StaffSkills.Add(skill);
                 }
@@ -205,7 +205,7 @@ namespace Portfolio_Management.Controllers
         public ActionResult StaffExitAction(StaffActionsViewModel staffActionsVM)
         {
             ViewBag.Exit_Reason_ID = new SelectList(db.Adm_Exit_Reasons, "ID", "Exit_Reason", null);
-            
+
             return PartialView("_StaffExitAction", staffActionsVM);
         }
 
@@ -230,7 +230,7 @@ namespace Portfolio_Management.Controllers
 
         public ActionResult Dashboard()
         {
-            
+
             StaffDashboardViewModel staffDBVM = new StaffDashboardViewModel();
             staffDBVM.NumStaff = db.Staffs.Count();
             staffDBVM.CompanyChart = getCompanyChartData();
@@ -249,7 +249,7 @@ namespace Portfolio_Management.Controllers
                 StaffDashboardViewModel.CompanyData companyData = new StaffDashboardViewModel.CompanyData();
                 companyData.CompanyID = company.ID;
                 companyData.CompanyName = company.Company;
-                
+
                 foreach (var staff in db.Staffs.ToList())
                 {
                     if (company.ID == staff.Company_ID)
@@ -308,7 +308,7 @@ namespace Portfolio_Management.Controllers
                     //&&!user.Desk_Phone.Contains(searchString))
                     {
                         clVM.Staffs.Remove(user);
-                    }  
+                    }
                 }
             }
             return View("_ContactListView", clVM);
